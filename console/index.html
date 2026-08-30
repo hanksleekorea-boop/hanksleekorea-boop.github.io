@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LinkMax 콘솔</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><style>
+:root{color-scheme:light;--bg:#f4f4f2;--card:#fcfcfb;--bd:#e2e1dd;--tx:#0b0b0b;--tx2:#52514e;--tx3:#8a8981;
+--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--good:#0ca30c;--warn:#fab219;--crit:#d03b3b}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--bg:#111110;--card:#1a1a19;--bd:#34342f;
+--tx:#fff;--tx2:#c3c2b7;--tx3:#8f8e85;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#111110;--card:#1a1a19;--bd:#34342f;
+--tx:#fff;--tx2:#c3c2b7;--tx3:#8f8e85;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);
+font:15px/1.55 -apple-system,BlinkMacSystemFont,"Malgun Gothic","Apple SD Gothic Neo",sans-serif}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--bd)}
+th{color:var(--tx2);font-size:11px;font-weight:600;background:var(--bg)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:14px;background:var(--bg);border:1px solid var(--bd);border-radius:5px;overflow:hidden;display:flex}
+.bar i{height:100%;display:block}
+.tt{font-size:12px;color:var(--tx2);margin-top:8px}
+.pend{color:var(--tx3)}.conf{color:var(--tx)}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;border:1px solid}
+
+.app{display:grid;grid-template-columns:212px 1fr;min-height:100vh}
+.side{background:var(--card);border-right:1px solid var(--bd);padding:18px 12px}
+.logo{font-weight:800;font-size:17px;padding:0 8px 16px}
+.nav a{display:block;padding:9px 10px;border-radius:8px;color:var(--tx2);text-decoration:none;font-size:14px;cursor:pointer}
+.nav a.on{background:var(--s1);color:#fff;font-weight:600}
+.main{padding:24px 28px 60px;max-width:1080px}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+h1{font-size:22px;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:18px}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.kpi .l{font-size:12px;color:var(--tx2)}
+.kpi .v{font-size:28px;font-weight:700;margin:4px 0 2px}
+.kpi .d{font-size:12px}
+.up{color:var(--good)}.dn{color:var(--crit)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.app{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+.chart{display:flex;align-items:flex-end;gap:5px;height:170px;padding-top:8px}
+.col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;position:relative;cursor:pointer}
+.col span{display:block;border-radius:3px 3px 0 0}
+.col:hover .tipbox{display:block}
+.tipbox{display:none;position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);
+padding:7px 10px;border-radius:7px;font-size:11px;white-space:nowrap;z-index:9;margin-bottom:6px}
+.xl{display:flex;gap:5px;font-size:10px;color:var(--tx3);margin-top:6px}
+.xl span{flex:1;text-align:center}
+.lg{display:flex;gap:14px;font-size:12px;color:var(--tx2);margin-top:10px;flex-wrap:wrap}
+.lg b{display:flex;align-items:center;gap:5px;font-weight:400}
+.sw{width:11px;height:11px;border-radius:3px}
+.alertbox{border-left:4px solid var(--warn);background:#fff8e6;color:#3d2f00;padding:11px 14px;border-radius:8px;font-size:13px;margin-bottom:10px}
+:root[data-theme="dark"] .alertbox{background:#2a2410;color:#f0e0b0}
+</style><style id="linkmax-accessibility">
+.skip-link{position:fixed;top:8px;left:8px;z-index:9999;padding:10px 14px;border-radius:8px;background:#111;color:#fff;text-decoration:none;transform:translateY(-160%)}
+.skip-link:focus{transform:translateY(0)}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #ffbf00!important;outline-offset:3px!important}
+:where(button,input,select,textarea,.cta,.ghost,.action,.tab a){min-block-size:24px;min-inline-size:24px}
+main{min-width:0}
+.card,.grid2>*{min-width:0}
+.table-scroll{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain}
+.table-scroll table{min-width:max-content}
+.col:focus .tipbox,.col:focus-visible .tipbox{display:block}
+.tab button{appearance:none;background:none;border:0;color:var(--tx3);font:inherit;text-align:center;padding:0;cursor:not-allowed}
+.tab button i{display:block;font-size:19px;font-style:normal}
+@media (forced-colors:active){.skip-link{border:2px solid ButtonText}.nav a.on{outline:2px solid currentColor}}
+</style><style id="linkmax-ui-state-style">
+.page-state{max-width:1080px;margin:16px 20px;padding:22px;border:1px solid var(--bd,var(--border,#d8d8d8));border-radius:12px;background:var(--card,var(--surface-1,#fff));color:var(--tx,var(--text-primary,#111));box-shadow:0 8px 28px #0000000d}
+.page-state h2{margin:0 0 5px;font-size:18px}.page-state p{margin:0;color:var(--tx2,var(--text-secondary,#555))}
+.page-state button{margin-top:14px;padding:9px 14px;border:0;border-radius:7px;background:var(--s1,#2a78d6);color:#fff;font-weight:700;cursor:pointer}
+.page-state[data-state="loading"]{border-left:5px solid var(--s1,#2a78d6)}
+.page-state[data-state="empty"]{border-left:5px solid var(--warn,#fab219)}
+.page-state[data-state="error"]{border-left:5px solid var(--crit,#d03b3b)}
+body[data-ui-state="empty"] main>*:not(#page-state){display:none!important}
+body[data-ui-state="loading"] main>*:not(#page-state),body[data-ui-state="error"] main>*:not(#page-state){opacity:.28;pointer-events:none;user-select:none}
+@media(max-width:700px){.page-state{margin:12px;padding:17px}}
+</style><style id="linkmax-language-style">
+.lang-switch{position:fixed;right:14px;bottom:14px;z-index:9998;padding:8px 12px;border:1px solid var(--bd,#d0d0d0);border-radius:999px;background:var(--card,#fff);color:var(--tx,#111);font:700 12px/1.2 sans-serif;text-decoration:none;box-shadow:0 3px 14px #0002}
+.lang-switch:focus-visible{outline:3px solid #ffbf00;outline-offset:3px}
+</style><style id="stage1-ux-style">.stage1-panel{background:var(--card,#fff);border:1px solid var(--bd,var(--line,#d9e1ee));border-radius:12px;padding:16px;margin:14px 0}.stage1-panel h2{margin-top:0}.stage1-facts{display:flex;gap:7px;flex-wrap:wrap}.stage1-facts span{background:#edf4ff;color:#174b9c;padding:6px 8px;border-radius:8px;font-weight:700}.stage1-simple-nav details{padding:0;margin:0;background:transparent;border:0}.stage1-simple-nav summary{cursor:pointer;padding:9px 11px}.stage1-mobile-nav{position:sticky;bottom:0;background:var(--card,#fff);border-top:1px solid var(--bd,var(--line,#d9e1ee));display:grid;grid-template-columns:repeat(5,1fr);z-index:8}.stage1-mobile-nav a{text-align:center;padding:10px 3px;text-decoration:none;font-size:12px}@media(max-width:360px){.stage1-panel{padding:12px}}</style></head><body><a class="skip-link" href="#main-content">본문으로 건너뛰기</a><div class="app">
+<aside class="side"><div class="logo">🔗 LinkMax</div><nav class="nav stage1-simple-nav" aria-label="핵심 업무"><a href="index.html" aria-current="page">홈</a><a href="links.html">링크 만들기</a><a href="performance.html">성과</a><a href="payouts.html">돈·정산</a><a href="settings.html">설정·권리</a><details><summary>고급 업무</summary><a href="transactions.html">거래</a><a href="routes.html">경로 비교</a><a href="reconciliation.html">미대조</a><a href="merchants.html">머천트</a><a href="bulk-links.html">대량 링크</a><a href="pricing.html">요금제</a><a href="billing.html">구독</a><a href="onboarding.html">시작 안내</a></details></nav></aside>
+<main class="main" id="main-content" tabindex="-1"><section id="page-state" hidden tabindex="-1" role="status" aria-live="polite" aria-atomic="true"></section>
+<div class="hd"><div><h1>홈</h1><div style="font-size:13px;color:var(--tx2)">데모 데이터 · 가상 사용자 1,000명 시뮬 결과 기반</div></div>
+<button type="button" onclick="tg()" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:7px;padding:7px 12px;cursor:pointer" data-theme-toggle="" aria-label="색상 테마 전환" aria-pressed="false">🌓</button></div>
+
+<div class="alertbox">⚠ 확인 필요 2건 — Nike 승인율이 90일 평균 대비 32%p 떨어졌습니다 · 끊긴 링크 14건의 대체안이 승인 대기 중입니다</div>
+
+<div class="kpis">
+<div class="kpi"><div class="l">오늘 수익</div><div class="v">$1,284.60</div>
+<div class="d"><span class="conf">확정 $842.10</span> · <span class="pend">예상 $442.50</span></div></div>
+<div class="kpi"><div class="l">클릭</div><div class="v">18,942</div><div class="d up">▲ 12.4% 전일 대비</div></div>
+<div class="kpi"><div class="l">전환율</div><div class="v">2.41%</div><div class="d up">▲ 0.3%p</div></div>
+<div class="kpi"><div class="l">클릭당 수익 (EPC)</div><div class="v">$0.068</div><div class="d dn">▼ 2.1%</div></div>
+</div>
+
+<div class="card" style="margin-bottom:16px">
+<h2 style="font-size:16px;margin:0 0 2px">수익 추이 — 경로별</h2>
+<div style="font-size:12px;color:var(--tx2);margin-bottom:6px">최근 14일 · 단위 USD</div>
+<div class="chart"><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/13 · 합계 $100 (다이렉트 $42 / 애그리게이터 $44 / CPC $14)</div>
+<span style="height:12.375690607734807px;background:var(--s3)"></span>
+<span style="height:38.89502762430939px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:37.12707182320442px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/14 · 합계 $107 (다이렉트 $45 / 애그리게이터 $47 / CPC $15)</div>
+<span style="height:13.259668508287293px;background:var(--s3)"></span>
+<span style="height:41.54696132596685px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:39.77900552486188px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/15 · 합계 $113 (다이렉트 $47 / 애그리게이터 $50 / CPC $16)</div>
+<span style="height:14.143646408839778px;background:var(--s3)"></span>
+<span style="height:44.19889502762431px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:41.54696132596685px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/16 · 합계 $119 (다이렉트 $50 / 애그리게이터 $52 / CPC $17)</div>
+<span style="height:15.027624309392264px;background:var(--s3)"></span>
+<span style="height:45.96685082872928px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:44.19889502762431px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/17 · 합계 $126 (다이렉트 $53 / 애그리게이터 $55 / CPC $18)</div>
+<span style="height:15.91160220994475px;background:var(--s3)"></span>
+<span style="height:48.61878453038674px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:46.850828729281766px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/18 · 합계 $131 (다이렉트 $55 / 애그리게이터 $58 / CPC $18)</div>
+<span style="height:15.91160220994475px;background:var(--s3)"></span>
+<span style="height:51.2707182320442px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:48.61878453038674px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/19 · 합계 $138 (다이렉트 $58 / 애그리게이터 $61 / CPC $19)</div>
+<span style="height:16.795580110497237px;background:var(--s3)"></span>
+<span style="height:53.92265193370166px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:51.2707182320442px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/20 · 합계 $144 (다이렉트 $61 / 애그리게이터 $63 / CPC $20)</div>
+<span style="height:17.67955801104972px;background:var(--s3)"></span>
+<span style="height:55.69060773480663px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:53.92265193370166px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/21 · 합계 $150 (다이렉트 $63 / 애그리게이터 $66 / CPC $21)</div>
+<span style="height:18.56353591160221px;background:var(--s3)"></span>
+<span style="height:58.34254143646409px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:55.69060773480663px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/22 · 합계 $157 (다이렉트 $66 / 애그리게이터 $69 / CPC $22)</div>
+<span style="height:19.447513812154696px;background:var(--s3)"></span>
+<span style="height:60.99447513812155px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:58.34254143646409px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/23 · 합계 $163 (다이렉트 $68 / 애그리게이터 $72 / CPC $23)</div>
+<span style="height:20.331491712707184px;background:var(--s3)"></span>
+<span style="height:63.646408839779px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:60.11049723756906px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/24 · 합계 $169 (다이렉트 $71 / 애그리게이터 $74 / CPC $24)</div>
+<span style="height:21.215469613259668px;background:var(--s3)"></span>
+<span style="height:65.41436464088397px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:62.76243093922652px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/25 · 합계 $176 (다이렉트 $74 / 애그리게이터 $77 / CPC $25)</div>
+<span style="height:22.099447513812155px;background:var(--s3)"></span>
+<span style="height:68.06629834254144px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:65.41436464088397px;background:var(--s1);margin-bottom:2px"></span></div><div class="col" tabindex="0" role="img" aria-label="Revenue chart bar"><div class="tipbox" aria-hidden="true">8/26 · 합계 $181 (다이렉트 $76 / 애그리게이터 $80 / CPC $25)</div>
+<span style="height:22.099447513812155px;background:var(--s3)"></span>
+<span style="height:70.71823204419888px;background:var(--s2);margin-bottom:2px"></span>
+<span style="height:67.18232044198895px;background:var(--s1);margin-bottom:2px"></span></div></div>
+<div class="xl"><span>8/13</span><span>8/14</span><span>8/15</span><span>8/16</span><span>8/17</span><span>8/18</span><span>8/19</span><span>8/20</span><span>8/21</span><span>8/22</span><span>8/23</span><span>8/24</span><span>8/25</span><span>8/26</span></div>
+<div class="lg"><b><i class="sw" style="background:var(--s1)"></i>다이렉트</b>
+<b><i class="sw" style="background:var(--s2)"></i>애그리게이터</b>
+<b><i class="sw" style="background:var(--s3)"></i>클릭당 경매(CPC)</b></div>
+<div class="tt">→ 이 그림의 뜻: 2주 동안 수익이 꾸준히 늘었고, 늘어난 몫의 대부분은 애그리게이터 독점 요율 경로에서 나왔다.</div>
+</div>
+
+<div class="grid2">
+<div class="card"><h2 style="font-size:16px;margin:0 0 10px">수익 상위 콘텐츠</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="수익 상위 콘텐츠 표"><table><caption class="sr-only">수익 상위 콘텐츠 표</caption><thead><tr><th>페이지</th><th>클릭</th><th>수익</th><th>EPC</th></tr></thead><tbody>
+<tr><td style="font-size:12px">/best-wireless-earbuds-2026</td><td class="n">4,820</td><td class="n">$612.40</td><td class="n">$0.127</td></tr><tr><td style="font-size:12px">/robot-vacuum-buying-guide</td><td class="n">3,105</td><td class="n">$488.10</td><td class="n">$0.157</td></tr><tr><td style="font-size:12px">/prime-day-deals-live</td><td class="n">9,640</td><td class="n">$401.75</td><td class="n">$0.042</td></tr><tr><td style="font-size:12px">/best-running-shoes</td><td class="n">2,210</td><td class="n">$344.90</td><td class="n">$0.156</td></tr><tr><td style="font-size:12px">/air-purifier-comparison</td><td class="n">1,580</td><td class="n">$228.30</td><td class="n">$0.145</td></tr>
+</tbody></table></div>
+<div class="tt">→ 이 그림의 뜻: 프라임데이 기사는 클릭이 가장 많지만 클릭당 수익은 가장 낮다 — 트래픽이 아니라 구매 의도가 수익을 만든다.</div></div>
+
+<div class="card"><h2 style="font-size:16px;margin:0 0 10px">경로 선택 근거 (왜 이 경로였나)</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="경로 선택 근거 (왜 이 경로였나) 표"><table><caption class="sr-only">경로 선택 근거 (왜 이 경로였나) 표</caption><thead><tr><th>머천트</th><th>선택</th><th>이유</th></tr></thead><tbody>
+<tr><td><b>Amazon US</b></td><td><span class="badge" style="color:var(--s1);border-color:var(--s1)">애그리게이터</span><div style="font-size:11px;color:var(--tx3);margin-top:3px">다이렉트(impact) $0.045 vs 애그리게이터(Skimlinks) $0.079</div></td><td style="font-size:12px;color:var(--tx2)">독점 요율 12%가 수수료 25% 차감 후에도 앞섬</td></tr><tr><td><b>Nike</b></td><td><span class="badge" style="color:var(--s1);border-color:var(--s1)">다이렉트</span><div style="font-size:11px;color:var(--tx3);margin-top:3px">다이렉트(Awin) $0.112 vs 애그리게이터 $0.061</div></td><td style="font-size:12px;color:var(--tx2)">수수료 100% 수령</td></tr><tr><td><b>쿠팡</b></td><td><span class="badge" style="color:var(--s1);border-color:var(--s1)">다이렉트</span><div style="font-size:11px;color:var(--tx3);margin-top:3px">다이렉트(쿠팡) $0.088 vs — —</div></td><td style="font-size:12px;color:var(--tx2)">국내 유일 경로</td></tr><tr><td><b>Sephora</b></td><td><span class="badge" style="color:var(--s1);border-color:var(--s1)">CPC</span><div style="font-size:11px;color:var(--tx3);margin-top:3px">다이렉트(CJ) $0.067 vs CPC 경매(Sovrn) $0.091</div></td><td style="font-size:12px;color:var(--tx2)">전환 의도 낮은 지면</td></tr>
+</tbody></table></div>
+<div class="tt">→ 이 그림의 뜻: 어느 경로를 왜 골랐는지 클릭 단위로 열어볼 수 있다 — 다른 서비스에 없는 기능이다.</div></div>
+</div>
+<!-- stage2:console-entry:start --><section class="stage1-panel" id="stage2-entry"><h2>고급 무료 작업대</h2><p>역할·검색·원인·공유·이어하기·오프라인 초안을 한곳에서 사용하세요.</p><a class="primary" href="/advanced/">고급 무료 작업대</a></section><!-- stage2:console-entry:end --></main></div>
+<script>function tg(){var d=document.documentElement;d.dataset.theme=d.dataset.theme==='dark'?'light':'dark'}</script>
+<script id="linkmax-accessibility-runtime">document.addEventListener('click',function(e){var b=e.target.closest('[data-theme-toggle]');if(!b)return;var dark=document.documentElement.dataset.theme==='dark';document.querySelectorAll('[data-theme-toggle]').forEach(function(x){x.setAttribute('aria-pressed',String(dark))})});</script><script id="linkmax-ui-state-runtime">(()=>{
+  const params=new URLSearchParams(location.search);
+  const mode=params.get('state');
+  if(!['loading','empty','error'].includes(mode))return;
+  const state=document.getElementById('page-state');
+  const copy={
+    loading:['데이터를 불러오는 중입니다…','잠시만 기다려 주세요. 최신 정보를 안전하게 확인하고 있습니다.'],
+    empty:['표시할 데이터가 없습니다.','필터를 지우거나 기간을 넓혀보세요.'],
+    error:['데이터를 불러오지 못했습니다.','잠시 후 다시 시도해 주세요.']
+  }[mode];
+  document.body.dataset.uiState=mode;
+  document.body.setAttribute('aria-busy',String(mode==='loading'));
+  state.hidden=false;state.dataset.state=mode;
+  state.innerHTML='<h2>'+copy[0]+'</h2><p>'+copy[1]+'</p>'+(mode==='error'?'<button type="button">다시 시도</button>':'');
+  state.focus();
+  state.querySelector('button')?.addEventListener('click',()=>{params.delete('state');const query=params.toString();location.href=location.pathname+(query?'?'+query:'')+location.hash});
+})();</script><a class="lang-switch" href="/en/console/index.html" aria-label="Switch to English">English</a></body></html>

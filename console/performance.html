@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LinkMax — 성과 리포트</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><style>
+:root{color-scheme:light;--bg:#f4f4f2;--card:#fcfcfb;--bd:#e2e1dd;--tx:#0b0b0b;--tx2:#52514e;--tx3:#8a8981;
+--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--good:#0ca30c;--warn:#fab219;--crit:#d03b3b}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--bg:#111110;--card:#1a1a19;--bd:#34342f;
+--tx:#fff;--tx2:#c3c2b7;--tx3:#8f8e85;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#111110;--card:#1a1a19;--bd:#34342f;
+--tx:#fff;--tx2:#c3c2b7;--tx3:#8f8e85;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);
+font:15px/1.55 -apple-system,BlinkMacSystemFont,"Malgun Gothic","Apple SD Gothic Neo",sans-serif}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--bd)}
+th{color:var(--tx2);font-size:11px;font-weight:600;background:var(--bg)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:14px;background:var(--bg);border:1px solid var(--bd);border-radius:5px;overflow:hidden;display:flex}
+.bar i{height:100%;display:block}
+.tt{font-size:12px;color:var(--tx2);margin-top:8px}
+.pend{color:var(--tx3)}.conf{color:var(--tx)}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;border:1px solid}
+
+.app{display:grid;grid-template-columns:212px 1fr;min-height:100vh}
+.side{background:var(--card);border-right:1px solid var(--bd);padding:18px 12px}
+.logo{font-weight:800;font-size:17px;padding:0 8px 16px}
+.nav a{display:block;padding:9px 10px;border-radius:8px;color:var(--tx2);text-decoration:none;font-size:14px;cursor:pointer}
+.nav a.on{background:var(--s1);color:#fff;font-weight:600}
+.main{padding:24px 28px 60px;max-width:1080px}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+h1{font-size:22px;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:18px}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.kpi .l{font-size:12px;color:var(--tx2)}
+.kpi .v{font-size:28px;font-weight:700;margin:4px 0 2px}
+.kpi .d{font-size:12px}
+.up{color:var(--good)}.dn{color:var(--crit)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.app{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+.chart{display:flex;align-items:flex-end;gap:5px;height:170px;padding-top:8px}
+.col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;position:relative;cursor:pointer}
+.col span{display:block;border-radius:3px 3px 0 0}
+.col:hover .tipbox{display:block}
+.tipbox{display:none;position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);
+padding:7px 10px;border-radius:7px;font-size:11px;white-space:nowrap;z-index:9;margin-bottom:6px}
+.xl{display:flex;gap:5px;font-size:10px;color:var(--tx3);margin-top:6px}
+.xl span{flex:1;text-align:center}
+.lg{display:flex;gap:14px;font-size:12px;color:var(--tx2);margin-top:10px;flex-wrap:wrap}
+.lg b{display:flex;align-items:center;gap:5px;font-weight:400}
+.sw{width:11px;height:11px;border-radius:3px}
+.alertbox{border-left:4px solid var(--warn);background:#fff8e6;color:#3d2f00;padding:11px 14px;border-radius:8px;font-size:13px;margin-bottom:10px}
+:root[data-theme="dark"] .alertbox{background:#2a2410;color:#f0e0b0}
+</style><style id="linkmax-accessibility">
+.skip-link{position:fixed;top:8px;left:8px;z-index:9999;padding:10px 14px;border-radius:8px;background:#111;color:#fff;text-decoration:none;transform:translateY(-160%)}
+.skip-link:focus{transform:translateY(0)}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #ffbf00!important;outline-offset:3px!important}
+:where(button,input,select,textarea,.cta,.ghost,.action,.tab a){min-block-size:24px;min-inline-size:24px}
+main{min-width:0}
+.card,.grid2>*{min-width:0}
+.table-scroll{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain}
+.table-scroll table{min-width:max-content}
+.col:focus .tipbox,.col:focus-visible .tipbox{display:block}
+.tab button{appearance:none;background:none;border:0;color:var(--tx3);font:inherit;text-align:center;padding:0;cursor:not-allowed}
+.tab button i{display:block;font-size:19px;font-style:normal}
+@media (forced-colors:active){.skip-link{border:2px solid ButtonText}.nav a.on{outline:2px solid currentColor}}
+</style><style id="linkmax-ui-state-style">
+.page-state{max-width:1080px;margin:16px 20px;padding:22px;border:1px solid var(--bd,var(--border,#d8d8d8));border-radius:12px;background:var(--card,var(--surface-1,#fff));color:var(--tx,var(--text-primary,#111));box-shadow:0 8px 28px #0000000d}
+.page-state h2{margin:0 0 5px;font-size:18px}.page-state p{margin:0;color:var(--tx2,var(--text-secondary,#555))}
+.page-state button{margin-top:14px;padding:9px 14px;border:0;border-radius:7px;background:var(--s1,#2a78d6);color:#fff;font-weight:700;cursor:pointer}
+.page-state[data-state="loading"]{border-left:5px solid var(--s1,#2a78d6)}
+.page-state[data-state="empty"]{border-left:5px solid var(--warn,#fab219)}
+.page-state[data-state="error"]{border-left:5px solid var(--crit,#d03b3b)}
+body[data-ui-state="empty"] main>*:not(#page-state){display:none!important}
+body[data-ui-state="loading"] main>*:not(#page-state),body[data-ui-state="error"] main>*:not(#page-state){opacity:.28;pointer-events:none;user-select:none}
+@media(max-width:700px){.page-state{margin:12px;padding:17px}}
+</style><style id="linkmax-language-style">
+.lang-switch{position:fixed;right:14px;bottom:14px;z-index:9998;padding:8px 12px;border:1px solid var(--bd,#d0d0d0);border-radius:999px;background:var(--card,#fff);color:var(--tx,#111);font:700 12px/1.2 sans-serif;text-decoration:none;box-shadow:0 3px 14px #0002}
+.lang-switch:focus-visible{outline:3px solid #ffbf00;outline-offset:3px}
+</style><style id="stage1-ux-style">.stage1-panel{background:var(--card,#fff);border:1px solid var(--bd,var(--line,#d9e1ee));border-radius:12px;padding:16px;margin:14px 0}.stage1-panel h2{margin-top:0}.stage1-facts{display:flex;gap:7px;flex-wrap:wrap}.stage1-facts span{background:#edf4ff;color:#174b9c;padding:6px 8px;border-radius:8px;font-weight:700}.stage1-simple-nav details{padding:0;margin:0;background:transparent;border:0}.stage1-simple-nav summary{cursor:pointer;padding:9px 11px}.stage1-mobile-nav{position:sticky;bottom:0;background:var(--card,#fff);border-top:1px solid var(--bd,var(--line,#d9e1ee));display:grid;grid-template-columns:repeat(5,1fr);z-index:8}.stage1-mobile-nav a{text-align:center;padding:10px 3px;text-decoration:none;font-size:12px}@media(max-width:360px){.stage1-panel{padding:12px}}</style></head><body><a class="skip-link" href="#main-content">본문으로 건너뛰기</a><div class="app"><aside class="side"><div class="logo">🔗 LinkMax</div><nav class="nav stage1-simple-nav" aria-label="핵심 업무"><a href="index.html">홈</a><a href="links.html">링크 만들기</a><a href="performance.html" aria-current="page">성과</a><a href="payouts.html">돈·정산</a><a href="settings.html">설정·권리</a><details><summary>고급 업무</summary><a href="transactions.html">거래</a><a href="routes.html">경로 비교</a><a href="reconciliation.html">미대조</a><a href="merchants.html">머천트</a><a href="bulk-links.html">대량 링크</a><a href="pricing.html">요금제</a><a href="billing.html">구독</a><a href="onboarding.html">시작 안내</a></details></nav></aside>
+<main class="main" id="main-content" tabindex="-1"><section id="page-state" hidden tabindex="-1" role="status" aria-live="polite" aria-atomic="true"></section>
+<div class="hd"><div><h1>성과 리포트</h1>
+<div style="font-size:13px;color:var(--tx2)">가상 사용자 <b>10,000명</b> · 시즌 4종 · 클릭 <b>190,000건</b> 실측 — 실패 0건</div></div>
+<button type="button" onclick="tg()" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:7px;padding:7px 12px;cursor:pointer" data-theme-toggle="" aria-label="색상 테마 전환" aria-pressed="false">🌓</button></div>
+
+<section class="card" style="margin-bottom:16px" aria-labelledby="live-revenue-title">
+<h2 id="live-revenue-title" style="font-size:16px;margin:0 0 8px">서버 확인 계정 수익</h2>
+<p style="font-size:12px;color:var(--tx2)">가상 사용자 자료는 운영 계정 수익과 분리합니다. 아래에는 원자료와 장부가 일치한 서버 응답만 표시합니다.</p>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><label>시작일 <input id="revenue-from" type="date" value="2026-08-01" aria-label="입력 항목"></label><label>종료일(미포함) <input id="revenue-to" type="date" value="2026-09-01" aria-label="입력 항목"></label><label>통화 <input id="revenue-currency" value="USD" maxlength="3" style="width:70px" aria-label="입력 항목"></label><button id="revenue-load" type="button">서버 수익 불러오기</button><a href="#" id="revenue-download" hidden rel="nofollow">같은 조건으로 다운로드</a></div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="서버 확인 계정 수익 표"><table><caption class="sr-only">서버 확인 계정 수익 표</caption><thead><tr><th>통화</th><th>예상</th><th>승인</th><th>입금</th><th>지급 가능</th><th>보류</th><th>예약</th><th>지급 완료</th></tr></thead><tbody id="live-revenue-rows"><tr><td colspan="8">확인된 서버 자료가 없습니다.</td></tr></tbody></table></div>
+<div id="live-revenue-status" class="tt" role="status" aria-live="polite">서버 연결 전이며 실제 계정 수익을 표시하지 않습니다.</div>
+</section>
+
+<div class="kpis">
+<div class="kpi"><div class="l">총 클릭</div><div class="v">190,000</div><div class="d">4개 시즌 합산</div></div>
+<div class="kpi"><div class="l">총 매출</div><div class="v">$45,270</div><div class="d">확정+예상</div></div>
+<div class="kpi"><div class="l">수익 개선</div><div class="v up">+22.29%</div><div class="d">고정 배분 대비</div></div>
+<div class="kpi"><div class="l">실패한 클릭</div><div class="v" style="color:var(--good)">0</div><div class="d">19만 건 중</div></div>
+</div>
+
+<div class="card" style="margin-bottom:16px">
+<h2 style="font-size:16px;margin:0 0 2px">시즌별 매출</h2>
+<div style="font-size:12px;color:var(--tx2);margin-bottom:10px">같은 사용자 10,000명이 시즌마다 다르게 행동했을 때</div>
+<div class="table-scroll" tabindex="0" role="region" aria-label="시즌별 매출 표"><table><caption class="sr-only">시즌별 매출 표</caption><thead><tr><th>시즌</th><th>클릭</th><th>전환율</th><th>매출</th><th>수익 개선</th><th>상대 크기</th></tr></thead><tbody>
+<tr><td><b>평시</b></td><td class="n">20,000</td><td class="n">2.4%</td>
+<td class="n"><b>$2,324</b></td><td class="n up">+22.29%</td>
+<td style="width:34%"><div class="bar" style="height:13px"><i style="width:7.967908938183564%;background:var(--s1)"></i></div></td></tr><tr><td><b>프라임데이</b></td><td class="n">60,000</td><td class="n">3.91%</td>
+<td class="n"><b>$13,188</b></td><td class="n up">+22.14%</td>
+<td style="width:34%"><div class="bar" style="height:13px"><i style="width:45.21548325161998%;background:var(--s1)"></i></div></td></tr><tr><td><b>블랙프라이데이</b></td><td class="n">100,000</td><td class="n">4.7%</td>
+<td class="n"><b>$29,167</b></td><td class="n up">+22.13%</td>
+<td style="width:34%"><div class="bar" style="height:13px"><i style="width:100%;background:var(--s1)"></i></div></td></tr><tr><td><b>연초 비수기</b></td><td class="n">10,000</td><td class="n">1.69%</td>
+<td class="n"><b>$591</b></td><td class="n up">+22.1%</td>
+<td style="width:34%"><div class="bar" style="height:13px"><i style="width:2.0262625569993484%;background:var(--s1)"></i></div></td></tr>
+</tbody></table></div>
+<div class="tt">→ 이 표의 뜻: 블랙프라이데이 매출이 평시의 <b>12.5배</b>다. 세일 기간엔 제휴처가 요율을 낮추지만(평균 -30%), 방문자가 5배 늘고 구매 의지도 높아 총액은 크게 는다. <b>수익 개선율은 어느 시즌에서나 +22%로 일정</b> — 경로 고르기 효과가 상황에 흔들리지 않는다는 뜻이다.</div>
+</div>
+
+<div class="grid2">
+<div class="card"><h2 style="font-size:16px;margin:0 0 10px">나라별 클릭당 수익</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="나라별 클릭당 수익 표"><table><caption class="sr-only">나라별 클릭당 수익 표</caption><thead><tr><th>나라</th><th>클릭</th><th>클릭당 수익</th><th></th></tr></thead><tbody>
+<tr><td><b>US</b></td><td class="n">55,112</td>
+<td class="n">$0.19922</td>
+<td style="width:38%"><div class="bar" style="height:11px"><i style="width:89.75144506066326%;background:var(--s1)"></i></div></td></tr><tr><td><b>KR</b></td><td class="n">38,131</td>
+<td class="n">$0.20372</td>
+<td style="width:38%"><div class="bar" style="height:11px"><i style="width:91.78061208399598%;background:var(--s1)"></i></div></td></tr><tr><td><b>JP</b></td><td class="n">20,537</td>
+<td class="n">$0.18839</td>
+<td style="width:38%"><div class="bar" style="height:11px"><i style="width:84.87585768799303%;background:var(--s1)"></i></div></td></tr><tr><td><b>GB</b></td><td class="n">14,455</td>
+<td class="n">$0.18047</td>
+<td style="width:38%"><div class="bar" style="height:11px"><i style="width:81.30814595225331%;background:var(--s1)"></i></div></td></tr><tr><td><b>IN</b></td><td class="n">13,001</td>
+<td class="n">$0.22196</td>
+<td style="width:38%"><div class="bar" style="height:11px"><i style="width:100%;background:var(--s1)"></i></div></td></tr>
+</tbody></table></div>
+<div class="tt">→ 이 표의 뜻: 인도가 클릭당 수익이 가장 높다 — 전자기기 비중이 낮고 수수료율 높은 카테고리가 많기 때문이다.</div></div>
+
+<div class="card"><h2 style="font-size:16px;margin:0 0 10px">제휴처별 선택 횟수</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="제휴처별 선택 횟수 표"><table><caption class="sr-only">제휴처별 선택 횟수 표</caption><thead><tr><th>제휴처</th><th>선택</th><th></th></tr></thead><tbody>
+<tr><td><b>skimlinks</b></td><td class="n">90,533</td>
+<td style="width:46%"><div class="bar" style="height:11px"><i style="width:100%;background:var(--s3)"></i></div></td></tr><tr><td><b>sovrn</b></td><td class="n">25,152</td>
+<td style="width:46%"><div class="bar" style="height:11px"><i style="width:27.782134691217568%;background:var(--s3)"></i></div></td></tr><tr><td><b>amazon</b></td><td class="n">17,002</td>
+<td style="width:46%"><div class="bar" style="height:11px"><i style="width:18.779892414920525%;background:var(--s3)"></i></div></td></tr><tr><td><b>impact</b></td><td class="n">11,354</td>
+<td style="width:46%"><div class="bar" style="height:11px"><i style="width:12.541283288966454%;background:var(--s3)"></i></div></td></tr><tr><td><b>(연결 실패)</b></td><td class="n">9,210</td>
+<td style="width:46%"><div class="bar" style="height:11px"><i style="width:10.173086057017883%;background:var(--s2)"></i></div></td></tr>
+</tbody></table></div>
+<div class="tt">→ 이 표의 뜻: 애그리게이터(Skimlinks)가 가장 많이 선택됐다 — 우대 요율이 25% 수수료를 떼고도 앞서는 경우가 많기 때문이다. 연결 실패 9,210건은 제휴처가 없는 상품이다.</div></div>
+</div>
+</main></div><script>(()=>{const status=document.getElementById('live-revenue-status'),rows=document.getElementById('live-revenue-rows'),button=document.getElementById('revenue-load'),download=document.getElementById('revenue-download');button.addEventListener('click',async()=>{const origin=globalThis.LINKMAX_API_ORIGIN;if(!origin){status.textContent='서버 연결 전이며 실제 계정 수익을 표시하지 않습니다.';return}const from=document.getElementById('revenue-from').value,to=document.getElementById('revenue-to').value,currency=document.getElementById('revenue-currency').value.trim().toUpperCase();if(!from||!to||!/^[A-Z]{3}$/.test(currency)){status.textContent='기간과 ISO 3자리 통화를 확인하세요.';return}button.disabled=true;download.hidden=true;status.textContent='원자료와 장부를 대조하는 중입니다.';try{const query=new URLSearchParams({from:from+'T00:00:00.000Z',to:to+'T00:00:00.000Z',currencies:currency});const response=await fetch(origin+'/v1/reports/revenue-summary?'+query,{credentials:'include'});if(!response.ok)throw new Error('revenue unavailable');const result=await response.json();if(!result.queryDigest||!result.asOf||!Array.isArray(result.rows))throw new Error('evidence missing');rows.replaceChildren(...result.rows.map(item=>{const tr=document.createElement('tr');for(const value of [item.currency,item.estimatedMicro,item.approvedMicro,item.receivedMicro,item.availableForPayoutMicro,item.heldMicro,item.reservedMicro,item.paidMicro]){const td=document.createElement('td');td.textContent=String(value);tr.append(td)}return tr}));status.textContent='기준시각 '+result.asOf+' · 자료 '+result.dataObservedAt+' · '+result.freshness+' · 조회지문 '+result.queryDigest;if(typeof result.downloadPath==='string'&&result.downloadPath.startsWith('/v1/reports/revenue-summary/')){download.href=origin+result.downloadPath;download.hidden=false}}catch{rows.innerHTML='<tr><td colspan="8">검증된 서버 수익을 불러오지 못했습니다.</td></tr>';status.textContent='원자료·장부 일치 증거가 없어 수익을 표시하지 않습니다.'}finally{button.disabled=false}})})();</script>
+<script>function tg(){var d=document.documentElement;d.dataset.theme=d.dataset.theme==='dark'?'light':'dark'}</script>
+<script id="linkmax-accessibility-runtime">document.addEventListener('click',function(e){var b=e.target.closest('[data-theme-toggle]');if(!b)return;var dark=document.documentElement.dataset.theme==='dark';document.querySelectorAll('[data-theme-toggle]').forEach(function(x){x.setAttribute('aria-pressed',String(dark))})});</script><script id="linkmax-ui-state-runtime">(()=>{
+  const params=new URLSearchParams(location.search);
+  const mode=params.get('state');
+  if(!['loading','empty','error'].includes(mode))return;
+  const state=document.getElementById('page-state');
+  const copy={
+    loading:['데이터를 불러오는 중입니다…','잠시만 기다려 주세요. 최신 정보를 안전하게 확인하고 있습니다.'],
+    empty:['표시할 데이터가 없습니다.','필터를 지우거나 기간을 넓혀보세요.'],
+    error:['데이터를 불러오지 못했습니다.','잠시 후 다시 시도해 주세요.']
+  }[mode];
+  document.body.dataset.uiState=mode;
+  document.body.setAttribute('aria-busy',String(mode==='loading'));
+  state.hidden=false;state.dataset.state=mode;
+  state.innerHTML='<h2>'+copy[0]+'</h2><p>'+copy[1]+'</p>'+(mode==='error'?'<button type="button">다시 시도</button>':'');
+  state.focus();
+  state.querySelector('button')?.addEventListener('click',()=>{params.delete('state');const query=params.toString();location.href=location.pathname+(query?'?'+query:'')+location.hash});
+})();</script><a class="lang-switch" href="/en/console/performance.html" aria-label="Switch to English">English</a></body></html>

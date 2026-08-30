@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LinkMax 관리 — 지급 승인</title><link rel="icon" href="/favicon.svg" type="image/svg+xml"><style>
+:root{color-scheme:light;--bg:#f4f4f2;--card:#fcfcfb;--bd:#e2e1dd;--tx:#0b0b0b;--tx2:#52514e;--tx3:#8a8981;
+--s1:#2a78d6;--s2:#eb6834;--s3:#1baf7a;--s4:#eda100;--good:#0ca30c;--warn:#fab219;--crit:#d03b3b}
+@media (prefers-color-scheme:dark){:root:where(:not([data-theme="light"])){--bg:#111110;--card:#1a1a19;--bd:#34342f;
+--tx:#fff;--tx2:#c3c2b7;--tx3:#8f8e85;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500}}
+:root[data-theme="dark"]{color-scheme:dark;--bg:#111110;--card:#1a1a19;--bd:#34342f;
+--tx:#fff;--tx2:#c3c2b7;--tx3:#8f8e85;--s1:#3987e5;--s2:#d95926;--s3:#199e70;--s4:#c98500}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);
+font:15px/1.55 -apple-system,BlinkMacSystemFont,"Malgun Gothic","Apple SD Gothic Neo",sans-serif}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:18px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--bd)}
+th{color:var(--tx2);font-size:11px;font-weight:600;background:var(--bg)}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.bar{height:14px;background:var(--bg);border:1px solid var(--bd);border-radius:5px;overflow:hidden;display:flex}
+.bar i{height:100%;display:block}
+.tt{font-size:12px;color:var(--tx2);margin-top:8px}
+.pend{color:var(--tx3)}.conf{color:var(--tx)}
+.badge{display:inline-block;padding:2px 8px;border-radius:99px;font-size:11px;font-weight:700;border:1px solid}
+
+.app{display:grid;grid-template-columns:212px 1fr;min-height:100vh}
+.side{background:var(--card);border-right:1px solid var(--bd);padding:18px 12px}
+.logo{font-weight:800;font-size:17px;padding:0 8px 16px}
+.nav a{display:block;padding:9px 10px;border-radius:8px;color:var(--tx2);text-decoration:none;font-size:14px;cursor:pointer}
+.nav a.on{background:var(--s1);color:#fff;font-weight:600}
+.main{padding:24px 28px 60px;max-width:1080px}
+.hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;flex-wrap:wrap;gap:10px}
+h1{font-size:22px;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-bottom:18px}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.kpi .l{font-size:12px;color:var(--tx2)}
+.kpi .v{font-size:28px;font-weight:700;margin:4px 0 2px}
+.kpi .d{font-size:12px}
+.up{color:var(--good)}.dn{color:var(--crit)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:900px){.app{grid-template-columns:1fr}.grid2{grid-template-columns:1fr}}
+.chart{display:flex;align-items:flex-end;gap:5px;height:170px;padding-top:8px}
+.col{flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:2px;position:relative;cursor:pointer}
+.col span{display:block;border-radius:3px 3px 0 0}
+.col:hover .tipbox{display:block}
+.tipbox{display:none;position:absolute;bottom:100%;left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);
+padding:7px 10px;border-radius:7px;font-size:11px;white-space:nowrap;z-index:9;margin-bottom:6px}
+.xl{display:flex;gap:5px;font-size:10px;color:var(--tx3);margin-top:6px}
+.xl span{flex:1;text-align:center}
+.lg{display:flex;gap:14px;font-size:12px;color:var(--tx2);margin-top:10px;flex-wrap:wrap}
+.lg b{display:flex;align-items:center;gap:5px;font-weight:400}
+.sw{width:11px;height:11px;border-radius:3px}
+.alertbox{border-left:4px solid var(--warn);background:#fff8e6;color:#3d2f00;padding:11px 14px;border-radius:8px;font-size:13px;margin-bottom:10px}
+:root[data-theme="dark"] .alertbox{background:#2a2410;color:#f0e0b0}
+
+.adm{background:#3d2f00;color:#f0e0b0;padding:7px 16px;font-size:12px;font-weight:700;text-align:center}
+:root[data-theme="dark"] .adm{background:#5a4600}
+</style><style id="linkmax-accessibility">
+.skip-link{position:fixed;top:8px;left:8px;z-index:9999;padding:10px 14px;border-radius:8px;background:#111;color:#fff;text-decoration:none;transform:translateY(-160%)}
+.skip-link:focus{transform:translateY(0)}
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+:where(a,button,input,select,textarea,[tabindex]):focus-visible{outline:3px solid #ffbf00!important;outline-offset:3px!important}
+:where(button,input,select,textarea,.cta,.ghost,.action,.tab a){min-block-size:24px;min-inline-size:24px}
+main{min-width:0}
+.card,.grid2>*{min-width:0}
+.table-scroll{width:100%;max-width:100%;overflow-x:auto;overscroll-behavior-inline:contain}
+.table-scroll table{min-width:max-content}
+.col:focus .tipbox,.col:focus-visible .tipbox{display:block}
+.tab button{appearance:none;background:none;border:0;color:var(--tx3);font:inherit;text-align:center;padding:0;cursor:not-allowed}
+.tab button i{display:block;font-size:19px;font-style:normal}
+@media (forced-colors:active){.skip-link{border:2px solid ButtonText}.nav a.on{outline:2px solid currentColor}}
+</style><style id="linkmax-ui-state-style">
+.page-state{max-width:1080px;margin:16px 20px;padding:22px;border:1px solid var(--bd,var(--border,#d8d8d8));border-radius:12px;background:var(--card,var(--surface-1,#fff));color:var(--tx,var(--text-primary,#111));box-shadow:0 8px 28px #0000000d}
+.page-state h2{margin:0 0 5px;font-size:18px}.page-state p{margin:0;color:var(--tx2,var(--text-secondary,#555))}
+.page-state button{margin-top:14px;padding:9px 14px;border:0;border-radius:7px;background:var(--s1,#2a78d6);color:#fff;font-weight:700;cursor:pointer}
+.page-state[data-state="loading"]{border-left:5px solid var(--s1,#2a78d6)}
+.page-state[data-state="empty"]{border-left:5px solid var(--warn,#fab219)}
+.page-state[data-state="error"]{border-left:5px solid var(--crit,#d03b3b)}
+body[data-ui-state="empty"] main>*:not(#page-state){display:none!important}
+body[data-ui-state="loading"] main>*:not(#page-state),body[data-ui-state="error"] main>*:not(#page-state){opacity:.28;pointer-events:none;user-select:none}
+@media(max-width:700px){.page-state{margin:12px;padding:17px}}
+</style><style id="linkmax-language-style">
+.lang-switch{position:fixed;right:14px;bottom:14px;z-index:9998;padding:8px 12px;border:1px solid var(--bd,#d0d0d0);border-radius:999px;background:var(--card,#fff);color:var(--tx,#111);font:700 12px/1.2 sans-serif;text-decoration:none;box-shadow:0 3px 14px #0002}
+.lang-switch:focus-visible{outline:3px solid #ffbf00;outline-offset:3px}
+</style></head><body><a class="skip-link" href="#main-content">본문으로 건너뛰기</a><div class="adm">⚠ 지급 실행은 서로 다른 두 사람의 승인이 있어야만 가능합니다</div>
+<div class="app"><aside class="side"><div class="logo">🛠 LinkMax 관리</div><nav class="nav" aria-label="주요 메뉴">
+<a href="index.html">고객 관리</a>
+<a href="payouts.html" class="on" aria-current="page">지급 승인</a>
+<a href="risk.html">위험 감시</a>
+<a href="networks.html">제휴사 상태</a>
+</nav></aside>
+<main class="main" id="main-content" tabindex="-1"><section id="page-state" hidden tabindex="-1" role="status" aria-live="polite" aria-atomic="true"></section>
+<div class="hd"><div><h1>지급 승인 — 2026년 8월</h1>
+<div style="font-size:13px;color:var(--tx2)">3자 대조를 통과한 기간만 지급할 수 있습니다</div></div>
+<button type="button" onclick="tg()" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:7px;padding:7px 12px;cursor:pointer" data-theme-toggle="" aria-label="색상 테마 전환" aria-pressed="false">🌓</button></div>
+
+<div class="card" style="margin-bottom:16px;border-left:4px solid var(--good)">
+<div style="display:flex;gap:20px;flex-wrap:wrap;align-items:center">
+<div><div style="font-size:12px;color:var(--tx2)">3자 대조</div>
+<div style="font-size:18px;font-weight:700;color:var(--good)">통과 · 오차 0</div></div>
+<div><div style="font-size:12px;color:var(--tx2)">함정 검사</div>
+<div style="font-size:18px;font-weight:700;color:var(--good)">4/4 검출</div></div>
+<div><div style="font-size:12px;color:var(--tx2)">지급 대상</div>
+<div style="font-size:18px;font-weight:700">4건 · $5837.45</div></div>
+</div>
+<div class="tt">→ 이 표시의 뜻: 대조가 통과되지 않으면 아래 승인 버튼 자체가 잠긴다 — 틀린 금액이 나갈 수 없다.</div>
+</div>
+
+<div class="card">
+<h2 style="font-size:16px;margin:0 0 10px">승인 대기</h2>
+<div class="table-scroll" tabindex="0" role="region" aria-label="승인 대기 표"><table><caption class="sr-only">승인 대기 표</caption><thead><tr><th>계정</th><th>총액</th><th>수수료</th><th>실지급</th><th>승인 1</th><th>승인 2</th><th>실행</th></tr></thead><tbody id="rows">
+<tr data-i="0">
+<td>acct-media-kr</td><td class="n">$2,140.80</td><td class="n">-$214.08</td><td class="n"><b>$1,926.72</b></td>
+<td><button type="button" class="ap" data-who="kim" data-i="0" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px">kim 승인</button></td>
+<td><button type="button" class="ap" data-who="lee" data-i="0" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px">lee 승인</button></td>
+<td><button type="button" class="ex" data-i="0" disabled style="background:var(--bd);color:var(--tx3);border:0;border-radius:6px;padding:5px 12px;font-size:12px;cursor:not-allowed">실행</button></td></tr><tr data-i="1">
+<td>acct-blog-us</td><td class="n">$1,689.20</td><td class="n">-$168.92</td><td class="n"><b>$1,520.28</b></td>
+<td><button type="button" class="ap" data-who="kim" data-i="1" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px">kim 승인</button></td>
+<td><button type="button" class="ap" data-who="lee" data-i="1" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px">lee 승인</button></td>
+<td><button type="button" class="ex" data-i="1" disabled style="background:var(--bd);color:var(--tx3);border:0;border-radius:6px;padding:5px 12px;font-size:12px;cursor:not-allowed">실행</button></td></tr><tr data-i="2">
+<td>acct-app-jp</td><td class="n">$1,391.50</td><td class="n">-$139.15</td><td class="n"><b>$1,252.35</b></td>
+<td><button type="button" class="ap" data-who="kim" data-i="2" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px">kim 승인</button></td>
+<td><button type="button" class="ap" data-who="lee" data-i="2" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px">lee 승인</button></td>
+<td><button type="button" class="ex" data-i="2" disabled style="background:var(--bd);color:var(--tx3);border:0;border-radius:6px;padding:5px 12px;font-size:12px;cursor:not-allowed">실행</button></td></tr><tr data-i="3">
+<td>acct-newsletter-de</td><td class="n">$1,264.60</td><td class="n">-$126.46</td><td class="n"><b>$1,138.14</b></td>
+<td><button type="button" class="ap" data-who="kim" data-i="3" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px">kim 승인</button></td>
+<td><button type="button" class="ap" data-who="lee" data-i="3" style="background:var(--card);border:1px solid var(--bd);color:var(--tx);border-radius:6px;padding:5px 10px;cursor:pointer;font-size:12px">lee 승인</button></td>
+<td><button type="button" class="ex" data-i="3" disabled style="background:var(--bd);color:var(--tx3);border:0;border-radius:6px;padding:5px 12px;font-size:12px;cursor:not-allowed">실행</button></td></tr>
+</tbody></table></div>
+<div class="tt">→ 이 표의 뜻: 한 사람이 두 번 눌러도 승인은 1로 센다. 서로 다른 두 사람이 눌러야만 "실행" 버튼이 켜진다 — 한 사람의 실수나 계정 탈취로 돈이 나가는 것을 막는 장치다.</div>
+</div>
+</main></div>
+<script>
+var appr = [{}, {}, {}, {}];
+document.querySelectorAll('.ap').forEach(function(b){
+  b.addEventListener('click', function(){
+    var i = +b.dataset.i, who = b.dataset.who;
+    appr[i][who] = true;
+    b.textContent = who + ' ✓';
+    b.style.borderColor = 'var(--good)'; b.style.color = 'var(--good)';
+    var n = Object.keys(appr[i]).length;
+    var ex = document.querySelector('.ex[data-i="' + i + '"]');
+    if (n >= 2) {
+      ex.disabled = false; ex.style.background = 'var(--s1)'; ex.style.color = '#fff'; ex.style.cursor = 'pointer';
+    }
+  });
+});
+document.querySelectorAll('.ex').forEach(function(b){
+  b.addEventListener('click', function(){
+    if (b.disabled) return;
+    b.textContent = '지급 완료'; b.disabled = true;
+    b.style.background = 'var(--good)'; b.style.cursor = 'default';
+  });
+});
+</script>
+<script>function tg(){var d=document.documentElement;d.dataset.theme=d.dataset.theme==='dark'?'light':'dark'}</script>
+<script id="linkmax-accessibility-runtime">document.addEventListener('click',function(e){var b=e.target.closest('[data-theme-toggle]');if(!b)return;var dark=document.documentElement.dataset.theme==='dark';document.querySelectorAll('[data-theme-toggle]').forEach(function(x){x.setAttribute('aria-pressed',String(dark))})});</script><script id="linkmax-ui-state-runtime">(()=>{
+  const params=new URLSearchParams(location.search);
+  const mode=params.get('state');
+  if(!['loading','empty','error'].includes(mode))return;
+  const state=document.getElementById('page-state');
+  const copy={
+    loading:['데이터를 불러오는 중입니다…','잠시만 기다려 주세요. 최신 정보를 안전하게 확인하고 있습니다.'],
+    empty:['표시할 데이터가 없습니다.','필터를 지우거나 기간을 넓혀보세요.'],
+    error:['데이터를 불러오지 못했습니다.','잠시 후 다시 시도해 주세요.']
+  }[mode];
+  document.body.dataset.uiState=mode;
+  document.body.setAttribute('aria-busy',String(mode==='loading'));
+  state.hidden=false;state.dataset.state=mode;
+  state.innerHTML='<h2>'+copy[0]+'</h2><p>'+copy[1]+'</p>'+(mode==='error'?'<button type="button">다시 시도</button>':'');
+  state.focus();
+  state.querySelector('button')?.addEventListener('click',()=>{params.delete('state');const query=params.toString();location.href=location.pathname+(query?'?'+query:'')+location.hash});
+})();</script><a class="lang-switch" href="/en/admin/payouts.html" aria-label="Switch to English">English</a></body></html>

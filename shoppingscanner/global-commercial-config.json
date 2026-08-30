@@ -1,0 +1,156 @@
+{
+  "schema": "shopping-scanner-global-commercial/v3",
+  "release": "v84-global-yield-orchestration-r3",
+  "launchMode": "public_beta_stage3_ready_ads_off",
+  "defaultLocale": "en",
+  "supportedLocales": ["en", "ko"],
+  "marketScope": {
+    "initial": "global_access_korean_marketplace_discovery",
+    "excludedAtLaunch": ["CN"],
+    "priceCurrency": "KRW",
+    "currencyNotice": "Prices are observed KRW snapshots. Final price, availability, shipping, tax and import duties must be checked with the merchant."
+  },
+  "consent": {
+    "mode": "basic_consent_no_google_tag_before_choice",
+    "default": {"ad_storage": "denied", "analytics_storage": "denied", "ad_user_data": "denied", "ad_personalization": "denied"},
+    "adsDataRedaction": true,
+    "googleConsentModeV2": true,
+    "honorGlobalPrivacyControl": true,
+    "certifiedCmp": {"provider": null, "status": "external_configuration_required", "iabTcfVersion": "2.3", "googleCertified": false},
+    "frameworks": {
+      "eeaUkSwitzerland": "IAB_TCF_2_3_CERTIFIED_CMP_REQUIRED",
+      "unitedStates": "IAB_GPP_NATIONAL_V2_AND_GPC",
+      "unknownRegion": "STRICT_NO_AD_TAG"
+    }
+  },
+  "advertising": {
+    "enabled": false,
+    "activationRule": "all_external_receipts_and_limited_rollout_required",
+    "providers": {
+      "adsense": {
+        "enabled": false, "publisherId": null, "accountStatus": "not_verified", "siteStatus": "not_submitted",
+        "adsTxtAuthorized": false, "sellerTransparencyStatus": "not_verified", "autoAdsEnabled": false,
+        "overlayFormatsEnabled": false, "intentFormatsEnabled": false, "personalizedAdsAllowed": false
+      },
+      "adManager": {
+        "enabled": false,
+        "networkCode": null,
+        "accountStatus": "not_verified",
+        "siteStatus": "not_submitted",
+        "openBiddingContractStatus": "not_verified",
+        "directSalesContractStatus": "not_verified",
+        "contextualDemandStatus": "not_verified",
+        "sellerTransparencyStatus": "not_verified",
+        "supplyChainStatus": "not_verified",
+        "personalizedAdsAllowed": false,
+        "outOfPageFormatsAllowed": false,
+        "automaticRefreshAllowed": false
+      },
+      "fallback": {"enabled": false, "provider": null}
+    },
+    "authorizedSellers": [],
+    "allowedPageTypes": ["guide", "category", "informational"],
+    "blockedRoutes": ["/shoppingscanner/privacy/", "/shoppingscanner/terms/", "/shoppingscanner/accessibility/", "/shoppingscanner/cookies/", "/shoppingscanner/advertising/", "/shoppingscanner/contact/", "/shoppingscanner/progress/", "/shoppingscanner/ad-operations/", "/shoppingscanner/en/privacy/", "/shoppingscanner/en/terms/", "/shoppingscanner/en/cookies/", "/shoppingscanner/en/advertising/", "/shoppingscanner/en/contact/"],
+    "safeFormats": ["responsive_display", "contextual"],
+    "forbiddenFormats": ["popunder", "forced_redirect", "in_page_push", "notification_mimic", "purchase_button_ad", "auto_interstitial", "anchor", "vignette", "ad_intent"],
+    "maximumSlotsPerPage": 2,
+    "minimumDistanceFromPurchaseActionPx": 160
+  },
+  "stage2": {
+    "schema": "shopping-scanner-limited-ad-operations/v1",
+    "engineeringStatus": "ready_activation_blocked",
+    "providerPolicy": "single_approved_provider_only",
+    "contextualOnly": true,
+    "killSwitch": true,
+    "incidentState": "clear",
+    "rolloutPercent": 0,
+    "maximumRolloutPercent": 10,
+    "cohortScope": "ephemeral_browser_session",
+    "regionPolicy": {
+      "default": "strict_unknown_no_ad_tag", "eea_uk_ch": "certified_tcf_2_3_cmp_and_explicit_consent",
+      "us": "gpp_v2_gpc_and_explicit_consent", "rest": "explicit_consent", "serverRegionHintRequired": true
+    },
+    "placements": [
+      {"id": "en-category-mid", "pageType": "category", "slotId": null, "enabled": false, "reservedHeightPx": 180},
+      {"id": "en-information-end", "pageType": "informational", "slotId": null, "enabled": false, "reservedHeightPx": 180}
+    ],
+    "performanceBudgets": {"maximumAdCls": 0.05, "maximumLcpRegressionMs": 250, "maximumProviderLoadMs": 2500, "reservedSlotHeightPx": 180},
+    "qualityThresholds": {"maximumProviderFailureRate": 0.05, "maximumPolicyWarnings": 0, "maximumUserReportsPerThousandSessions": 3, "minimumCoreTaskSuccessRate": 0.95},
+    "telemetry": {"mode": "memory_only_until_approved", "personalIdentifiers": false, "productIdentifiers": false, "rawUrls": false, "maximumEvents": 50},
+    "activationEvidence": {
+      "operatorIdentity": "pending", "officialSupport": "pending", "legalReview": "pending", "productDataLicense": "pending",
+      "certifiedCmp": "pending", "publisherAccount": "pending", "siteReady": "pending", "adsTxtAuthorized": "pending",
+      "sellerTransparency": "pending", "taxAndPayout": "pending", "productionMonitoring": "pending", "recoveryDrill": "pending"
+    }
+  },
+  "stage3": {
+    "schema": "shopping-scanner-global-yield-orchestration/v1",
+    "enabled": false,
+    "engineeringStatus": "ready_activation_blocked",
+    "controlPlane": "google_ad_manager_unified_gateway",
+    "providerPolicy": "approved_supply_paths_only",
+    "qualityFirst": true,
+    "contentRankingIndependent": true,
+    "killSwitch": true,
+    "incidentState": "clear",
+    "rolloutPercent": 0,
+    "maximumRolloutPercent": 100,
+    "rolloutMilestones": [1, 10, 25, 50, 100],
+    "approvedRolloutCap": 0,
+    "cohortScope": "ephemeral_browser_session",
+    "regionPolicy": {
+      "default": "strict_unknown_no_ad_tag",
+      "eea_uk_ch": "certified_tcf_2_3_cmp_and_explicit_consent",
+      "us": "gpp_v2_gpc_and_explicit_consent",
+      "rest": "explicit_consent",
+      "serverRegionHintRequired": true
+    },
+    "supplyPaths": [
+      {"id": "direct", "type": "direct", "enabled": false, "contractStatus": "not_verified", "sellerStatus": "not_verified", "priorityClass": 1},
+      {"id": "open-bidding", "type": "auction", "enabled": false, "contractStatus": "not_verified", "sellerStatus": "not_verified", "priorityClass": 2},
+      {"id": "contextual", "type": "contextual", "enabled": false, "contractStatus": "not_verified", "sellerStatus": "not_verified", "priorityClass": 3}
+    ],
+    "placements": [
+      {"id": "en-category-mid", "pageType": "category", "adUnitPath": null, "enabled": false, "reservedHeightPx": 250, "sizes": [[300, 250], [728, 90]]},
+      {"id": "en-information-end", "pageType": "informational", "adUnitPath": null, "enabled": false, "reservedHeightPx": 250, "sizes": [[300, 250], [728, 90]]}
+    ],
+    "selectionPolicy": {
+      "method": "quality_guarded_expected_net_value",
+      "currency": "USD",
+      "usesPersonalData": false,
+      "usesProductRanking": false,
+      "weights": {"netCpm": 0.4, "fillRate": 0.2, "viewability": 0.15, "reliability": 0.15, "coreTaskSafety": 0.1},
+      "minimums": {"fillRate": 0.1, "viewability": 0.5, "reliability": 0.95, "coreTaskSuccessRate": 0.95},
+      "priceFloors": {"mode": "static_operator_approved_only", "dynamicEndpoint": null, "defaultUsd": null, "maximumUsd": null}
+    },
+    "circuitBreakers": {
+      "maximumProviderFailureRate": 0.05,
+      "maximumAuctionTimeoutMs": 1200,
+      "maximumProviderLoadMs": 2500,
+      "maximumConsecutiveFailures": 3,
+      "cooldownMinutes": 15,
+      "maximumPolicyWarnings": 0,
+      "maximumUserReportsPerThousandSessions": 3,
+      "minimumCoreTaskSuccessRate": 0.95
+    },
+    "performanceBudgets": {"maximumAdCls": 0.05, "maximumLcpRegressionMs": 250, "maximumProviderLoadMs": 2500, "reservedSlotHeightPx": 250, "maximumSlotsPerPage": 2},
+    "experiments": {
+      "enabled": false,
+      "allowedVariables": ["placement_spacing", "label_wording", "information_density"],
+      "forbiddenVariables": ["product_price", "product_rank", "stock_claim", "disclosure_visibility", "consent_exit"],
+      "primaryMetric": "core_task_success_rate",
+      "guardrails": ["ad_cls", "lcp_regression", "user_reports", "merchant_misdirection", "save_compare_drop"],
+      "preRegisteredPlan": null
+    },
+    "telemetry": {"mode": "aggregate_memory_only_until_approved", "personalIdentifiers": false, "productIdentifiers": false, "rawUrls": false, "bidPayloads": false, "maximumEvents": 100},
+    "activationEvidence": {
+      "operatorIdentity": "pending", "officialSupport": "pending", "legalReview": "pending", "productDataLicense": "pending",
+      "certifiedCmp": "pending", "adManagerAccount": "pending", "siteReady": "pending", "adsTxtAuthorized": "pending",
+      "sellerTransparency": "pending", "supplyChainTransparency": "pending", "openBiddingContract": "pending",
+      "supplyPartnerContracts": "pending", "directSalesContracts": "pending", "taxAndPayout": "pending",
+      "productionMonitoring": "pending", "recoveryDrill": "pending", "revenueReconciliation": "pending",
+      "independentReview": "pending", "experimentPlan": "pending"
+    }
+  },
+  "externalRequirements": ["CUSTOM_DOMAIN", "OPERATOR_IDENTITY", "OFFICIAL_SUPPORT_ROUTE", "LEGAL_REVIEW", "PRODUCT_DATA_LICENSE", "CERTIFIED_CMP", "AD_MANAGER_ACCOUNT", "AD_MANAGER_SITE_READY", "ADS_TXT_AUTHORIZED", "SELLER_TRANSPARENCY", "SUPPLY_CHAIN_TRANSPARENCY", "OPEN_BIDDING_CONTRACT", "SUPPLY_PARTNER_CONTRACTS", "DIRECT_SALES_CONTRACTS", "TAX_AND_PAYOUT_PROFILE", "PRODUCTION_MONITORING", "RECOVERY_DRILL", "REVENUE_RECONCILIATION", "INDEPENDENT_REVIEW", "EXPERIMENT_PLAN"]
+}

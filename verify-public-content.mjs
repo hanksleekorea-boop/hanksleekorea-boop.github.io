@@ -6,6 +6,7 @@ const root = await read("./index.html");
 const english = await read("./en/index.html");
 const robots = await read("./robots.txt");
 const sitemap = await read("./sitemap.xml");
+const shoppingSitemap = await read("./shoppingscanner/sitemap.xml");
 const ads = (await read("./ads.txt")).trim();
 const shopping = await read("./shoppingscanner/index.html");
 const config = JSON.parse(await read("./shoppingscanner/global-commercial-config.json"));
@@ -14,14 +15,22 @@ const manifest = JSON.parse(await read("./shoppingscanner/manifest.webmanifest")
 
 assert(root.includes('href="/shoppingscanner/"'), "Korean root does not link ShoppingScanner");
 assert(english.includes('href="/shoppingscanner/en/"'), "English root does not link ShoppingScanner");
-assert.equal(robots, "User-agent: *\nAllow: /\nSitemap: https://hanksleekorea-boop.github.io/sitemap.xml\n");
+for (const directive of [
+  "User-agent: *",
+  "Allow: /",
+  "Sitemap: https://hanksleekorea-boop.github.io/sitemap.xml",
+  "Sitemap: https://hanksleekorea-boop.github.io/shoppingscanner/sitemap.xml",
+]) assert(robots.includes(directive), `robots.txt missing ${directive}`);
 for (const url of [
   "https://hanksleekorea-boop.github.io/",
-  "https://hanksleekorea-boop.github.io/en/",
+  "https://hanksleekorea-boop.github.io/shoppingscanner/",
+]) assert(sitemap.includes(`<loc>${url}</loc>`), `sitemap missing ${url}`);
+for (const url of [
   "https://hanksleekorea-boop.github.io/shoppingscanner/",
   "https://hanksleekorea-boop.github.io/shoppingscanner/en/",
-  "https://hanksleekorea-boop.github.io/shoppingscanner/progress/",
-]) assert(sitemap.includes(`<loc>${url}</loc>`), `sitemap missing ${url}`);
+  "https://hanksleekorea-boop.github.io/shoppingscanner/privacy/",
+  "https://hanksleekorea-boop.github.io/shoppingscanner/terms/",
+]) assert(shoppingSitemap.includes(`<loc>${url}</loc>`), `ShoppingScanner sitemap missing ${url}`);
 assert(/^google\.com, pub-\d{16}, DIRECT, f08c47fec0942fa0$/.test(ads), "root ads.txt is not an authorised Google seller row");
 assert(!shopping.includes('src="/account.js"'), "static mirror references unavailable root account client");
 assert(!shopping.includes('src="/shoppingscanner/account.js"'), "static mirror references unavailable prefixed account client");

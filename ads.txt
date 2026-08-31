@@ -1,1 +1,3 @@
-google.com, pub-2476023536699107, DIRECT, f08c47fec0942fa0
+# Voltlabs advertising seller status: disabled
+# No authorized advertising seller is configured yet.
+# Add a Google seller record only after the publisher ID is verified in the signed-in AdSense account.

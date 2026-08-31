@@ -54,5 +54,6 @@ export function createRemoteCircleService({ endpoint, authorizedFetch } = {}) {
     createChallenge(circleId, input = {}) { return call(`/v1/circles/${assertId(circleId, "circleId")}/challenges`, { method: "POST", body: JSON.stringify({ title: safeText(input.title, 80), actionTitle: safeText(input.actionTitle, 120), days: Math.max(1, Math.min(30, Number(input.days) || 7)), ranking: "disabled" }) }); },
     joinChallenge(circleId, challengeId, actionTitle) { return call(`/v1/circles/${assertId(circleId, "circleId")}/challenges/${assertId(challengeId, "challengeId")}/join`, { method: "POST", body: JSON.stringify({ actionTitle: safeText(actionTitle, 120) }) }); },
     leave(circleId) { return call(`/v1/circles/${assertId(circleId, "circleId")}/members/me`, { method: "DELETE" }); },
+    deleteMyAccountData() { return call("/v1/me", { method: "DELETE" }); },
   });
 }

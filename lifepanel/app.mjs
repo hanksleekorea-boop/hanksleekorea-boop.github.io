@@ -28,9 +28,9 @@ import { FREE_MOVES } from "../lifepanel-core/lifepanel-free-content-v1.mjs";
 import { LIFEPANEL_LAST_EXPORT_KEY } from "../lifepanel-core/lifepanel-data-control-v1.mjs";
 import { initFreeContentUI } from "./free-content-ui.mjs";
 import { initWorkflowPanels } from "./workflows-ui.mjs";
-import { initAdvancedUI } from "./advanced-ui.mjs?v=24";
+import { initAdvancedUI } from "./advanced-ui.mjs?v=25";
 import { initPlusUI } from "./plus-ui.mjs";
-import { initStage2UI } from "./stage2-ui.mjs?v=24";
+import { initStage2UI } from "./stage2-ui.mjs?v=25";
 
 const moves = FREE_MOVES.map((content) => Object.freeze({
   ...createMove(content),

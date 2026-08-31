@@ -1,6 +1,6 @@
 {
   "schema": "shopping-scanner-global-commercial/v4",
-  "release": "v86-stage1-trust-core-r1",
+  "release": "v87-full-two-stage-engineering-r1",
   "launchMode": "public_beta_adsense_connected_serving_blocked_until_google_approval",
   "defaultLocale": "en",
   "supportedLocales": ["en", "ko"],

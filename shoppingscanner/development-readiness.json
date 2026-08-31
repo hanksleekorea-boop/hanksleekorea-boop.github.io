@@ -1,0 +1,61 @@
+{
+  "schema": "shopping-scanner-two-stage-development-readiness/v1",
+  "release": "v87-full-two-stage-engineering-r1",
+  "evaluatedAt": "2026-08-31",
+  "scope": "engineering-development-not-external-acceptance",
+  "decision": "ENGINEERING_DEVELOPMENT_100_COMPLETE_EXTERNAL_ACCEPTANCE_BLOCKED",
+  "counts": {
+    "totalInitiatives": 40,
+    "engineeringReady": 40,
+    "engineeringPercent": 100,
+    "stage1EngineeringReady": 27,
+    "stage2EngineeringReady": 13,
+    "actualAcceptanceReady": 11,
+    "waitingExternalAcceptance": 29
+  },
+  "stage1": {
+    "ledger": "/shoppingscanner/stage1-readiness.json",
+    "ids": ["I01","I02","I03","I04","I05","I06","I07","I08","I09","I10","I11","I12","I13","I14","I15","I17","I18","I20","I21","I22","I27","I28","I29","I30","I31","I39","I40"],
+    "engineering": "VERIFIED_27_OF_27",
+    "actualAcceptance": "11_OF_27"
+  },
+  "stage2": {
+    "experience": "/shoppingscanner/innovation-lab/",
+    "engineering": "VERIFIED_13_OF_13",
+    "actualAcceptance": "0_OF_13_WAITING_REAL_EVIDENCE",
+    "initiatives": [
+      {"id":"I16","name":"바코드·사진·공유 링크 검색","engineering":"VERIFIED","evidence":["normalizeDiscoveryInput","discoveryDecision","innovation-lab"],"externalAcceptanceMissing":["실제 바코드·사진·링크 정확 도달률 90%","실기기 카메라"]},
+      {"id":"I19","name":"선택형 종단간 암호화 동기화","engineering":"VERIFIED","evidence":["createEncryptedSyncPlan","mergeEncryptedSnapshots","기존 AES-256-GCM 금고"],"externalAcceptanceMissing":["실제 서버 동기화","다기기 복구 성공률 99%","독립 보안 검토"]},
+      {"id":"I23","name":"고령자·인지 단순 모드","engineering":"VERIFIED","evidence":["simpleExperiencePolicy","innovation-lab browser"],"externalAcceptanceMissing":["고령 실제 사용자 과업 성공률 85%"]},
+      {"id":"I24","name":"저속망·오프라인 신뢰 모드","engineering":"VERIFIED","evidence":["networkTrustMode","service worker","innovation-lab browser"],"externalAcceptanceMissing":["실제 저속망 핵심 화면 3초"]},
+      {"id":"I25","name":"상품명·속성 다국어 현지화","engineering":"VERIFIED","evidence":["localizeProduct","ko/en/th/ja glossary"],"externalAcceptanceMissing":["사람 검수 번역 정확도 95%"]},
+      {"id":"I26","name":"현지 통화·관세·국제배송 총비용","engineering":"VERIFIED","evidence":["calculateInternationalLandedCost","innovation-lab"],"externalAcceptanceMissing":["실제 환율·관세·배송 공급원","지원 국가 포괄률 85%"]},
+      {"id":"I32","name":"무료 유지 다각 수익 모델","engineering":"VERIFIED_SAFE_OFF","evidence":["evaluateRevenueDiversification","광고·제휴 안전 관문"],"externalAcceptanceMissing":["실제 수익 기준선","단일 수익원 비중 60% 미만"]},
+      {"id":"I33","name":"판매처 검증·수정 포털","engineering":"VERIFIED_SAFE_OFF","evidence":["createMerchantCorrection","API 남용 방어"],"externalAcceptanceMissing":["실제 판매처 신원·포털 운영","수정 중간값 24시간"]},
+      {"id":"I34","name":"사용자 오류 신고·품질 보상","engineering":"VERIFIED","evidence":["createQualityReport","기존 익명 신고·상태 토큰"],"externalAcceptanceMissing":["실제 중대 오류 24시간 처리","보상 운영 승인"]},
+      {"id":"I35","name":"전문가·사용자 리뷰 출처 증명","engineering":"VERIFIED_SAFE_OFF","evidence":["verifyReviewProvenance","출처 누락 차단"],"externalAcceptanceMissing":["권리 있는 실제 리뷰 공급원","출처 누락 0 실측"]},
+      {"id":"I36","name":"가족·팀 공유 결정 목록","engineering":"VERIFIED","evidence":["createSharedDecision","기존 공유·내보내기"],"externalAcceptanceMissing":["실제 공유 비교 완료율 80%"]},
+      {"id":"I37","name":"실제 절약·후회 방지 장부","engineering":"VERIFIED","evidence":["recordSavings","regretPreventionLedger"],"externalAcceptanceMissing":["실제 구매·반품·수리 영수증","절약 주장 근거 연결 100%"]},
+      {"id":"I38","name":"수리성·수명·에너지·중고 신호","engineering":"VERIFIED_SAFE_OFF","evidence":["sustainabilityPassport","미확인·과장 차단"],"externalAcceptanceMissing":["공식·검증 가능 실제 출처","지원 상품 포괄률 70%"]}
+    ]
+  },
+  "verification": {
+    "stage1Assertions": 122,
+    "stage2CoreAssertions": 1045,
+    "stage1BrowserViewports": [320,390,1280],
+    "stage2BrowserViewports": [320,390,1280],
+    "syntheticPersonas": 1000,
+    "syntheticDiscoveryCases": 1000,
+    "actualUsers": 0,
+    "actualNewMerchants": 0,
+    "syntheticNeverCountsAsUserMerchantOrMarketEvidence": true
+  },
+  "remainingExternalAcceptance": [
+    "권리와 최신 오퍼가 있는 실제 판매처 3곳 이상",
+    "사람 라벨 상품 정체성·분류·유인가·번역 골드셋",
+    "실제 Android·iPhone·TalkBack·VoiceOver·카메라·저속망 시험",
+    "실제 운영 주체·공식 지원·법률·보안·복구 영수증",
+    "실제 사용자 과업·공유·고령자·Core Web Vitals",
+    "실제 리뷰·환율·관세·수리성·에너지·수익·정산 공급 증거"
+  ]
+}

@@ -1,6 +1,6 @@
 {
   "schema": "shopping-scanner-stage1-readiness/v1",
-  "releaseCandidate": "v86-stage1-trust-core-r1",
+  "releaseCandidate": "v87-full-two-stage-engineering-r1",
   "evaluatedAt": "2026-08-31",
   "strict": true,
   "decision": "STAGE1_ACCEPTANCE_BLOCKED_EXTERNAL_EVIDENCE",

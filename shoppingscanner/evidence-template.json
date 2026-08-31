@@ -1,6 +1,6 @@
 {
   "schema": "shopping-scanner-external-evidence-bundle/v1",
-  "release": "v86-stage1-trust-core-r1",
+  "release": "v87-full-two-stage-engineering-r1",
   "commercial_receipts": [],
   "operator_receipts": [],
   "monetization_receipts": []

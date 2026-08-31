@@ -1,0 +1,51 @@
+name: Verify LifePanel public service
+
+on:
+  schedule:
+    - cron: "17 4 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: verify-lifepanel-public
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Verify public app, dashboard, modules, and QR
+        shell: bash
+        run: |
+          set -euo pipefail
+          base="https://hanksleekorea-boop.github.io"
+          work="$(mktemp -d)"
+          trap 'rm -rf -- "$work"' EXIT
+
+          fetch() {
+            curl --fail --silent --show-error --location \
+              --retry 5 --retry-all-errors --retry-delay 5 \
+              "$1" --output "$2"
+          }
+
+          fetch "$base/lifepanel/" "$work/index.html"
+          fetch "$base/lifepanel/commercial-status.html" "$work/status.html"
+          fetch "$base/lifepanel/app.mjs" "$work/app.mjs"
+          fetch "$base/lifepanel/service-worker.js" "$work/service-worker.js"
+          fetch "$base/lifepanel-core/lifepanel-stage2-insights-v1.mjs" "$work/stage2.mjs"
+          fetch "$base/lifepanel/assets/lifepanel-public-qr.png" "$work/qr.png"
+
+          grep -q 'LifePanel' "$work/index.html"
+          grep -Eq 'app\.mjs\?v=[0-9]+' "$work/index.html"
+          grep -q '전체 상용화 100%라고 표시하지 않습니다' "$work/status.html"
+          grep -q 'initStage2UI' "$work/app.mjs"
+          grep -q 'lifepanel-public-v' "$work/service-worker.js"
+          grep -q 'buildLongTrend' "$work/stage2.mjs"
+          test "$(wc -c < "$work/qr.png")" -gt 1000
+
+          content_type="$(curl --fail --silent --show-error --location --head "$base/lifepanel/assets/lifepanel-public-qr.png" | tr -d '\r' | awk -F': ' 'tolower($1)=="content-type" {print tolower($2)}' | tail -1)"
+          [[ "$content_type" == image/png* ]]
+          echo '{"result":"PASS","service":"lifepanel-public","privacy":"honest-blockers-visible"}'

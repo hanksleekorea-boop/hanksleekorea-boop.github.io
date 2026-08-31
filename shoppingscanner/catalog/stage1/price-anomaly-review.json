@@ -1,0 +1,55 @@
+{
+  "schema": "shopping-scanner-price-anomaly-review/v1",
+  "generatedAt": "2026-08-31",
+  "humanLabeled": false,
+  "rows": [
+    {
+      "id": "8801391756",
+      "title": "(문의 환영)갤럭시 A17,A16 SKT,KT,LGT 할원0원 효도폰,학생폰,공짜폰,무료폰 새상품",
+      "price": 10,
+      "reason": "MICRO_PRICE_REVIEW"
+    },
+    {
+      "id": "6739355472",
+      "title": "갤럭시 A17/A16/A24 128G SKT KT LGU+ (0원) 공짜폰 무료폰 키즈폰 효도폰/기변 신규 번이",
+      "price": 10,
+      "reason": "MICRO_PRICE_REVIEW"
+    },
+    {
+      "id": "4010130990",
+      "title": "[전원 3만P] 중등1위 엠베스트 0원 체험/온라인학습/중학생인강/중등내신/영재고/특목고/비교과콘텐츠/고교입시준비",
+      "price": 10,
+      "reason": "MICRO_PRICE_REVIEW"
+    },
+    {
+      "id": "4010136459",
+      "title": "[전원 3만P] 초등1위 엘리하이 전과목 0원 체험/초등학습지/엘리하이 키즈/유아학습지/유아교육/온라인학습/스마트러닝",
+      "price": 10,
+      "reason": "MICRO_PRICE_REVIEW"
+    },
+    {
+      "id": "3533273606",
+      "title": "[최대 9만 전원 지급] 밀크T 0원 체험 + 네이버페이 전원지급 /밀크티초등/유아학습지/밀크티아이/중등인강/스마트학습/천재교육",
+      "price": 10,
+      "reason": "MICRO_PRICE_REVIEW"
+    },
+    {
+      "id": "4117960372",
+      "title": "[전원 3만 선물] 비상교육 온리원 키/초/중 0원 체험+네이버페이 3만",
+      "price": 10,
+      "reason": "MICRO_PRICE_REVIEW"
+    },
+    {
+      "id": "6248579949",
+      "title": "[체험시 전원 상품권] 3~9세 한정 윙크무료학습 + 최대혜택 이벤트",
+      "price": 10,
+      "reason": "MICRO_PRICE_REVIEW"
+    },
+    {
+      "id": "4122661397",
+      "title": "아이스크림 홈런 7일 0원체험 + 신세계 3만 100% 혜택",
+      "price": 10,
+      "reason": "MICRO_PRICE_REVIEW"
+    }
+  ]
+}

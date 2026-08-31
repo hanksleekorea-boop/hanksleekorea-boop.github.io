@@ -1,6 +1,6 @@
 {
   "schema": "shopping-scanner-global-commercial/v4",
-  "release": "v85-adsense-multiformat-ready-r1",
+  "release": "v86-stage1-trust-core-r1",
   "launchMode": "public_beta_adsense_connected_serving_blocked_until_google_approval",
   "defaultLocale": "en",
   "supportedLocales": ["en", "ko"],
@@ -16,7 +16,7 @@
     "adsDataRedaction": true,
     "googleConsentModeV2": true,
     "honorGlobalPrivacyControl": true,
-    "certifiedCmp": {"provider": "google_privacy_and_messaging", "status": "verified", "iabTcfVersion": "2.3", "googleCertified": true, "consoleCheckedAt": "2026-08-31"},
+    "certifiedCmp": {"provider": null, "status": "external_configuration_required", "iabTcfVersion": "2.3", "googleCertified": false},
     "frameworks": {
       "eeaUkSwitzerland": "IAB_TCF_2_3_CERTIFIED_CMP_REQUIRED",
       "unitedStates": "IAB_GPP_NATIONAL_V2_AND_GPC",
@@ -29,17 +29,14 @@
     "providers": {
       "adsense": {
         "enabled": false, "publisherId": "ca-pub-2476023536699107", "publicIdentityStatus": "verified_from_existing_public_root",
-        "accountStatus": "approved", "consoleAccountState": "active", "siteStatus": "getting_ready",
-        "adsTxtAuthorized": true, "adsTxtStatus": "approved", "sellerTransparencyStatus": "verified", "policyCenterStatus": "no_current_violations",
-        "autoAdsEnabled": false, "accountAutoAdsEnabled": true, "accountAutoOptimizationEnabled": false,
+        "accountStatus": "not_verified", "siteStatus": "not_submitted",
+        "adsTxtAuthorized": true, "sellerTransparencyStatus": "verified", "autoAdsEnabled": false,
         "autoAdsPolicy": {
           "supportedWhenOperatorVerified": ["in_page_banner", "multiplex", "side_rail"],
           "disabledFormats": ["anchor", "vignette", "ad_intent"],
-          "accountConfigurationEvidence": "verified_2026-08-31_in_page_banner_only"
+          "accountConfigurationEvidence": "pending"
         },
-        "overlayFormatsEnabled": false, "intentFormatsEnabled": false, "personalizedAdsAllowed": false,
-        "paymentsProfileStatus": "completed", "identityVerificationStatus": "not_yet_required_below_threshold",
-        "consoleCheckedAt": "2026-08-31"
+        "overlayFormatsEnabled": false, "intentFormatsEnabled": false, "personalizedAdsAllowed": false
       },
       "adManager": {
         "enabled": false,
@@ -80,17 +77,17 @@
       "us": "gpp_v2_gpc_and_explicit_consent", "rest": "explicit_consent", "serverRegionHintRequired": true
     },
     "placements": [
-      {"id": "en-category-mid", "pageType": "category", "format": "responsive_display", "slotId": "6430516248", "enabled": false, "reservedHeightPx": 250},
-      {"id": "en-feed-mid", "pageType": "category", "format": "in_feed", "slotId": "3956501346", "layoutKey": "-gw-3+1f-3d+2z", "enabled": false, "reservedHeightPx": 280},
-      {"id": "en-article-mid", "pageType": "informational", "format": "in_article", "slotId": "6262995281", "enabled": false, "reservedHeightPx": 250},
-      {"id": "en-information-end", "pageType": "informational", "format": "multiplex", "slotId": "2643419676", "enabled": false, "reservedHeightPx": 280}
+      {"id": "en-category-mid", "pageType": "category", "format": "responsive_display", "slotId": null, "enabled": false, "reservedHeightPx": 250},
+      {"id": "en-feed-mid", "pageType": "category", "format": "in_feed", "slotId": null, "layoutKey": null, "enabled": false, "reservedHeightPx": 280},
+      {"id": "en-article-mid", "pageType": "informational", "format": "in_article", "slotId": null, "enabled": false, "reservedHeightPx": 250},
+      {"id": "en-information-end", "pageType": "informational", "format": "multiplex", "slotId": null, "enabled": false, "reservedHeightPx": 280}
     ],
     "performanceBudgets": {"maximumAdCls": 0.05, "maximumLcpRegressionMs": 250, "maximumProviderLoadMs": 2500, "reservedSlotHeightPx": 180},
     "qualityThresholds": {"maximumProviderFailureRate": 0.05, "maximumPolicyWarnings": 0, "maximumUserReportsPerThousandSessions": 3, "minimumCoreTaskSuccessRate": 0.95},
     "telemetry": {"mode": "memory_only_until_approved", "personalIdentifiers": false, "productIdentifiers": false, "rawUrls": false, "maximumEvents": 50},
     "activationEvidence": {
       "operatorIdentity": "pending", "officialSupport": "pending", "legalReview": "pending", "productDataLicense": "pending",
-      "certifiedCmp": "verified", "publisherAccount": "verified", "siteReady": "pending", "adsTxtAuthorized": "verified",
+      "certifiedCmp": "pending", "publisherAccount": "pending", "siteReady": "pending", "adsTxtAuthorized": "verified",
       "sellerTransparency": "verified", "taxAndPayout": "pending", "productionMonitoring": "pending", "recoveryDrill": "pending"
     }
   },

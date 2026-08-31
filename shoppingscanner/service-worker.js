@@ -1,7 +1,7 @@
-const RELEASE="v85-adsense-multiformat-ready-r1";
+const RELEASE="v86-stage1-trust-core-r1";
 const CACHE_PREFIX='shopping-scanner-shell-';
 const CACHE_NAME=CACHE_PREFIX+RELEASE;
-const SHELL=['/shoppingscanner/','/shoppingscanner/en/','/shoppingscanner/privacy/','/shoppingscanner/terms/','/shoppingscanner/accessibility/','/shoppingscanner/cookies/','/shoppingscanner/advertising/','/shoppingscanner/en/privacy/','/shoppingscanner/en/terms/','/shoppingscanner/en/cookies/','/shoppingscanner/en/advertising/','/shoppingscanner/ad-operations/','/shoppingscanner/manifest.webmanifest','/shoppingscanner/global-commercial.css','/shoppingscanner/global-commercial.js','/shoppingscanner/global-commercial-config.json','/shoppingscanner/pwa-icon-192.png','/shoppingscanner/pwa-icon-512.png'];
+const SHELL=['/shoppingscanner/','/shoppingscanner/en/','/shoppingscanner/privacy/','/shoppingscanner/terms/','/shoppingscanner/accessibility/','/shoppingscanner/cookies/','/shoppingscanner/advertising/','/shoppingscanner/en/privacy/','/shoppingscanner/en/terms/','/shoppingscanner/en/cookies/','/shoppingscanner/en/advertising/','/shoppingscanner/ad-operations/','/shoppingscanner/quality-status/','/shoppingscanner/stage1-readiness.json','/shoppingscanner/manifest.webmanifest','/shoppingscanner/global-commercial.css','/shoppingscanner/global-commercial.js','/shoppingscanner/global-commercial-config.json','/shoppingscanner/stage1-trust.css','/shoppingscanner/stage1-trust-core.mjs','/shoppingscanner/stage1-trust-runtime.mjs','/shoppingscanner/pwa-icon-192.png','/shoppingscanner/pwa-icon-512.png'];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(SHELL))));
 self.addEventListener('activate',event=>event.waitUntil((async()=>{
   const names=await caches.keys();

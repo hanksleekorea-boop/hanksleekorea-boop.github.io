@@ -1,0 +1,63 @@
+{
+  "schema": "shopping-scanner-stage1-readiness/v1",
+  "releaseCandidate": "v86-stage1-trust-core-r1",
+  "evaluatedAt": "2026-08-31",
+  "strict": true,
+  "decision": "STAGE1_ACCEPTANCE_BLOCKED_EXTERNAL_EVIDENCE",
+  "counts": {
+    "initiatives": 27,
+    "engineeringReady": 27,
+    "actualAcceptanceReady": 11,
+    "waitingExternal": 16
+  },
+  "catalogReality": {
+    "products": 3000,
+    "merchants": 1,
+    "capturedAt": "2026-08-09T08:00:33.000Z",
+    "gtinCoveragePercent": 0,
+    "manufacturerCoveragePercent": 0,
+    "modelCoveragePercent": 0,
+    "optionCoveragePercent": 0,
+    "humanLabeledIdentityPairs": 0,
+    "syntheticIdentityPairs": 1000,
+    "multiRetailerComparisonAvailable": false,
+    "syntheticIsNotUserOrMarketEvidence": true
+  },
+  "initiatives": [
+    {"id":"I01","name":"합법적 다중 판매처 오퍼 수집","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["stage1-offer-pipeline.mjs","verify-stage1-offer-pipeline-v86.mjs"],"missing":["최소 3개 판매처의 검증된 권리 영수증","실제 오퍼 900개"]},
+    {"id":"I02","name":"동일상품·옵션 정체성","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["stage1-trust-core.mjs","identity-review-queue-1000.json"],"missing":["사람이 라벨한 1,000쌍 골드셋","정밀도 99.5% 실측"]},
+    {"id":"I03","name":"항목별 총비용","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["calculateLandedCost","verify-stage1-trust-core-v86.mjs"],"missing":["실제 오퍼 총비용 포괄률 90%"]},
+    {"id":"I04","name":"가격·재고 최신성 영수증","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["freshnessReceipt","stage1-trust-runtime.mjs"],"missing":["실제 판매처 p95 갱신 6시간 이내"]},
+    {"id":"I05","name":"유인가·옵션가 방어","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["detectBaitOffer","price-anomaly-review.json"],"missing":["사람 검증 유인가 골드셋","치명 누락률 1% 미만"]},
+    {"id":"I06","name":"상품군·속성 품질 원장","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["auditCategory","category-review-queue.json"],"missing":["사람 라벨 분류 골드셋","상위 상품군 정밀도 98%"]},
+    {"id":"I07","name":"의미·오타·모델 검색","engineering":"VERIFIED","acceptance":"READY","evidence":["semanticSearchScore","verify-search-status-v46.mjs"],"missing":[]},
+    {"id":"I08","name":"딜 진실 점수","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["dealTruthScore","verify-stage1-trust-core-v86.mjs"],"missing":["실제 가짜 할인 골드셋 탐지율 95%"]},
+    {"id":"I09","name":"사양 차이 비교","engineering":"VERIFIED","acceptance":"READY","evidence":["diffSpecs","verify-product-decision-v1.mjs"],"missing":[]},
+    {"id":"I10","name":"재고·도착 신뢰 계층","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["stockTrust","stage1-trust-runtime.mjs"],"missing":["실제 재고·도착 관측 자료"]},
+    {"id":"I11","name":"반품·보증·설치 정책 정규화","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["normalizePolicies","verify-stage1-trust-core-v86.mjs"],"missing":["실제 오퍼 정책 보유율 85%"]},
+    {"id":"I12","name":"판매자 위험 설명","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["sellerRisk","verify-stage1-trust-core-v86.mjs"],"missing":["사람 검증 고위험 판매자 경고 정밀도 95%"]},
+    {"id":"I13","name":"실제 관측 가격 이력","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["summarizePriceHistory","tools/next/aggregate-history.mjs"],"missing":["서로 다른 시각의 실제 관측 이력","지원 오퍼 연결률 90%"]},
+    {"id":"I14","name":"추천 근거 여권","engineering":"VERIFIED","acceptance":"READY","evidence":["buildEvidencePassport","stage1-trust-runtime.mjs"],"missing":[]},
+    {"id":"I15","name":"구매결정 스튜디오","engineering":"VERIFIED","acceptance":"READY","evidence":["evaluateDecisionStudio","premium-studio.js","verify-premium-browser-v81.mjs"],"missing":[]},
+    {"id":"I17","name":"목표가·재입고·배송 알림 통제","engineering":"VERIFIED","acceptance":"READY","evidence":["evaluateAlert","verify-price-target-v42.mjs"],"missing":[]},
+    {"id":"I18","name":"내보내기·삭제 영수증","engineering":"VERIFIED","acceptance":"READY","evidence":["createOwnershipReceipt","verify-data-rights-v69.mjs"],"missing":[]},
+    {"id":"I20","name":"GPC·지역별 최소 동의","engineering":"VERIFIED","acceptance":"READY","evidence":["consentPolicy","verify-global-commercial-stage1-v82.mjs"],"missing":[]},
+    {"id":"I21","name":"보상과 자연 순위 분리","engineering":"VERIFIED","acceptance":"READY","evidence":["neutralRank","verify-recommendation-control-v69.mjs"],"missing":[]},
+    {"id":"I22","name":"API·봇·남용 방어","engineering":"VERIFIED","acceptance":"READY","evidence":["checkApiRequest","verify-runtime-hardening-v63.mjs"],"missing":[]},
+    {"id":"I27","name":"공개 데이터 품질 상태판","engineering":"VERIFIED","acceptance":"READY","evidence":["quality-status.html","stage1-readiness.json"],"missing":[]},
+    {"id":"I28","name":"운영 주체·지원·법률 신뢰","engineering":"VERIFIED_SAFE_OFF","acceptance":"WAITING_EXTERNAL","evidence":["operator-readiness.json","terms.html","privacy.html"],"missing":["실제 운영 주체","공식 지원 경로","독립 법률 검토"]},
+    {"id":"I29","name":"감시·백업·복구 훈련","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["evaluateOperations","operator-readiness.json"],"missing":["실제 감시 관측기간","4시간 이내 복구 훈련 영수증"]},
+    {"id":"I30","name":"WCAG·실제 보조기술","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["verify-accessibility-v43.mjs","verify-screenreader-v45.mjs"],"missing":["실제 TalkBack","실제 VoiceOver","200%·320% 확대 실기기 증거"]},
+    {"id":"I31","name":"무가입·비유도 결정 흐름","engineering":"VERIFIED","acceptance":"READY","evidence":["evaluateExperiment","verify-home-data-scope-v58.mjs"],"missing":[]},
+    {"id":"I39","name":"실제 Core Web Vitals","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["verify-performance-baseline-v69.mjs"],"missing":["동의된 실제 사용자 75백분위 LCP·INP·CLS"]},
+    {"id":"I40","name":"자료 권리·출처 계보","engineering":"VERIFIED","acceptance":"WAITING_EXTERNAL","evidence":["validateProvider","catalog-audit.json"],"missing":["실제 판매처 권리 영수증"]}
+  ],
+  "strictBlockers": [
+    "판매처 3곳의 실제 권리·피드·오퍼 증거 없음",
+    "사람 라벨 상품 정체성·분류·유인가 골드셋 없음",
+    "서로 다른 시각의 실제 가격·재고·정책 관측 없음",
+    "실제 운영 주체·공식 지원·독립 법률 검토 없음",
+    "실제 Android·iPhone·TalkBack·VoiceOver 증거 없음",
+    "실제 사용자 Core Web Vitals와 과업 성공률 증거 없음"
+  ]
+}

@@ -1,5 +1,6 @@
 import { ADVANCED_DOMAINS, ADVANCED_EXPERIMENTS, ADVANCED_FAQ, ADVANCED_MOVES, ADVANCED_TONES, ADVANCED_WEEKLY_STORIES, CONTEXT_COPY, localize, searchAdvancedMoves } from "../lifepanel-core/lifepanel-advanced-content-v2.mjs";
 import { createPreferenceState, explainSufficiency, rankAdvancedMoves } from "../lifepanel-core/lifepanel-personalization-v2.mjs";
+import { buildCommunityInsights, COMMUNITY_DOMAINS, SYNTHETIC_COMMUNITY_1000 } from "../lifepanel-core/lifepanel-community-insights-v1.mjs";
 import { createManualBackupService, createSafeCircle, validateGoogleProviderConfig } from "../lifepanel-core/lifepanel-advanced-services-v2.mjs";
 import { createGoogleDriveProvider } from "../lifepanel-core/lifepanel-google-drive-provider-v1.mjs";
 
@@ -53,6 +54,21 @@ export function initAdvancedUI() {
   $("#google-gis")?.addEventListener("load", refreshProvider, { once: true });
   const save = () => localStorage.setItem(KEY, JSON.stringify({ locale, activeDomainIds: domains, disabledMoveIds: hidden, outcomes, storyIndex, selectedExperimentId: $("#advanced-experiment-select")?.value || null }));
   const domainLabel = (id) => localize(ADVANCED_DOMAINS.find((d) => d.id === id), locale)?.label || id;
+  const communityDomainLabel = (id) => { const item = COMMUNITY_DOMAINS.find((domain) => domain.id === id); return item ? item[locale === "ko" ? "ko" : "en"] : id; };
+
+  function renderCommunityInsights() {
+    const result = buildCommunityInsights({ records: SYNTHETIC_COMMUNITY_1000, selectedDomainIds: domains, energy: Number($("#advanced-energy").value) });
+    const renderList = (selector, rows) => {
+      const root = $(selector); root.replaceChildren();
+      for (const row of rows.slice(0, 5)) { const li = document.createElement("li"); const label = document.createElement("span"); label.textContent = communityDomainLabel(row.domainId); const value = document.createElement("strong"); value.textContent = `${row.percent}%`; li.append(label, value); root.append(li); }
+    };
+    renderList("#community-overall-list", result.overall); renderList("#community-similar-list", result.similar);
+    text("#community-provenance", locale === "ko" ? `설명용 가상 기준 ${result.generatedFrom.toLocaleString()}명 · 실제 사용자 평균 아님` : `${result.generatedFrom.toLocaleString()} illustrative virtual people · not real-user statistics`);
+    text("#community-cohort-status", locale === "ko" ? `비슷한 집단 ${result.cohortSize}명 · 선택 영역과 에너지 범위 기준` : `Similar cohort ${result.cohortSize} · chosen domains and energy range`);
+    const comparison = $("#community-comparison-list"); comparison.replaceChildren();
+    for (const item of result.comparisons) { const li = document.createElement("li"); const meaning = item.message === "often-shared" ? "많이 함께 관심을 둠" : item.message === "sometimes-shared" ? "어느 정도 함께 관심을 둠" : "비교적 드문 관심"; li.textContent = locale === "ko" ? `${communityDomainLabel(item.domainId)} · 비슷한 집단의 ${item.peerInterestPercent}% · ${meaning}` : `${communityDomainLabel(item.domainId)} · ${item.peerInterestPercent}% of similar people`; comparison.append(li); }
+    if (!result.comparisons.length) { const li = document.createElement("li"); li.textContent = locale === "ko" ? "관심 영역을 고르면 비슷한 집단과 비교 이유를 보여 줍니다." : "Choose an interest domain to see an explained comparison."; comparison.append(li); }
+  }
 
   function renderDomains() {
     const root = $("#advanced-domains"); root.replaceChildren();
@@ -107,12 +123,14 @@ export function initAdvancedUI() {
     const replacements = locale === "ko" ? {
       "#advanced-eyebrow": "2단계 · 탐색과 연결", "#advanced-language-label": "표시 언어", "#advanced-explorer-eyebrow": "영역 검색 · 최대 2개", "#advanced-explorer-title": "행동 탐색기", "#advanced-domain-help": "영역 교체 전 영향을 보여 줍니다. 선택하지 않으면 전체에서 찾습니다.", "#advanced-search-label": "행동 검색", "#advanced-minutes-label": "가능한 시간", "#advanced-energy-label": "에너지",
       "#advanced-personal-eyebrow": "설명 가능한 개인화", "#advanced-personal-title": "왜 이 순서인지 먼저 보기", "#advanced-personal-copy": "직접 고른 영역·시간·에너지와 결과만 사용합니다. 성격·직업·건강 상태를 추정하지 않습니다.", "#advanced-personalization-label": "개인화 순서 사용", "#advanced-tone-label": "표현 방식", "#advanced-context-summary": "주말·교대·여행 안내",
+      "#community-insights-eyebrow": "사람들의 관심 지도 · 개인 식별 없음", "#community-insights-title": "다른 삶을 엿보고, 나와 비슷한 흐름 보기", "#community-insights-copy": "현재는 실제 사용자 통계가 아닌 1,000명 가상 표본입니다. 개인 프로필·메모·계정·위치는 수집하지 않으며 순위를 만들지 않습니다.", "#community-overall-title": "전체 관심사 평균", "#community-similar-title": "나와 비슷한 가상 집단", "#community-refresh": "현재 선택으로 다시 비교",
       "#advanced-experiment-eyebrow": "21·30일 작은 실험", "#advanced-experiment-title": "중단 조건이 먼저인 실험", "#advanced-experiment-save": "기기에 실험 선택 저장", "#advanced-story-eyebrow": "주간 사례 · 설명용 예시", "#advanced-story-title": "실제 통계로 오해하지 않는 사례", "#advanced-next-story": "다른 예시",
       "#advanced-account-eyebrow": "선택 계정 · 수동 최신 사본 1개", "#advanced-account-title": "Google 연결과 자료 소유권", "#advanced-account-copy": "연결하지 않아도 사용할 수 있습니다. 운영 서버 설정 전에는 로그인·클라우드 저장이 닫혀 있습니다.", "#advanced-account-state-label": "계정 상태", "#advanced-backup-state-label": "클라우드 사본", "#advanced-upload-label": "자동 업로드", "#advanced-backup-state": "생성되지 않음", "#advanced-upload-state": "0회 · 사용 안 함", "#advanced-google-connect": "Google로 연결", "#advanced-backup-now": "최신 사본 직접 저장", "#advanced-compare-backup": "보호본 비교", "#advanced-apply-backup": "비교한 보호본 적용", "#advanced-delete-backup": "클라우드 사본 삭제", "#advanced-backup-preview-title": "저장 대상 미리보기", "#advanced-account-status": "외부 설정 전에는 어떤 자료도 전송하지 않습니다.",
       "#advanced-circle-eyebrow": "초대 전용 · 2–8명 · 순위 없음", "#advanced-circle-title": "안전한 응원 모임 미리보기", "#advanced-circle-copy": "현재는 이 브라우저 안에서 계약을 검증하는 미리보기입니다. 공개 검색·자동 초대·외부 전송은 없습니다.", "#advanced-create-circle": "기기 안 모임 만들기", "#advanced-invite-circle": "일회용 초대 만들기", "#advanced-leave-circle": "모임 닫기", "#advanced-member-label": "미리보기 구성원 별칭", "#advanced-add-member": "기기 안 미리보기에 초대", "#advanced-share-label": "나눌 행동 제목", "#advanced-share-encouragement-label": "응원 요청 포함", "#advanced-share-circle": "공유 범위 확인 후 올리기", "#advanced-faq-summary": "2단계 도움말 40개 보기", "#advanced-domain-dialog-title": "영역을 바꾸면 무엇이 달라지나요?", "#advanced-domain-cancel": "취소", "#advanced-domain-confirm": "이 영역으로 바꾸기"
     } : {
       "#advanced-eyebrow": "Stage 2 · Explore and connect", "#advanced-language-label": "Display language", "#advanced-explorer-eyebrow": "Domain search · maximum 2", "#advanced-explorer-title": "Action explorer", "#advanced-domain-help": "See the impact before replacing a domain. Choose none to search all.", "#advanced-search-label": "Search actions", "#advanced-minutes-label": "Available time", "#advanced-energy-label": "Energy",
       "#advanced-personal-eyebrow": "Explainable personalization", "#advanced-personal-title": "See why the order changed", "#advanced-personal-copy": "Only chosen domains, time, energy, and outcomes are used. Personality, occupation, and health are not inferred.", "#advanced-personalization-label": "Use personalized ordering", "#advanced-tone-label": "Tone", "#advanced-context-summary": "Weekend, shift, and travel notes",
+      "#community-insights-eyebrow": "Interest map · no individual identification", "#community-insights-title": "Explore other lives and compare similar patterns", "#community-insights-copy": "This currently uses 1,000 virtual examples, not real-user statistics. It collects no profile, note, account, or location and creates no ranking.", "#community-overall-title": "Overall interests", "#community-similar-title": "Virtual people with similar choices", "#community-refresh": "Compare current choices",
       "#advanced-experiment-eyebrow": "Small 21/30-day experiment", "#advanced-experiment-title": "An experiment with a stop condition first", "#advanced-experiment-save": "Save experiment on this device", "#advanced-story-eyebrow": "Weekly story · illustrative example", "#advanced-story-title": "Examples clearly labeled as non-statistical", "#advanced-next-story": "Another example",
       "#advanced-account-eyebrow": "Optional account · one manual latest backup", "#advanced-account-title": "Google connection and data ownership", "#advanced-account-copy": "The app works without an account. Sign-in and cloud backup stay closed until an operator configures a production service.", "#advanced-account-state-label": "Account state", "#advanced-backup-state-label": "Cloud backup", "#advanced-upload-label": "Automatic upload", "#advanced-backup-state": "Not created", "#advanced-upload-state": "0 · disabled", "#advanced-google-connect": "Connect with Google", "#advanced-backup-now": "Save latest backup manually", "#advanced-compare-backup": "Compare backup", "#advanced-apply-backup": "Apply compared backup", "#advanced-delete-backup": "Delete cloud backup", "#advanced-backup-preview-title": "Preview backup scope", "#advanced-account-status": "Nothing is sent before the external service is configured.",
       "#advanced-circle-eyebrow": "Invite-only · 2–8 people · no ranking", "#advanced-circle-title": "Safe encouragement circle preview", "#advanced-circle-copy": "This browser-only preview verifies the contract. There is no public discovery, automatic invitation, or external transfer.", "#advanced-create-circle": "Create device-only circle", "#advanced-invite-circle": "Create one-time invite", "#advanced-leave-circle": "Close circle", "#advanced-member-label": "Preview member alias", "#advanced-add-member": "Invite into device preview", "#advanced-share-label": "Action title to share", "#advanced-share-encouragement-label": "Ask for encouragement", "#advanced-share-circle": "Review scope and share", "#advanced-faq-summary": "View 40 stage-two help topics", "#advanced-domain-dialog-title": "What changes when a domain is replaced?", "#advanced-domain-cancel": "Cancel", "#advanced-domain-confirm": "Replace domain"
@@ -123,7 +141,7 @@ export function initAdvancedUI() {
     $("#advanced-member-alias").placeholder = locale === "ko" ? "실제 연락처 대신 별칭" : "Alias, not real contact details";
     [...$("#advanced-minutes").options].forEach((option) => { option.textContent = locale === "ko" ? `${option.value}분` : `${option.value} min`; });
     text("#advanced-account-state", providerReady ? (locale === "ko" ? "연결 가능 · 로그아웃" : "Ready · signed out") : (locale === "ko" ? "설정되지 않음" : "Not configured"));
-    renderDomains(); renderSelects(); renderStory(); renderFaq(); renderContext(); renderMoves();
+    renderDomains(); renderSelects(); renderStory(); renderFaq(); renderContext(); renderMoves(); renderCommunityInsights();
   }
 
   $("#advanced-language").value = locale; $("#advanced-language").addEventListener("change", (event) => { locale = event.target.value === "en" ? "en" : "ko"; save(); render(); });
@@ -132,6 +150,7 @@ export function initAdvancedUI() {
   $("#advanced-next-story").addEventListener("click", () => { storyIndex = (storyIndex + 1) % 32; save(); renderStory(); });
   $("#advanced-domain-cancel").addEventListener("click", () => { pending = null; $("#advanced-domain-dialog").close(); });
   $("#advanced-domain-confirm").addEventListener("click", () => { if (pending) domains = [domains[1], pending.to]; pending = null; save(); $("#advanced-domain-dialog").close(); render(); });
+  $("#community-refresh").addEventListener("click", renderCommunityInsights);
   $("#advanced-google-connect").disabled = !providerReady;
   text("#advanced-account-state", providerReady ? (locale === "ko" ? "연결 가능 · 로그아웃" : "Ready · signed out") : (locale === "ko" ? "설정되지 않음" : "Not configured"));
   text("#advanced-backup-preview", JSON.stringify({ schemaVersion: 2, included: ["preferences", "choices", "optional reflections"], excluded: ["secrets", "contacts", "precise location", "raw audio"], automaticUpload: false }, null, 2));

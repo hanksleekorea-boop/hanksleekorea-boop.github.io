@@ -35,6 +35,7 @@ const APP_SHELL = [
   "../lifepanel-core/lifepanel-free-content-v1.mjs",
   "../lifepanel-core/lifepanel-advanced-content-v2.mjs",
   "../lifepanel-core/lifepanel-personalization-v2.mjs",
+  "../lifepanel-core/lifepanel-community-insights-v1.mjs",
   "../lifepanel-core/lifepanel-advanced-services-v2.mjs",
   "../lifepanel-core/lifepanel-google-drive-provider-v1.mjs",
   "../lifepanel-core/lifepanel-circle-provider-v1.mjs",

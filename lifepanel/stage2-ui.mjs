@@ -1,4 +1,4 @@
-import { buildLongTrend, buildWeeklyBrief } from "../lifepanel-core/lifepanel-stage2-insights-v1.mjs?v=23";
+import { buildLongTrend, buildWeeklyBrief } from "../lifepanel-core/lifepanel-stage2-insights-v1.mjs?v=24";
 
 const CHOICE_KEY = "lifepanel.alpha.move-choices.v1";
 const $ = (selector) => {

@@ -1,5 +1,5 @@
 // 새 화면 파일을 설치형 웹 앱 사용자에게도 받게 하려면, 화면 변경 때 이 판번호를 올립니다.
-const CACHE_NAME = "lifepanel-public-v23-stage2-social";
+const CACHE_NAME = "lifepanel-public-v24-stage2-cache-refresh";
 const APP_SHELL = [
   "./",
   "./index.html",

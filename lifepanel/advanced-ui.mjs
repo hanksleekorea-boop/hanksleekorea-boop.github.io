@@ -1,7 +1,7 @@
 import { ADVANCED_DOMAINS, ADVANCED_EXPERIMENTS, ADVANCED_FAQ, ADVANCED_MOVES, ADVANCED_TONES, ADVANCED_WEEKLY_STORIES, CONTEXT_COPY, localize, searchAdvancedMoves } from "../lifepanel-core/lifepanel-advanced-content-v2.mjs";
 import { createPreferenceState, explainSufficiency, rankAdvancedMoves } from "../lifepanel-core/lifepanel-personalization-v2.mjs";
 import { buildCommunityInsights, COMMUNITY_DOMAINS, SYNTHETIC_COMMUNITY_1000 } from "../lifepanel-core/lifepanel-community-insights-v1.mjs";
-import { createManualBackupService, createSafeCircle, validateGoogleProviderConfig } from "../lifepanel-core/lifepanel-advanced-services-v2.mjs?v=23";
+import { createManualBackupService, createSafeCircle, validateGoogleProviderConfig } from "../lifepanel-core/lifepanel-advanced-services-v2.mjs?v=24";
 import { createGoogleDriveProvider } from "../lifepanel-core/lifepanel-google-drive-provider-v1.mjs";
 
 const KEY = "lifepanel.alpha.advanced.v2";

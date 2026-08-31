@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="google-adsense-account" content="ca-pub-2476023536699107" />
+    <meta name="theme-color" content="#0b6b4f" />
+    <title>LifePanel · 오늘의 조종석</title>
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css?v=19" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">본문으로 바로 가기</a>
+    <main class="shell" id="main-content" tabindex="-1" aria-labelledby="page-title">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">LIFEPANEL · LOCAL FIRST</p>
+          <h1 id="page-title">오늘의 조종석</h1>
+          <p class="summary">삶을 평가하지 않습니다. 지금의 한 걸음을 고르면 됩니다.</p>
+        </div>
+        <span class="privacy-state" id="privacy-state" aria-live="polite">잠금 화면: 숨김</span>
+      </header>
+
+      <p class="release-state" id="release-state" role="status">LifePanel v1.0 공개판 · 기기 안 저장 · 공개 웹에서 사용 가능</p>
+
+      <section class="welcome-card" aria-labelledby="welcome-title">
+        <div>
+          <p class="eyebrow">가입 없이 바로 시작 · 무료</p>
+          <h2 id="welcome-title">지금 상태에 맞는 한 걸음을 30초 안에 고르세요</h2>
+          <p>완료하지 않아도 괜찮습니다. 더 작게·미루기·휴식·도움 요청도 동등한 선택이며 점수와 벌점은 없습니다.</p>
+        </div>
+        <div class="welcome-actions">
+          <button class="move-button" id="start-now" type="button">내 상황부터 고르기</button>
+          <button class="quiet-button" id="try-example" type="button">에너지가 낮은 예시 보기</button>
+        </div>
+      </section>
+
+      <section class="setup-card" aria-labelledby="setup-title">
+        <div class="setup-heading">
+          <div>
+            <p class="eyebrow">첫 설정 3단계 · 직접 고른 것만 사용</p>
+            <h2 id="setup-title">내 LifePanel 맞추기</h2>
+            <p>목적·역할·언어·시간대만 저장합니다. 나이·성별·국적·직업으로 삶을 추정하지 않습니다.</p>
+          </div>
+          <button class="move-button" id="save-profile" type="button">설정 저장</button>
+        </div>
+        <div class="setup-grid">
+          <label for="starter-purpose"><span>1 · 지금 목적</span><select id="starter-purpose"><option value="balance">균형 되찾기</option><option value="focus">집중 시작하기</option><option value="recovery">회복하기</option><option value="connection">관계 돌보기</option></select></label>
+          <label for="starter-role"><span>2 · 지금 역할</span><select id="starter-role"><option value="self">나 자신 돌보기</option><option value="caregiver">누군가 돌보기</option><option value="learner">배우는 사람</option><option value="maker">만드는 사람</option></select></label>
+          <label for="starter-language"><span>3 · 표시 언어</span><select id="starter-language"><option value="ko-KR">한국어</option><option value="en-US">English · 일부 화면만</option></select></label>
+          <label for="starter-timezone"><span>선택 · 기준 시간대</span><select id="starter-timezone"></select></label>
+        </div>
+        <p class="setup-status" id="setup-status" role="status">기본 설정을 기기 안에서만 사용합니다.</p>
+        <p class="save-status" id="save-status" role="status">저장된 설정을 확인하는 중입니다.</p>
+      </section>
+
+      <section class="legacy-card" id="legacy-card" aria-labelledby="legacy-title" hidden>
+        <div class="legacy-heading">
+          <div>
+            <p class="eyebrow">기존 WeDoIt 자료</p>
+            <h2 id="legacy-title">기존 목표를 이어서 사용하세요</h2>
+            <p id="legacy-summary">기존 기록을 찾는 중입니다.</p>
+          </div>
+          <div class="legacy-actions">
+            <button class="move-button" id="import-legacy" type="button">기존 목표 이어보기</button>
+            <button class="quiet-button danger-button" id="rollback-legacy" type="button" hidden>사본 되돌리기</button>
+          </div>
+        </div>
+        <ul class="legacy-goal-list" id="legacy-goals"></ul>
+        <p class="legacy-status" id="legacy-status" role="status"></p>
+      </section>
+
+      <section class="transfer-card" id="transfer-card" aria-labelledby="transfer-title">
+        <div>
+          <p class="eyebrow">내 자료 묶음 · 판번호와 무결성 확인</p>
+          <h2 id="transfer-title">LifePanel 사본 내보내기·복원</h2>
+          <p>기기 안의 설정·선택·가져온 사본만 JSON 묶음으로 다룹니다. 복원 전 판번호와 SHA-256을 확인하고, 같은 묶음은 다시 쓰지 않습니다.</p>
+        </div>
+        <div class="transfer-actions">
+          <button class="quiet-button" id="export-lifepanel" type="button">판번호 사본 내보내기</button>
+          <button class="move-button" id="choose-lifepanel-restore" type="button">사본 파일 복원</button>
+          <input id="lifepanel-restore-file" type="file" accept="application/json,.json" hidden>
+        </div>
+        <p class="transfer-status" id="transfer-status" role="status">아직 내보내거나 복원하지 않았습니다.</p>
+      </section>
+
+      <section class="data-protection-card" id="data-protection" aria-labelledby="data-protection-title">
+        <div>
+          <p class="eyebrow">내 자료 보호 센터</p>
+          <h2 id="data-protection-title">사본 상태를 확인하고 LifePanel 자료만 지우기</h2>
+          <p>먼저 JSON 사본을 내려받을 수 있습니다. 전체 삭제는 이 브라우저의 <strong>LifePanel 전용 자료만</strong> 지우며 기존 WeDoIt 원본은 건드리지 않습니다.</p>
+        </div>
+        <div class="inline-actions">
+          <button class="quiet-button" type="button" id="data-export-lifepanel">JSON 사본 먼저 받기</button>
+          <button class="dismiss-button" type="button" id="open-delete-life-data">LifePanel 자료 전체 삭제</button>
+        </div>
+        <p class="data-protection-status" id="data-protection-status" role="status">자료 상태를 확인하는 중입니다.</p>
+      </section>
+
+      <section class="scenario-card" aria-labelledby="scenario-heading">
+        <div>
+          <p class="eyebrow">상황으로 시작하기 · 8가지</p>
+          <h2 id="scenario-heading" tabindex="-1">지금 나와 가장 가까운 상황은 무엇인가요?</h2>
+          <p>진단이 아니라 첫 행동의 순서만 바꿉니다. 저장하지 않아도 사용할 수 있습니다.</p>
+        </div>
+        <div class="scenario-list" id="scenario-list" role="group" aria-label="지금 상황 선택"></div>
+        <p class="scenario-status" id="scenario-status" role="status"></p>
+        <details class="starter-examples">
+          <summary>이 상황에서 쓸 수 있는 첫 행동 예시</summary>
+          <ul id="starter-example-list"></ul>
+        </details>
+      </section>
+
+      <section class="focus-card" aria-labelledby="focus-title">
+        <div>
+          <p class="eyebrow">나침반</p>
+          <h2 id="focus-title">오늘은 몸과 집중을 가볍게 돌봅니다.</h2>
+          <p>에너지·부담·기분을 5초 안에 고르면, 안전·방향·시간·에너지 순서로 최대 세 개를 보여 드립니다.</p>
+        </div>
+        <div class="checkin-fields" aria-label="5초 상태 확인">
+          <label class="energy-field" for="energy">
+            <span>지금 에너지</span>
+            <select id="energy" name="energy">
+              <option value="1">1 · 매우 낮음</option>
+              <option value="2">2 · 낮음</option>
+              <option value="3" selected>3 · 보통</option>
+              <option value="4">4 · 좋음</option>
+              <option value="5">5 · 아주 좋음</option>
+            </select>
+          </label>
+          <label class="energy-field" for="load">
+            <span>지금 부담</span>
+            <select id="load" name="load">
+              <option value="1">1 · 매우 가벼움</option>
+              <option value="2">2 · 가벼움</option>
+              <option value="3" selected>3 · 보통</option>
+              <option value="4">4 · 큼</option>
+              <option value="5">5 · 매우 큼</option>
+            </select>
+          </label>
+          <label class="energy-field" for="mood">
+            <span>지금 기분</span>
+            <select id="mood" name="mood">
+              <option value="drained">지침</option>
+              <option value="steady" selected>차분함</option>
+              <option value="hopeful">기대됨</option>
+            </select>
+          </label>
+          <button class="light-button" id="apply-checkin" type="button">상태 반영</button>
+        </div>
+        <p class="checkin-status" id="checkin-status" role="status">상태를 반영하면 추천 순서가 바뀝니다.</p>
+        <p class="connection-status" id="connection-status" role="status">인터넷 연결을 확인하는 중입니다.</p>
+      </section>
+
+      <section class="panel-grid" aria-label="오늘의 LifePanel">
+        <article class="card signal-card" aria-labelledby="signal-title">
+          <p class="eyebrow">주의 신호</p>
+          <h2 id="signal-title">잠깐 멈춰도 괜찮아요</h2>
+          <p id="signal-detail">오래 앉아 있었어요. 다음 행동을 마친 뒤에 계속할지 다시 고를 수 있습니다.</p>
+        </article>
+
+        <article class="card move-card" aria-labelledby="move-title">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">다음 행동 · 최대 3개</p>
+              <h2 id="move-title">지금 할 수 있는 것</h2>
+            </div>
+            <div class="card-actions">
+              <button class="quiet-button" id="refresh-moves" type="button">다시 고르기</button>
+              <button class="quiet-button danger-button" id="suggestion-toggle" type="button" aria-pressed="false">추천 끄기</button>
+            </div>
+          </div>
+          <ul class="move-list" id="move-list" aria-live="polite"></ul>
+          <p class="choice-hint">완료·더 작게·미루기·휴식·도움 요청 중 무엇을 골라도 점수나 벌점이 없습니다. 도움 요청은 자동으로 전송하지 않습니다.</p>
+          <p class="suggestion-status" id="suggestion-status" role="status"></p>
+        </article>
+
+        <article class="card lock-card" aria-labelledby="lock-title">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow">잠금 화면 미리보기</p>
+              <h2 id="lock-title">보호된 한 줄</h2>
+            </div>
+            <label class="privacy-field" for="privacy-level">
+              <span>공개 수준</span>
+              <select id="privacy-level" name="privacy-level">
+                <option value="obscured" selected>숨김 · 내용 없음</option>
+                <option value="general">일반 · 영역만</option>
+                <option value="detailed">상세 · 행동 제목</option>
+              </select>
+            </label>
+          </div>
+          <div class="lock-preview" id="lock-preview" role="status"></div>
+          <label class="stale-control" for="stale-preview">
+            <input id="stale-preview" type="checkbox" />
+            <span>오래된 정보 상태 미리보기</span>
+          </label>
+          <label class="stale-control" for="confirm-detailed-privacy">
+            <input id="confirm-detailed-privacy" type="checkbox" />
+            <span>상세를 저장하면 행동 제목이 잠금 화면에 보임을 확인</span>
+          </label>
+          <div class="privacy-actions"><button class="quiet-button" id="save-privacy" type="button">이 공개 수준 저장</button></div>
+          <p class="hint" id="privacy-hint">기본값은 숨김입니다. 오래된 정보는 어떤 설정에서도 자동으로 숨깁니다.</p>
+          <p class="save-status" id="privacy-save-status" role="status">저장하지 않은 변경은 미리보기에만 적용됩니다.</p>
+        </article>
+
+        <article class="card safety-card" aria-labelledby="safety-title">
+          <p class="eyebrow">위기·의료·금융 안전 경계</p>
+          <h2 id="safety-title">판단 대신 안전한 다음 연결</h2>
+          <div class="field-grid two-columns">
+            <label for="safety-topic"><span>도움 주제</span><select id="safety-topic"><option value="crisis">위기</option><option value="medical">의료</option><option value="financial">금융</option></select></label>
+            <label class="stale-control" for="immediate-danger"><input id="immediate-danger" type="checkbox" /><span>지금 즉시 위험함</span></label>
+          </div>
+          <button class="quiet-button" id="show-safety-guidance" type="button">안전 안내 보기</button>
+          <div class="safety-guidance" id="safety-guidance" role="status"></div>
+          <p class="hint">진단·매수/매도 지시·비밀 신고를 하지 않으며, 직접 선택하기 전에는 외부로 보내지 않습니다.</p>
+        </article>
+      </section>
+
+      <section class="advanced-hub" id="advanced-hub" aria-labelledby="advanced-title">
+        <div class="advanced-heading">
+          <div>
+            <p class="eyebrow" id="advanced-eyebrow">2단계 · 탐색과 연결</p>
+            <h2 id="advanced-title">내가 고른 두 영역을 더 깊게 살펴보기</h2>
+            <p id="advanced-summary">192개 행동을 검색하고, 추천 이유를 확인하며, 계정 연결 전에도 모든 핵심 기능을 기기 안에서 사용할 수 있습니다.</p>
+          </div>
+          <label for="advanced-language"><span id="advanced-language-label">표시 언어</span><select id="advanced-language"><option value="ko">한국어</option><option value="en">English</option></select></label>
+        </div>
+
+        <div class="advanced-grid">
+          <article class="advanced-card advanced-explorer" aria-labelledby="advanced-explorer-title">
+            <p class="eyebrow" id="advanced-explorer-eyebrow">영역 검색 · 최대 2개</p>
+            <h3 id="advanced-explorer-title">행동 탐색기</h3>
+            <p id="advanced-domain-help">영역을 바꾸기 전 영향을 미리 보여 드립니다. 선택하지 않으면 전체 영역에서 찾습니다.</p>
+            <div class="advanced-domains" id="advanced-domains" role="group" aria-label="탐색할 삶 영역"></div>
+            <label for="advanced-search"><span id="advanced-search-label">행동 검색</span><input id="advanced-search" type="search" maxlength="80" placeholder="예: 쉬기, focus" /></label>
+            <div class="advanced-filter-row">
+              <label for="advanced-minutes"><span id="advanced-minutes-label">가능한 시간</span><select id="advanced-minutes"><option value="1">1분</option><option value="3">3분</option><option value="5" selected>5분</option><option value="10">10분</option><option value="15">15분</option><option value="25">25분</option></select></label>
+              <label for="advanced-energy"><span id="advanced-energy-label">에너지</span><select id="advanced-energy"><option value="1">1</option><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option><option value="5">5</option></select></label>
+            </div>
+            <p class="advanced-status" id="advanced-impact" role="status">전체 영역을 보여 줍니다.</p>
+            <ul class="advanced-move-list" id="advanced-move-list" aria-live="polite"></ul>
+          </article>
+
+          <article class="advanced-card" aria-labelledby="advanced-personal-title">
+            <p class="eyebrow" id="advanced-personal-eyebrow">설명 가능한 개인화</p>
+            <h3 id="advanced-personal-title">왜 이 순서인지 먼저 보기</h3>
+            <p id="advanced-personal-copy">직접 고른 영역·시간·에너지와 직접 남긴 결과만 사용합니다. 성격·직업·건강 상태를 추정하지 않습니다.</p>
+            <label class="stale-control" for="advanced-personalization"><input id="advanced-personalization" type="checkbox" checked /><span id="advanced-personalization-label">개인화 순서 사용</span></label>
+            <label for="advanced-tone"><span id="advanced-tone-label">표현 방식</span><select id="advanced-tone"></select></label>
+            <p class="advanced-status" id="advanced-sufficiency" role="status"></p>
+            <details><summary id="advanced-context-summary">주말·교대·여행 안내</summary><ul id="advanced-context-list" class="compact-list"></ul></details>
+          </article>
+
+          <article class="advanced-card" aria-labelledby="advanced-experiment-title">
+            <p class="eyebrow" id="advanced-experiment-eyebrow">21·30일 작은 실험</p>
+            <h3 id="advanced-experiment-title">중단 조건이 먼저인 실험</h3>
+            <select id="advanced-experiment-select" aria-label="작은 실험 선택"></select>
+            <div id="advanced-experiment-copy" class="advanced-copy"></div>
+            <button class="quiet-button" id="advanced-experiment-save" type="button">기기에 실험 선택 저장</button>
+            <p class="advanced-status" id="advanced-experiment-status" role="status">아직 선택을 저장하지 않았습니다.</p>
+          </article>
+
+          <article class="advanced-card" aria-labelledby="advanced-story-title">
+            <p class="eyebrow" id="advanced-story-eyebrow">주간 사례 · 설명용 예시</p>
+            <h3 id="advanced-story-title">실제 통계로 오해하지 않는 사례</h3>
+            <div id="advanced-story-copy" class="advanced-copy"></div>
+            <button class="quiet-button" id="advanced-next-story" type="button">다른 예시</button>
+          </article>
+
+          <article class="advanced-card account-card" aria-labelledby="advanced-account-title">
+            <p class="eyebrow" id="advanced-account-eyebrow">선택 계정 · 수동 최신 사본 1개</p>
+            <h3 id="advanced-account-title">Google 연결과 자료 소유권</h3>
+            <p id="advanced-account-copy">연결하지 않아도 사용할 수 있습니다. 현재 공개판에는 운영 서버 설정이 없어 로그인·클라우드 저장이 닫혀 있습니다.</p>
+            <dl class="account-state-list"><div><dt id="advanced-account-state-label">계정 상태</dt><dd id="advanced-account-state">설정되지 않음</dd></div><div><dt id="advanced-backup-state-label">클라우드 사본</dt><dd id="advanced-backup-state">생성되지 않음</dd></div><div><dt id="advanced-upload-label">자동 업로드</dt><dd id="advanced-upload-state">0회 · 사용 안 함</dd></div></dl>
+            <div class="inline-actions"><button class="move-button" id="advanced-google-connect" type="button" disabled>Google로 연결</button><button class="quiet-button" id="advanced-backup-now" type="button" disabled>최신 사본 직접 저장</button><button class="quiet-button" id="advanced-compare-backup" type="button" disabled>보호본 비교</button><button class="move-button" id="advanced-apply-backup" type="button" disabled>비교한 보호본 적용</button><button class="dismiss-button" id="advanced-delete-backup" type="button" disabled>클라우드 사본 삭제</button></div>
+            <details><summary id="advanced-backup-preview-title">저장 대상 미리보기</summary><pre id="advanced-backup-preview"></pre></details>
+            <p class="advanced-status" id="advanced-account-status" role="status">외부 설정 전에는 어떤 자료도 전송하지 않습니다.</p>
+          </article>
+
+          <article class="advanced-card circle-card" aria-labelledby="advanced-circle-title">
+            <p class="eyebrow" id="advanced-circle-eyebrow">초대 전용 · 2–8명 · 순위 없음</p>
+            <h3 id="advanced-circle-title">안전한 응원 모임 미리보기</h3>
+            <p id="advanced-circle-copy">현재는 이 브라우저 안에서 계약을 검증하는 미리보기입니다. 공개 검색·자동 초대·외부 전송은 없습니다.</p>
+            <div class="inline-actions"><button class="move-button" id="advanced-create-circle" type="button">기기 안 모임 만들기</button><button class="quiet-button" id="advanced-invite-circle" type="button" disabled>일회용 초대 만들기</button><button class="dismiss-button" id="advanced-leave-circle" type="button" disabled>모임 닫기</button></div>
+            <label for="advanced-member-alias"><span id="advanced-member-label">미리보기 구성원 별칭</span><input id="advanced-member-alias" maxlength="30" placeholder="실제 연락처 대신 별칭" /></label>
+            <button class="quiet-button" id="advanced-add-member" type="button" disabled>기기 안 미리보기에 초대</button>
+            <ul id="advanced-circle-members" class="compact-list" aria-label="미리보기 구성원"></ul>
+            <label for="advanced-share-title"><span id="advanced-share-label">나눌 행동 제목</span><input id="advanced-share-title" maxlength="120" placeholder="직접 고른 제목만 공유" /></label>
+            <label class="stale-control" for="advanced-share-encouragement"><input id="advanced-share-encouragement" type="checkbox" /><span id="advanced-share-encouragement-label">응원 요청 포함</span></label>
+            <button class="quiet-button" id="advanced-share-circle" type="button" disabled>공유 범위 확인 후 올리기</button>
+            <p class="advanced-status" id="advanced-circle-status" role="status">기본 공유 항목은 0개입니다.</p>
+            <ul id="advanced-circle-feed" class="compact-list"></ul>
+          </article>
+        </div>
+
+        <details class="advanced-faq" id="advanced-faq"><summary id="advanced-faq-summary">2단계 도움말 40개 보기</summary><div id="advanced-faq-list"></div></details>
+      </section>
+
+      <dialog class="domain-impact-dialog" id="advanced-domain-dialog" aria-labelledby="advanced-domain-dialog-title">
+        <h2 id="advanced-domain-dialog-title">영역을 바꾸면 무엇이 달라지나요?</h2>
+        <p id="advanced-domain-dialog-copy"></p>
+        <div class="inline-actions"><button class="dismiss-button" id="advanced-domain-cancel" type="button">취소</button><button class="move-button" id="advanced-domain-confirm" type="button">이 영역으로 바꾸기</button></div>
+      </dialog>
+
+      <section class="reflection-panel" id="reflection-panel" aria-labelledby="reflection-title" hidden>
+        <div>
+          <p class="eyebrow">선택적 돌아보기 · 점수 없음</p>
+          <h2 id="reflection-title">방금 선택을 한 문장으로 돌아볼까요?</h2>
+          <p>답하지 않아도 됩니다. 고른 질문만 기기 안에 기록됩니다.</p>
+        </div>
+        <div class="reflection-choices" id="reflection-choices"></div>
+        <button class="dismiss-button" id="skip-reflection" type="button">건너뛰기</button>
+        <p id="reflection-status" role="status">아직 돌아보기를 고르지 않았습니다.</p>
+      </section>
+
+      <nav class="surface-nav" aria-label="LifePanel 화면 바로가기">
+        <a href="#now-surface">지금</a><a href="#today-surface">오늘</a><a href="#life-surface">삶</a><a href="#me-surface">나</a>
+      </nav>
+
+      <section class="mobile-workbench" id="mobile-workbench" aria-labelledby="mobile-workbench-title">
+        <div>
+          <p class="eyebrow">모바일 한 손 준비</p>
+          <h2 id="mobile-workbench-title">작은 화면에서도 상태·복구·알림 선택을 바로 확인</h2>
+          <p>화면 크기와 방향은 읽기 전용으로 확인합니다. 자료를 지우거나 알림을 자동으로 켜지 않습니다.</p>
+        </div>
+        <div class="mobile-workbench-actions" aria-label="모바일 빠른 행동">
+          <button class="move-button" id="mobile-jump-now" type="button">지금 상태 확인</button>
+          <button class="quiet-button" id="mobile-open-transfer" type="button">사본·복구 열기</button>
+          <button class="quiet-button" id="mobile-open-session" type="button">집중·알림 선택</button>
+          <button class="quiet-button" id="mobile-readiness-check" type="button">이 화면 준비 확인</button>
+        </div>
+        <p class="mobile-readiness" id="mobile-readiness" role="status">모바일 화면 준비 상태를 확인하는 중입니다.</p>
+      </section>
+
+      <section class="desktop-workbench" id="desktop-workbench" aria-labelledby="desktop-workbench-title">
+        <div>
+          <p class="eyebrow">PC 빠른 조종</p>
+          <h2 id="desktop-workbench-title">넓은 화면에서는 저장·복구·주간 조정을 빠르게</h2>
+          <p>이 도구는 기기 안의 LifePanel 사본만 다룹니다. 공개·계정 연결·자동 전송은 하지 않습니다.</p>
+        </div>
+        <div class="desktop-workbench-actions" aria-label="PC 빠른 조종 행동">
+          <button class="move-button" id="desktop-jump-now" type="button">지금 상태로</button>
+          <button class="quiet-button" id="desktop-jump-weekly" type="button">주간 조정으로</button>
+          <button class="quiet-button" id="desktop-open-transfer" type="button">복구·내보내기</button>
+          <button class="quiet-button" id="desktop-export" type="button">지금 사본 내보내기</button>
+          <button class="quiet-button" id="desktop-readiness-check" type="button">이 PC 준비 상태 확인</button>
+          <button class="quiet-button" id="desktop-open-shortcuts" type="button">키보드 도움말</button>
+        </div>
+        <p class="desktop-readiness" id="desktop-readiness" role="status">PC 준비 상태를 확인하는 중입니다.</p>
+      </section>
+
+      <section class="workflow-grid" aria-label="LifePanel 공통 핵심과 화면">
+        <article class="workflow-card now-surface" id="now-surface" aria-labelledby="capture-title">
+          <p class="eyebrow">지금 · 빠른 수집함</p>
+          <h2 id="capture-title">놓치기 전에 기기 안에 담기</h2>
+          <div class="field-grid two-columns">
+            <label for="capture-mode"><span>입력 방식</span><select id="capture-mode"><option value="text">글</option><option value="voice-note">음성 메모 문구</option></select></label>
+            <label class="wide-field" for="capture-text"><span>담을 내용</span><textarea id="capture-text" rows="3" maxlength="1000" placeholder="기억할 한 줄"></textarea></label>
+          </div>
+          <div class="inline-actions"><button class="move-button" id="save-capture" type="button">오프라인 저장</button><button class="dismiss-button" id="cancel-capture" type="button">취소</button></div>
+          <p id="capture-status" class="workflow-status" role="status">외부로 보내지 않고 이 기기에만 저장합니다.</p>
+          <ul id="capture-list" class="compact-list" aria-label="빠른 수집 목록"></ul>
+        </article>
+
+        <article class="workflow-card" aria-labelledby="session-title">
+          <p class="eyebrow">진행 리본 · 사용자 시작만</p>
+          <h2 id="session-title">작은 집중 세션</h2>
+          <div class="inline-actions"><button class="move-button" id="start-session" type="button">시작</button><button class="quiet-button" id="pause-session" type="button">일시정지</button><button class="quiet-button" id="resume-session" type="button">계속</button><button class="dismiss-button" id="end-session" type="button">종료</button></div>
+          <p id="session-status" class="workflow-status" role="status">시작 전 · 자동으로 시작하지 않습니다.</p>
+          <dl class="surface-sync"><div><dt>앱</dt><dd id="session-app">없음</dd></div><div><dt>위젯</dt><dd id="session-widget">없음</dd></div><div><dt>상단</dt><dd id="session-ribbon">없음</dd></div></dl>
+        </article>
+
+        <article class="workflow-card today-surface" id="today-surface" aria-labelledby="today-title">
+          <p class="eyebrow">오늘 · 시간과 에너지</p>
+          <h2 id="today-title">충돌과 빈 시간을 구분하기</h2>
+          <div class="field-grid two-columns">
+            <label for="energy-budget"><span>오늘 가용 에너지</span><select id="energy-budget"><option>2</option><option selected>4</option><option>6</option><option>8</option></select></label>
+            <label for="timeline-zone"><span>시간대</span><select id="timeline-zone"><option value="Asia/Bangkok">Asia/Bangkok</option><option value="Asia/Seoul">Asia/Seoul</option><option value="UTC">UTC</option></select></label>
+          </div>
+          <div class="choice-row" aria-label="오늘 행동 후보"><label><input class="budget-move" type="checkbox" data-energy-cost="2" checked /> 집중 20분</label><label><input class="budget-move" type="checkbox" data-energy-cost="3" checked /> 정리 15분</label><label><input class="budget-move" type="checkbox" data-energy-cost="1" /> 휴식 5분</label></div>
+          <div class="inline-actions"><button class="move-button" id="evaluate-budget" type="button">예산 확인</button><button class="quiet-button" id="ignore-budget" type="button">경고를 보고도 유지</button></div>
+          <p id="budget-status" class="workflow-status" role="status"></p>
+          <ol id="timeline-list" class="timeline-list" aria-label="오늘 시간표"></ol>
+        </article>
+
+        <article class="workflow-card" aria-labelledby="baseline-title">
+          <p class="eyebrow">최근 나와 비교</p>
+          <h2 id="baseline-title">개인 기준선과 작은 실험</h2>
+          <label for="current-baseline"><span>오늘 에너지</span><input id="current-baseline" type="number" min="1" max="5" value="3" /></label>
+          <div class="inline-actions"><button class="move-button" id="check-baseline" type="button">최근 7일과 비교</button><button class="quiet-button" id="start-experiment" type="button">7일 실험 시작</button><button class="quiet-button" id="finish-experiment" type="button">결과 기록</button></div>
+          <p id="baseline-status" class="workflow-status" role="status"></p>
+          <p id="experiment-status" class="workflow-status" role="status">실험 전 · 상관을 원인으로 표현하지 않습니다.</p>
+        </article>
+
+        <article class="workflow-card life-surface" id="life-surface" aria-labelledby="life-title">
+          <p class="eyebrow">삶 · 두 영역만 열기</p>
+          <h2 id="life-title">지금 볼 영역을 직접 선택</h2>
+          <div class="choice-row" id="life-domain-controls"><label><input type="checkbox" value="health" checked /> 건강</label><label><input type="checkbox" value="work" checked /> 일</label><label><input type="checkbox" value="relationships" /> 관계</label><label><input type="checkbox" value="recovery" /> 회복</label></div>
+          <p id="life-status" class="workflow-status" role="status">두 영역만 열려 있습니다. 나머지는 잠겨 있습니다.</p>
+          <ul id="life-list" class="domain-list" aria-label="삶 영역 상태"></ul>
+        </article>
+
+        <article class="workflow-card me-surface" id="me-surface" aria-labelledby="me-title">
+          <p class="eyebrow">나 · 연결과 접근성</p>
+          <h2 id="me-title">이유를 먼저 보고 언제든 끄기</h2>
+          <div class="permission-row"><div><strong>일정 연결</strong><p>빈 시간과 충돌을 보여 주기 위해 사용합니다.</p></div><button class="quiet-button" id="enable-calendar" type="button">켜기</button><button class="quiet-button" id="disable-calendar" type="button">끄기</button><button class="dismiss-button" id="delete-calendar" type="button">자료 삭제</button></div>
+          <p id="permission-status" class="workflow-status" role="status">일정 연결 꺼짐 · 자료 없음</p>
+          <div class="field-grid two-columns"><label for="expression-style"><span>표현 방식</span><select id="expression-style"><option value="minimal">최소</option><option value="warm">따뜻함</option><option value="analytical">분석형</option></select></label><div class="inline-actions accessibility-actions"><button class="quiet-button" id="toggle-large-text" type="button" aria-pressed="false">큰 글자</button><button class="quiet-button" id="toggle-contrast" type="button" aria-pressed="false">높은 대비</button></div></div>
+          <p id="expression-preview" class="expression-preview">차분함 · 물 한 잔 · 잠금 화면 숨김</p>
+        </article>
+
+        <article class="workflow-card weekly-surface" id="weekly-surface" aria-labelledby="weekly-title">
+          <p class="eyebrow">PC 주간 조종실</p>
+          <h2 id="weekly-title">시간·에너지·결과를 한눈에</h2>
+          <dl class="weekly-metrics"><div><dt>시간</dt><dd id="week-minutes">0분</dd></div><div><dt>에너지</dt><dd id="week-energy">0</dd></div><div><dt>완료</dt><dd id="week-results">0/0</dd></div></dl>
+          <p class="weekly-story" id="weekly-story">최근 7일 · 표본을 확인하는 중입니다.</p>
+          <label for="weekly-experiment"><span>다음 주 실험 1개</span><select id="weekly-experiment"><option value="walk-5">아침 5분 걷기</option><option value="focus-10">첫 집중 10분</option></select></label>
+          <div class="inline-actions"><button class="quiet-button" id="preview-week" type="button">적용 전 미리보기</button><button class="move-button" id="apply-week" type="button" disabled>미리보기 뒤 적용</button></div>
+          <p id="weekly-status" class="workflow-status" role="status">아직 다음 주에 적용하지 않았습니다.</p>
+          <p id="offline-status" class="workflow-status" role="status">오프라인 기록을 확인하는 중입니다.</p>
+        </article>
+      </section>
+
+      <section class="faq-card" aria-labelledby="faq-title">
+        <div>
+          <p class="eyebrow">도움말 · 자주 묻는 질문 20개</p>
+          <h2 id="faq-title">처음부터 자료 삭제까지 확인하세요</h2>
+        </div>
+        <div class="faq-list" id="faq-list"></div>
+        <p><a href="./help.html">전체 사용 안내와 문제 해결 보기</a></p>
+      </section>
+
+      <section class="recovery-library-card" aria-labelledby="recovery-library-title">
+        <div>
+          <p class="eyebrow">막혔을 때 쓰는 20가지 선택</p>
+          <h2 id="recovery-library-title">더 작게·미루기·휴식·도움 요청</h2>
+          <p>어떤 선택에도 벌점이 없고 도움 요청은 자동으로 전송되지 않습니다.</p>
+        </div>
+        <div class="recovery-library" id="recovery-library"></div>
+      </section>
+
+      <section class="error-guide-card" aria-labelledby="error-guide-title">
+        <div>
+          <p class="eyebrow">문제 해결 12가지</p>
+          <h2 id="error-guide-title">문제가 생기면 자료 영향부터 확인하세요</h2>
+        </div>
+        <div class="error-guide-list" id="error-guide-list"></div>
+      </section>
+
+      <section class="sponsor-card" aria-labelledby="resource-library-title">
+        <div>
+          <p class="eyebrow">무료 자료 · 광고 코드 격리</p>
+          <h2 id="resource-library-title">개인 기록을 불러오지 않는 독립 자료실</h2>
+          <p>주간 점검·자료 보호·접근성 체크리스트를 모았습니다. 이 주 앱 화면에는 광고 공급자 코드를 로드하지 않으며, 제한 광고 선택은 개인 기록과 분리된 자료실에서만 제공합니다.</p>
+        </div>
+        <p><a class="move-button commerce-link" href="./resources.html">무료 자료실 열기</a></p>
+      </section>
+
+      <dialog class="shortcut-dialog" id="desktop-shortcuts" aria-labelledby="desktop-shortcuts-title">
+        <h2 id="desktop-shortcuts-title">PC 키보드 도움말</h2>
+        <dl class="shortcut-grid"><div><dt>Alt + 1</dt><dd>지금 상태로 이동</dd></div><div><dt>Alt + 2</dt><dd>주간 조정으로 이동</dd></div><div><dt>Alt + 3</dt><dd>복구·내보내기로 이동</dd></div><div><dt>?</dt><dd>이 도움말 열기</dd></div></dl>
+        <p>입력칸·선택칸 안에서는 단축키가 작동하지 않습니다.</p>
+        <button class="move-button" id="desktop-close-shortcuts" type="button">닫기</button>
+      </dialog>
+
+      <dialog class="delete-dialog" id="delete-life-data-dialog" aria-labelledby="delete-life-data-title">
+        <h2 id="delete-life-data-title">이 브라우저의 LifePanel 자료를 모두 지울까요?</h2>
+        <p>설정·행동 선택·수집함·세션·돌아보기·복원 기록이 삭제됩니다. 삭제 뒤에는 JSON 사본 없이는 되돌릴 수 없습니다. 기존 WeDoIt 원본은 삭제하지 않습니다.</p>
+        <label class="stale-control" for="confirm-delete-life-data"><input id="confirm-delete-life-data" type="checkbox" /><span>복구할 사본이 없으면 되돌릴 수 없음을 확인했습니다.</span></label>
+        <div class="inline-actions">
+          <button class="dismiss-button" id="cancel-delete-life-data" type="button">취소</button>
+          <button class="danger-button" id="delete-life-data-now" type="button" disabled>LifePanel 자료만 삭제</button>
+        </div>
+      </dialog>
+
+      <p class="done-message" id="done-message" aria-live="polite"></p>
+      <footer>무료판과 결제 제외 고급 기능은 계정 없이 동작합니다. 주 앱은 광고 코드를 로드하지 않으며 제한 광고 선택은 독립 자료실에만 있습니다. <a href="./plus.html">결제 제외 고급 기능 7종</a> · <a href="./resources.html">무료 자료실</a> · <a href="./ads-readiness.html">광고 운영 원칙</a> · <a href="./privacy.html">개인정보·자료 삭제</a> · <a href="./terms.html">이용조건</a> · <a href="./help.html">도움말</a> · <a href="./limits.html">알려진 제한</a> · <a href="./commercial-status.html">상용화 상태</a> · <a href="./pricing.html">요금·결제 준비</a></footer>
+    </main>
+    <script id="google-gis" src="https://accounts.google.com/gsi/client" defer></script>
+    <script src="./provider-config.js"></script>
+    <script type="module" src="./app.mjs?v=19"></script>
+  </body>
+</html>

@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b6b4f" />
+    <title>LifePanel · 요금·결제 준비</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">본문으로 바로 가기</a>
+    <main class="shell commerce-shell" id="main-content" tabindex="-1" aria-labelledby="pricing-title">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">LIFEPANEL · CLEAR PRICING</p>
+          <h1 id="pricing-title">요금과 결제 준비</h1>
+          <p class="summary">무료판은 그대로 유지합니다. 결제를 제외한 Plus 기능 7종은 현재 공개판에서 무료로 사용할 수 있습니다.</p>
+        </div>
+        <span class="privacy-state commerce-blocked">실제 결제: 꺼짐</span>
+      </header>
+
+      <p class="release-state" role="status">출시 후보 화면 · 결제 공급자 미연결 · 카드·계좌 정보를 받지 않습니다.</p>
+
+      <section class="commerce-alert" aria-labelledby="commerce-alert-title">
+        <h2 id="commerce-alert-title">지금은 돈이 청구되지 않습니다</h2>
+        <p>아래 Plus 가격은 출시 후보입니다. 실제 출시 뒤에는 Apple App Store·Google Play 또는 승인된 웹 결제창에 표시되는 현지 통화·세금 포함 최종 금액이 우선합니다.</p>
+      </section>
+      <p class="release-state" id="commerce-readiness" role="status">유료화 개발 준비도를 계산하는 중입니다.</p>
+
+      <section class="pricing-grid" aria-label="LifePanel 요금제 비교">
+        <article class="pricing-card">
+          <p class="eyebrow">계속 무료</p>
+          <h2>무료</h2>
+          <p class="price"><strong>₩0</strong><span>자동 갱신 없음</span></p>
+          <ul><li>오늘 조종석</li><li>기기 안 저장</li><li>판번호 사본 내보내기·복원</li></ul>
+          <a class="move-button commerce-link" href="./index.html">무료판 계속 사용</a>
+        </article>
+
+        <article class="pricing-card featured-card">
+          <p class="eyebrow">출시 후보</p>
+          <h2>Plus 월간</h2>
+          <p class="price"><strong>월 ₩4,900</strong><span>세금 포함 후보 가격</span></p>
+          <ul><li>PC 주간 분석 확장 후보</li><li>여러 기기 동기화 후보</li><li>복구 지원 후보</li></ul>
+          <button class="move-button" id="commerce-checkout" type="button" disabled aria-disabled="true">결제 연결 전 · 구매 불가</button>
+          <p class="hint">결제는 연결하지 않았습니다. 제품 기능은 Plus 기능실에서 무료로 사용할 수 있습니다.</p><a class="move-button commerce-link" href="./plus.html">결제 없이 Plus 기능 사용</a>
+        </article>
+      </section>
+
+      <section class="commerce-policy-grid" aria-label="결제 보호 정책">
+        <article class="card">
+          <h2>구매 전 확인</h2>
+          <ul>
+            <li>월 단위 자동 갱신 후보이며 다음 결제 전에 스토어에서 취소할 수 있습니다.</li>
+            <li>구매 버튼을 누르기 전에 상품·최종 가격·갱신일을 다시 확인합니다.</li>
+            <li>같은 요청을 반복해도 한 번만 처리하는 중복 결제 방지 키를 사용합니다.</li>
+          </ul>
+        </article>
+        <article class="card">
+          <h2>취소·환불·권리 복원</h2>
+          <ul>
+            <li>취소는 다음 갱신을 멈추며 이미 결제한 이용 기간의 권리는 공급자 정책을 따릅니다.</li>
+            <li>환불·철회가 확인되면 Plus 권리를 즉시 무료 상태로 되돌립니다.</li>
+            <li>구매 복원은 돈을 청구하지 않는 읽기 전용 조회이며 검증된 공급자 응답만 반영합니다.</li>
+          </ul>
+          <button class="quiet-button" id="commerce-restore" type="button">구매 복원 방법 확인</button>
+          <p class="workflow-status" id="commerce-status" role="status">아직 결제 공급자가 연결되지 않았습니다.</p>
+          <button class="quiet-button" id="commerce-web-readiness" type="button">웹 결제 출시 점검표 보기</button>
+          <p class="workflow-status" id="commerce-web-readiness-status" role="status">웹 결제는 서버·sandbox 검증 전까지 꺼져 있습니다.</p>
+        </article>
+      </section>
+
+      <section class="card">
+        <h2>결제 자료 경계</h2>
+        <p>LifePanel 웹앱은 카드 번호·계좌 번호·보안 코드를 저장하지 않습니다. 출시 뒤 결제 정보는 승인된 결제 공급자가 처리하고, LifePanel에는 검증된 익명 계정 참조·상품·권리 상태·유효 시각만 남깁니다.</p>
+        <p><a href="./privacy.html">개인정보·자료 삭제·지원 안내</a> · <a href="./index.html">LifePanel로 돌아가기</a></p>
+      </section>
+    </main>
+    <script type="module" src="./commerce-ui.mjs"></script>
+  </body>
+</html>

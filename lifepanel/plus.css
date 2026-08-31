@@ -1,0 +1,21 @@
+.plus-lab { margin: 1rem 0; padding: 1.1rem; border: 2px solid #7bbca0; border-radius: 1.25rem; background: linear-gradient(145deg, #eefaf4, #fff); }
+.plus-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.plus-wide { grid-column: 1 / -1; }
+.plus-lab label { display: grid; gap: .35rem; color: #42564c; font-size: .9rem; font-weight: 700; }
+.plus-lab input, .plus-lab select, .plus-lab textarea { width: 100%; min-height: 2.75rem; padding: .65rem .75rem; border: 1px solid #bcd9ca; border-radius: .65rem; background: #fff; color: #17372a; font: inherit; }
+.plus-lab textarea { resize: vertical; }
+.plus-lab button { min-height: 2.75rem; }
+.plus-widget-preview { display: grid; grid-template-columns: repeat(var(--widget-columns, 2), minmax(0, 1fr)); gap: .5rem; margin-top: .75rem; }
+.plus-widget-preview article { min-width: 0; padding: .8rem; border-radius: .7rem; background: #e5f4ec; color: #07543c; font-weight: 800; }
+.plus-scopes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .5rem; margin: .75rem 0; padding: .75rem; border: 1px solid #cddfd8; border-radius: .75rem; }
+.plus-scopes legend { padding: 0 .35rem; font-weight: 800; }
+.plus-scopes label { display: flex; align-items: center; gap: .45rem; }
+.plus-scopes input { width: 1.25rem; min-height: 1.25rem; }
+.plus-lab pre { max-width: 100%; overflow: auto; white-space: pre-wrap; word-break: break-word; }
+@media (max-width: 640px) {
+  .plus-lab { padding: .75rem; border-radius: 1rem; }
+  .plus-grid { grid-template-columns: 1fr; }
+  .plus-wide { grid-column: auto; }
+  .plus-scopes { grid-template-columns: 1fr; }
+  .plus-widget-preview { grid-template-columns: 1fr; }
+}

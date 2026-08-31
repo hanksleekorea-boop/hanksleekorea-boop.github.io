@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="LifePanel의 결제 제외 고급 기능 7종을 무료로 사용하는 로컬 우선 기능실입니다." />
+  <meta name="theme-color" content="#0b6b4f" />
+  <title>LifePanel · 결제 제외 고급 기능</title>
+  <link rel="stylesheet" href="./styles.css" />
+  <link rel="stylesheet" href="./plus.css" />
+</head>
+<body>
+  <a class="skip-link" href="#plus-lab">본문으로 바로 가기</a>
+  <main class="shell plus-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">NO-PAYMENT PLUS · LOCAL FIRST</p>
+        <h1>결제 제외 고급 기능</h1>
+        <p class="summary">기능을 결제보다 먼저 완성했습니다. 현재 공개판에서 7종 모두 무료로 사용할 수 있습니다.</p>
+      </div>
+      <a class="quiet-button commerce-link" href="./index.html">오늘의 조종석으로</a>
+    </header>
+
+    <section class="plus-lab" id="plus-lab" aria-labelledby="plus-title">
+      <div class="advanced-heading">
+        <div><p class="eyebrow">결제 없음 · 이 기능실 광고 없음 · 자동 업로드 없음</p><h2 id="plus-title">Plus 기능실</h2><p>공유·자료 합치기는 범위를 먼저 보여 주고 사용자가 직접 적용합니다.</p></div>
+        <p class="advanced-status" id="plus-readiness" role="status">고급 기능 준비 상태를 확인하는 중입니다.</p>
+      </div>
+      <div class="plus-grid">
+        <article class="advanced-card">
+          <p class="eyebrow">1 · 더 많은 영역</p><h3>8개 영역 포트폴리오</h3>
+          <p>오늘 추천의 최대 2개 영역과 별도로 장기 방향을 최대 8개까지 보관합니다.</p>
+          <div class="advanced-domains" id="plus-domains" role="group" aria-label="장기 포트폴리오 영역"></div>
+          <button class="quiet-button" id="plus-save-domains" type="button">영역 포트폴리오 저장</button>
+          <p class="advanced-status" id="plus-domain-status" role="status">아직 저장하지 않았습니다.</p>
+        </article>
+        <article class="advanced-card">
+          <p class="eyebrow">2 · 선택형 작업 쪼개기</p><h3>외부 전송 없는 작은 단계</h3>
+          <label for="plus-goal">쪼갤 목표<input id="plus-goal" maxlength="160" placeholder="예: 발표 자료 시작하기" /></label>
+          <div class="advanced-filter-row"><label for="plus-goal-minutes">가능한 시간<select id="plus-goal-minutes"><option>10</option><option selected>15</option><option>25</option><option>45</option><option>90</option></select></label><label for="plus-goal-energy">에너지<select id="plus-goal-energy"><option>1</option><option>2</option><option selected>3</option><option>4</option><option>5</option></select></label></div>
+          <button class="move-button" id="plus-breakdown" type="button">기기 안에서 단계 만들기</button>
+          <ol class="compact-list" id="plus-step-list"></ol><p class="advanced-status" id="plus-breakdown-status" role="status">자동 결정 없이 작은 선택지를 만듭니다.</p>
+        </article>
+        <article class="advanced-card">
+          <p class="eyebrow">3 · 장기 실험</p><h3>7~365일 실험 설계</h3>
+          <label for="plus-experiment-title">실험 이름<input id="plus-experiment-title" maxlength="120" placeholder="예: 평일 10분 정리" /></label>
+          <label for="plus-experiment-days">기간(일)<input id="plus-experiment-days" type="number" min="7" max="365" value="30" /></label>
+          <label for="plus-experiment-stop">중단 조건<input id="plus-experiment-stop" maxlength="240" placeholder="예: 수면이 줄면 중단" /></label>
+          <label for="plus-experiment-success">충분한 변화 신호<input id="plus-experiment-success" maxlength="240" placeholder="예: 주 3회 편하게 실행" /></label>
+          <button class="quiet-button" id="plus-save-experiment" type="button">장기 실험 저장</button><p class="advanced-status" id="plus-experiment-status" role="status">중단 조건과 성공 신호를 먼저 정합니다.</p>
+        </article>
+        <article class="advanced-card">
+          <p class="eyebrow">4 · 고급 패널</p><h3>내 화면 구성 미리보기</h3>
+          <div class="advanced-domains" id="plus-widget-surfaces" role="group" aria-label="패널에 표시할 항목"></div>
+          <div class="advanced-filter-row"><label for="plus-widget-privacy">공개 수준<select id="plus-widget-privacy"><option value="obscured">숨김</option><option value="general" selected>일반</option></select></label><label for="plus-widget-columns">열 수<select id="plus-widget-columns"><option>1</option><option selected>2</option><option>3</option></select></label></div>
+          <button class="quiet-button" id="plus-preview-widget" type="button">패널 구성 저장·미리보기</button><div class="plus-widget-preview" id="plus-widget-preview" aria-live="polite"></div><p class="advanced-status" id="plus-widget-status" role="status">상세 민감정보는 표시하지 않습니다.</p>
+        </article>
+        <article class="advanced-card plus-wide">
+          <p class="eyebrow">5 · 여러 기기 자료 합치기</p><h3>사본 비교 → 명시적 적용</h3>
+          <p>LifePanel 자료만 담은 이동 사본을 만듭니다. 차이를 먼저 계산하고 자동으로 덮어쓰지 않습니다.</p>
+          <textarea id="plus-snapshot-json" rows="7" spellcheck="false" aria-label="기기 이동 사본 JSON"></textarea>
+          <label for="plus-conflict-policy">같은 시각 충돌<select id="plus-conflict-policy"><option value="keep-local">현재 기기 유지</option><option value="keep-incoming">들어온 사본 유지</option></select></label>
+          <div class="inline-actions"><button class="quiet-button" id="plus-copy-snapshot" type="button">현재 기기 사본 만들기</button><button class="quiet-button" id="plus-compare-snapshot" type="button">사본 비교</button><button class="move-button" id="plus-apply-snapshot" type="button" disabled>비교 결과 적용</button></div><p class="advanced-status" id="plus-sync-status" role="status">비교 전에는 적용할 수 없습니다.</p>
+        </article>
+        <article class="advanced-card">
+          <p class="eyebrow">6 · 가족·돌봄 협업</p><h3>감시하지 않는 돌봄 계획</h3>
+          <label for="plus-care-name">모임 이름<input id="plus-care-name" maxlength="80" placeholder="예: 우리 가족" /></label><label for="plus-care-members">구성원 별칭 2~8명<input id="plus-care-members" placeholder="나, 보호자" /></label><label for="plus-care-routines">나눌 루틴<textarea id="plus-care-routines" rows="3" placeholder="한 줄에 하나"></textarea></label>
+          <button class="quiet-button" id="plus-save-care" type="button">기기 안 돌봄 계획 저장</button><p class="advanced-status" id="plus-care-status" role="status">위치 추적·긴급 감시·응답 강요를 하지 않습니다.</p>
+        </article>
+        <article class="advanced-card">
+          <p class="eyebrow">7 · 전문가 제한 공유</p><h3>기간과 범위를 정한 공유 사본</h3>
+          <label for="plus-share-recipient">받는 사람 별칭<input id="plus-share-recipient" maxlength="60" placeholder="예: 상담자" /></label>
+          <fieldset class="plus-scopes"><legend>공유할 범위</legend><label><input name="plus-share-scope" type="checkbox" value="chosen-domains" />고른 영역</label><label><input name="plus-share-scope" type="checkbox" value="experiment-summary" />실험 요약</label><label><input name="plus-share-scope" type="checkbox" value="weekly-reflection" />주간 돌아보기</label><label><input name="plus-share-scope" type="checkbox" value="requested-support" />요청한 도움</label></fieldset>
+          <label for="plus-share-support">요청한 도움<input id="plus-share-support" maxlength="240" /></label><label for="plus-share-days">유효 기간<select id="plus-share-days"><option value="1">1일</option><option value="7" selected>7일</option><option value="14">14일</option><option value="30">30일</option></select></label>
+          <div class="inline-actions"><button class="move-button" id="plus-create-share" type="button">제한 공유 사본 만들기</button><button class="dismiss-button" id="plus-revoke-share" type="button" disabled>공유 철회</button></div><details><summary>공유 사본 미리보기</summary><pre id="plus-share-output"></pre></details><p class="advanced-status" id="plus-share-status" role="status">기본 공유 범위는 0개입니다.</p>
+        </article>
+      </div>
+    </section>
+    <footer>현재 기능은 결제 없이 무료입니다. 실제 Google 동기화와 사람 간 온라인 공유는 운영 설정 전까지 닫혀 있습니다. <a href="./privacy.html">개인정보·자료 삭제</a> · <a href="./terms.html">이용조건</a> · <a href="./limits.html">알려진 제한</a> · <a href="./commercial-status.html">상용화 상태</a></footer>
+  </main>
+  <script type="module" src="./plus-ui.mjs"></script>
+</body>
+</html>

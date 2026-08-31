@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /wedoit-live/lifepanel/
+
+Sitemap: https://hanksleekorea-boop.github.io/wedoit-live/lifepanel/sitemap.xml

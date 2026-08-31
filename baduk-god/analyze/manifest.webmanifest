@@ -1,0 +1,12 @@
+{
+  "name": "바둑의 신 분석",
+  "short_name": "바둑 분석",
+  "description": "내 기보를 안전하게 보관하고 복기하는 바둑 분석 도구",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f2e8",
+  "theme_color": "#193d30",
+  "icons": [{ "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

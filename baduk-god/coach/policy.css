@@ -1,0 +1,8 @@
+:root { color-scheme: light dark; font-family: Pretendard, "Noto Sans KR", system-ui, sans-serif; line-height: 1.72; }
+body { background: #f7f4ed; color: #17231f; margin: 0; }
+main { background: #fff; border: 1px solid #d8dfda; border-radius: 20px; margin: 32px auto; max-width: 840px; padding: clamp(24px, 5vw, 64px); }
+h1, h2 { line-height: 1.3; } h2 { border-top: 1px solid #d8dfda; margin-top: 36px; padding-top: 28px; }
+a { color: #14634b; } .meta, small { color: #5e6a66; }
+.notice { background: #edf7f2; border-left: 4px solid #1d7659; border-radius: 8px; padding: 16px 20px; }
+nav { display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 32px; } li + li { margin-top: 8px; }
+@media (prefers-color-scheme: dark) { body { background:#0d1714;color:#e8efeb } main { background:#14221d;border-color:#31453d } h2 { border-color:#31453d } a { color:#77d5b2 } .notice { background:#173128 } .meta,small { color:#aebdb7 } }

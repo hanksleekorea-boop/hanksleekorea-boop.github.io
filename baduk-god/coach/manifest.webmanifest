@@ -1,0 +1,12 @@
+{
+  "name": "바둑 신의 길",
+  "short_name": "바둑 코치",
+  "description": "입문부터 9단까지의 바둑 학습 경로",
+  "lang": "ko",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f5f2e8",
+  "theme_color": "#193d30",
+  "icons": [{ "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

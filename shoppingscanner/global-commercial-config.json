@@ -1,7 +1,7 @@
 {
-  "schema": "shopping-scanner-global-commercial/v3",
-  "release": "v84-global-yield-orchestration-r3",
-  "launchMode": "public_beta_stage3_ready_ads_off",
+  "schema": "shopping-scanner-global-commercial/v4",
+  "release": "v85-adsense-multiformat-ready-r1",
+  "launchMode": "public_beta_adsense_connected_serving_blocked_until_google_approval",
   "defaultLocale": "en",
   "supportedLocales": ["en", "ko"],
   "marketScope": {
@@ -28,8 +28,14 @@
     "activationRule": "all_external_receipts_and_limited_rollout_required",
     "providers": {
       "adsense": {
-        "enabled": false, "publisherId": null, "accountStatus": "not_verified", "siteStatus": "not_submitted",
-        "adsTxtAuthorized": false, "sellerTransparencyStatus": "not_verified", "autoAdsEnabled": false,
+        "enabled": false, "publisherId": "ca-pub-2476023536699107", "publicIdentityStatus": "verified_from_existing_public_root",
+        "accountStatus": "not_verified", "siteStatus": "not_submitted",
+        "adsTxtAuthorized": true, "sellerTransparencyStatus": "verified", "autoAdsEnabled": false,
+        "autoAdsPolicy": {
+          "supportedWhenOperatorVerified": ["in_page_banner", "multiplex", "side_rail"],
+          "disabledFormats": ["anchor", "vignette", "ad_intent"],
+          "accountConfigurationEvidence": "pending"
+        },
         "overlayFormatsEnabled": false, "intentFormatsEnabled": false, "personalizedAdsAllowed": false
       },
       "adManager": {
@@ -51,7 +57,7 @@
     "authorizedSellers": [],
     "allowedPageTypes": ["guide", "category", "informational"],
     "blockedRoutes": ["/shoppingscanner/privacy/", "/shoppingscanner/terms/", "/shoppingscanner/accessibility/", "/shoppingscanner/cookies/", "/shoppingscanner/advertising/", "/shoppingscanner/contact/", "/shoppingscanner/progress/", "/shoppingscanner/ad-operations/", "/shoppingscanner/en/privacy/", "/shoppingscanner/en/terms/", "/shoppingscanner/en/cookies/", "/shoppingscanner/en/advertising/", "/shoppingscanner/en/contact/"],
-    "safeFormats": ["responsive_display", "contextual"],
+    "safeFormats": ["responsive_display", "in_feed", "in_article", "multiplex", "contextual"],
     "forbiddenFormats": ["popunder", "forced_redirect", "in_page_push", "notification_mimic", "purchase_button_ad", "auto_interstitial", "anchor", "vignette", "ad_intent"],
     "maximumSlotsPerPage": 2,
     "minimumDistanceFromPurchaseActionPx": 160
@@ -71,16 +77,18 @@
       "us": "gpp_v2_gpc_and_explicit_consent", "rest": "explicit_consent", "serverRegionHintRequired": true
     },
     "placements": [
-      {"id": "en-category-mid", "pageType": "category", "slotId": null, "enabled": false, "reservedHeightPx": 180},
-      {"id": "en-information-end", "pageType": "informational", "slotId": null, "enabled": false, "reservedHeightPx": 180}
+      {"id": "en-category-mid", "pageType": "category", "format": "responsive_display", "slotId": null, "enabled": false, "reservedHeightPx": 250},
+      {"id": "en-feed-mid", "pageType": "category", "format": "in_feed", "slotId": null, "layoutKey": null, "enabled": false, "reservedHeightPx": 280},
+      {"id": "en-article-mid", "pageType": "informational", "format": "in_article", "slotId": null, "enabled": false, "reservedHeightPx": 250},
+      {"id": "en-information-end", "pageType": "informational", "format": "multiplex", "slotId": null, "enabled": false, "reservedHeightPx": 280}
     ],
     "performanceBudgets": {"maximumAdCls": 0.05, "maximumLcpRegressionMs": 250, "maximumProviderLoadMs": 2500, "reservedSlotHeightPx": 180},
     "qualityThresholds": {"maximumProviderFailureRate": 0.05, "maximumPolicyWarnings": 0, "maximumUserReportsPerThousandSessions": 3, "minimumCoreTaskSuccessRate": 0.95},
     "telemetry": {"mode": "memory_only_until_approved", "personalIdentifiers": false, "productIdentifiers": false, "rawUrls": false, "maximumEvents": 50},
     "activationEvidence": {
       "operatorIdentity": "pending", "officialSupport": "pending", "legalReview": "pending", "productDataLicense": "pending",
-      "certifiedCmp": "pending", "publisherAccount": "pending", "siteReady": "pending", "adsTxtAuthorized": "pending",
-      "sellerTransparency": "pending", "taxAndPayout": "pending", "productionMonitoring": "pending", "recoveryDrill": "pending"
+      "certifiedCmp": "pending", "publisherAccount": "pending", "siteReady": "pending", "adsTxtAuthorized": "verified",
+      "sellerTransparency": "verified", "taxAndPayout": "pending", "productionMonitoring": "pending", "recoveryDrill": "pending"
     }
   },
   "stage3": {
@@ -152,5 +160,5 @@
       "independentReview": "pending", "experimentPlan": "pending"
     }
   },
-  "externalRequirements": ["CUSTOM_DOMAIN", "OPERATOR_IDENTITY", "OFFICIAL_SUPPORT_ROUTE", "LEGAL_REVIEW", "PRODUCT_DATA_LICENSE", "CERTIFIED_CMP", "AD_MANAGER_ACCOUNT", "AD_MANAGER_SITE_READY", "ADS_TXT_AUTHORIZED", "SELLER_TRANSPARENCY", "SUPPLY_CHAIN_TRANSPARENCY", "OPEN_BIDDING_CONTRACT", "SUPPLY_PARTNER_CONTRACTS", "DIRECT_SALES_CONTRACTS", "TAX_AND_PAYOUT_PROFILE", "PRODUCTION_MONITORING", "RECOVERY_DRILL", "REVENUE_RECONCILIATION", "INDEPENDENT_REVIEW", "EXPERIMENT_PLAN"]
+  "externalRequirements": ["OPERATOR_IDENTITY", "OFFICIAL_SUPPORT_ROUTE", "LEGAL_REVIEW", "PRODUCT_DATA_LICENSE", "CERTIFIED_CMP", "ADSENSE_ACCOUNT_APPROVAL", "ADSENSE_SITE_READY", "ADSENSE_AD_UNIT_IDS", "ADSENSE_AUTO_ADS_CONFIGURATION", "TAX_AND_PAYOUT_PROFILE", "PRODUCTION_MONITORING", "RECOVERY_DRILL", "AD_MANAGER_ACCOUNT", "AD_MANAGER_SITE_READY", "SUPPLY_CHAIN_TRANSPARENCY", "OPEN_BIDDING_CONTRACT", "SUPPLY_PARTNER_CONTRACTS", "DIRECT_SALES_CONTRACTS", "REVENUE_RECONCILIATION", "INDEPENDENT_REVIEW", "EXPERIMENT_PLAN"]
 }

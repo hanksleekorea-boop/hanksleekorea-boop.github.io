@@ -1,2 +1,1 @@
-# ShoppingScanner has no authorized digital advertising sellers yet.
-# Advertising stays disabled until every contract, seller and operational approval is verified.
+google.com, pub-2476023536699107, DIRECT, f08c47fec0942fa0

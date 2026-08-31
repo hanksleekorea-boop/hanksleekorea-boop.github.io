@@ -1,5 +1,5 @@
 // 새 화면 파일을 설치형 웹 앱 사용자에게도 받게 하려면, 화면 변경 때 이 판번호를 올립니다.
-const CACHE_NAME = "lifepanel-public-v19-isolated-ad-library";
+const CACHE_NAME = "lifepanel-public-v23-stage2-social";
 const APP_SHELL = [
   "./",
   "./index.html",
@@ -7,6 +7,7 @@ const APP_SHELL = [
   "./app.mjs",
   "./free-content-ui.mjs",
   "./advanced-ui.mjs",
+  "./stage2-ui.mjs",
   "./plus-ui.mjs",
   "./plus.html",
   "./plus.css",
@@ -39,6 +40,7 @@ const APP_SHELL = [
   "../lifepanel-core/lifepanel-advanced-services-v2.mjs",
   "../lifepanel-core/lifepanel-google-drive-provider-v1.mjs",
   "../lifepanel-core/lifepanel-circle-provider-v1.mjs",
+  "../lifepanel-core/lifepanel-stage2-insights-v1.mjs",
   "../lifepanel-core/lifepanel-plus-features-v1.mjs",
   "../lifepanel-core/lifepanel-advertising-v1.mjs",
   "../lifepanel-core/lifepanel-data-control-v1.mjs",

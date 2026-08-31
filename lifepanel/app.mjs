@@ -28,8 +28,9 @@ import { FREE_MOVES } from "../lifepanel-core/lifepanel-free-content-v1.mjs";
 import { LIFEPANEL_LAST_EXPORT_KEY } from "../lifepanel-core/lifepanel-data-control-v1.mjs";
 import { initFreeContentUI } from "./free-content-ui.mjs";
 import { initWorkflowPanels } from "./workflows-ui.mjs";
-import { initAdvancedUI } from "./advanced-ui.mjs";
+import { initAdvancedUI } from "./advanced-ui.mjs?v=23";
 import { initPlusUI } from "./plus-ui.mjs";
+import { initStage2UI } from "./stage2-ui.mjs?v=23";
 
 const moves = FREE_MOVES.map((content) => Object.freeze({
   ...createMove(content),
@@ -81,6 +82,10 @@ const starterLanguage = document.querySelector("#starter-language");
 const starterTimeZone = document.querySelector("#starter-timezone");
 const setupStatus = document.querySelector("#setup-status");
 const saveStatus = document.querySelector("#save-status");
+const advancedHub = document.querySelector("#advanced-hub");
+const basicModeButton = document.querySelector("#use-basic-mode");
+const advancedModeButton = document.querySelector("#use-advanced-mode");
+const viewModeStatus = document.querySelector("#view-mode-status");
 const legacyCard = document.querySelector("#legacy-card");
 const legacySummary = document.querySelector("#legacy-summary");
 const legacyGoals = document.querySelector("#legacy-goals");
@@ -699,6 +704,24 @@ document.addEventListener("keydown", (event) => {
   }
 });
 
+const VIEW_MODE_KEY = "lifepanel.alpha.view-mode";
+function applyViewMode(mode, { focus = false } = {}) {
+  const advanced = mode === "advanced";
+  advancedHub.hidden = !advanced;
+  basicModeButton.setAttribute("aria-pressed", String(!advanced));
+  advancedModeButton.setAttribute("aria-pressed", String(advanced));
+  basicModeButton.className = advanced ? "quiet-button" : "move-button";
+  advancedModeButton.className = advanced ? "move-button" : "quiet-button";
+  viewModeStatus.textContent = advanced
+    ? "고급 모드입니다. 행동 탐색·실험·비교·선택 계정을 추가로 보여 줍니다."
+    : "기본 모드입니다. 저장된 자료와 기능은 지워지지 않습니다.";
+  localStorage.setItem(VIEW_MODE_KEY, advanced ? "advanced" : "basic");
+  if (focus && advanced) advancedHub.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+basicModeButton.addEventListener("click", () => applyViewMode("basic"));
+advancedModeButton.addEventListener("click", () => applyViewMode("advanced", { focus: true }));
+applyViewMode(localStorage.getItem(VIEW_MODE_KEY) === "advanced" ? "advanced" : "basic");
+
 renderTodayContext();
 renderSaveStatus();
 renderLegacyContinuity();
@@ -707,6 +730,7 @@ renderSafetyGuidance();
 prepareOfflineCopy();
 initWorkflowPanels();
 initAdvancedUI();
+initStage2UI();
 initPlusUI();
 freeContentUI = initFreeContentUI({
   onScenarioSelect(scenario, { initial = false } = {}) {

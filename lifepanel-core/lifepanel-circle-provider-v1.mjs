@@ -49,6 +49,10 @@ export function createRemoteCircleService({ endpoint, authorizedFetch } = {}) {
     stopSharing(circleId, shareId) { return call(`/v1/circles/${assertId(circleId, "circleId")}/shares/${assertId(shareId, "shareId")}`, { method: "DELETE" }); },
     report(circleId, targetMemberId, reason) { return call(`/v1/circles/${assertId(circleId, "circleId")}/reports`, { method: "POST", body: JSON.stringify({ targetMemberId: assertId(targetMemberId, "targetMemberId"), reason: safeText(reason, 120) || "other" }) }); },
     block(circleId, targetMemberId) { return call(`/v1/circles/${assertId(circleId, "circleId")}/blocks`, { method: "POST", body: JSON.stringify({ targetMemberId: assertId(targetMemberId, "targetMemberId") }) }); },
+    setEncouragementNotifications(circleId, enabled) { return call(`/v1/circles/${assertId(circleId, "circleId")}/preferences`, { method: "POST", body: JSON.stringify({ encouragementNotifications: enabled === true }) }); },
+    encourage(circleId, targetMemberId, kind = "with-you") { return call(`/v1/circles/${assertId(circleId, "circleId")}/encouragements`, { method: "POST", body: JSON.stringify({ targetMemberId: assertId(targetMemberId, "targetMemberId"), kind: safeText(kind, 40) }) }); },
+    createChallenge(circleId, input = {}) { return call(`/v1/circles/${assertId(circleId, "circleId")}/challenges`, { method: "POST", body: JSON.stringify({ title: safeText(input.title, 80), actionTitle: safeText(input.actionTitle, 120), days: Math.max(1, Math.min(30, Number(input.days) || 7)), ranking: "disabled" }) }); },
+    joinChallenge(circleId, challengeId, actionTitle) { return call(`/v1/circles/${assertId(circleId, "circleId")}/challenges/${assertId(challengeId, "challengeId")}/join`, { method: "POST", body: JSON.stringify({ actionTitle: safeText(actionTitle, 120) }) }); },
     leave(circleId) { return call(`/v1/circles/${assertId(circleId, "circleId")}/members/me`, { method: "DELETE" }); },
   });
 }

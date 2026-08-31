@@ -7,7 +7,7 @@
     <meta name="theme-color" content="#0b6b4f" />
     <title>LifePanel · 오늘의 조종석</title>
     <link rel="manifest" href="./manifest.webmanifest" />
-    <link rel="stylesheet" href="./styles.css?v=19" />
+    <link rel="stylesheet" href="./styles.css?v=23" />
   </head>
   <body>
     <a class="skip-link" href="#main-content">본문으로 바로 가기</a>
@@ -23,6 +23,19 @@
 
       <p class="release-state" id="release-state" role="status">LifePanel v1.0 공개판 · 기기 안 저장 · 공개 웹에서 사용 가능</p>
 
+      <section class="view-mode-card" aria-labelledby="view-mode-title">
+        <div>
+          <p class="eyebrow">화면 복잡도 선택</p>
+          <h2 id="view-mode-title">먼저 오늘 한 걸음만, 필요할 때 더 깊게</h2>
+          <p>기본 모드는 시작·행동·자료 보호에 집중합니다. 고급 모드는 192개 행동 탐색·실험·비교·선택 계정을 추가로 보여 줍니다.</p>
+        </div>
+        <div class="view-mode-actions" role="group" aria-label="화면 모드">
+          <button class="move-button" id="use-basic-mode" type="button" aria-pressed="true">기본 모드</button>
+          <button class="quiet-button" id="use-advanced-mode" type="button" aria-pressed="false">고급 모드</button>
+        </div>
+        <p class="view-mode-status" id="view-mode-status" role="status">기본 모드입니다. 저장된 자료와 기능은 지워지지 않습니다.</p>
+      </section>
+
       <section class="welcome-card" aria-labelledby="welcome-title">
         <div>
           <p class="eyebrow">가입 없이 바로 시작 · 무료</p>
@@ -31,6 +44,7 @@
         </div>
         <div class="welcome-actions">
           <button class="move-button" id="start-now" type="button">내 상황부터 고르기</button>
+          <button class="quiet-button" id="skip-setup" type="button">설정 없이 바로 행동 고르기</button>
           <button class="quiet-button" id="try-example" type="button">에너지가 낮은 예시 보기</button>
         </div>
       </section>
@@ -94,6 +108,11 @@
           <button class="quiet-button" type="button" id="data-export-lifepanel">JSON 사본 먼저 받기</button>
           <button class="dismiss-button" type="button" id="open-delete-life-data">LifePanel 자료 전체 삭제</button>
         </div>
+        <dl class="account-state-list" aria-label="LifePanel 자료 저장 상태">
+          <div><dt>현재 저장 위치</dt><dd id="data-local-state">이 브라우저의 LifePanel 전용 저장 영역</dd></div>
+          <div><dt>마지막 내려받기</dt><dd id="data-last-export-state">없음</dd></div>
+          <div><dt>Google 백업</dt><dd id="data-cloud-state">운영 설정과 실계정 검증 전에는 꺼짐</dd></div>
+        </dl>
         <p class="data-protection-status" id="data-protection-status" role="status">자료 상태를 확인하는 중입니다.</p>
       </section>
 
@@ -217,7 +236,7 @@
         </article>
       </section>
 
-      <section class="advanced-hub" id="advanced-hub" aria-labelledby="advanced-title">
+      <section class="advanced-hub" id="advanced-hub" aria-labelledby="advanced-title" hidden>
         <div class="advanced-heading">
           <div>
             <p class="eyebrow" id="advanced-eyebrow">2단계 · 탐색과 연결</p>
@@ -281,10 +300,24 @@
             <button class="quiet-button" id="advanced-next-story" type="button">다른 예시</button>
           </article>
 
+          <article class="advanced-card stage2-insights-card" aria-labelledby="stage2-insights-title">
+            <p class="eyebrow">주간 한 장 · 30·90·365일</p>
+            <h3 id="stage2-insights-title">자료가 충분할 때만 말하는 변화</h3>
+            <p>직접 남긴 선택만 계산합니다. 표본이 적으면 결론을 내리지 않으며 관찰된 관련을 원인이나 효과로 표현하지 않습니다.</p>
+            <dl class="account-state-list">
+              <div><dt>최근 7일</dt><dd id="stage2-weekly-brief">자료를 확인하는 중입니다.</dd></div>
+              <div><dt>관련 후보</dt><dd id="stage2-related-candidate">자료를 확인하는 중입니다.</dd></div>
+              <div><dt>다음 행동 하나</dt><dd id="stage2-next-action">2분 행동 하나 고르기</dd></div>
+            </dl>
+            <label for="stage2-trend-window"><span>추세 기간</span><select id="stage2-trend-window"><option value="30">30일</option><option value="90">90일</option><option value="365">365일</option></select></label>
+            <div class="inline-actions"><button class="quiet-button" id="stage2-refresh-insights" type="button">내 기록 다시 분석</button><button class="quiet-button" id="stage2-demo-insights" type="button">설명용 30일 예시</button></div>
+            <p class="advanced-status" id="stage2-trend-status" role="status">실제 사용자 평균 아님 · 내 기기 기록만 사용합니다.</p>
+          </article>
+
           <article class="advanced-card account-card" aria-labelledby="advanced-account-title">
             <p class="eyebrow" id="advanced-account-eyebrow">선택 계정 · 수동 최신 사본 1개</p>
             <h3 id="advanced-account-title">Google 연결과 자료 소유권</h3>
-            <p id="advanced-account-copy">연결하지 않아도 사용할 수 있습니다. 현재 공개판에는 운영 서버 설정이 없어 로그인·클라우드 저장이 닫혀 있습니다.</p>
+            <p id="advanced-account-copy">연결하지 않아도 사용할 수 있습니다. Google 보호본은 운영 설정과 실제 계정 검증이 모두 끝났을 때만 열립니다.</p>
             <dl class="account-state-list"><div><dt id="advanced-account-state-label">계정 상태</dt><dd id="advanced-account-state">설정되지 않음</dd></div><div><dt id="advanced-backup-state-label">클라우드 사본</dt><dd id="advanced-backup-state">생성되지 않음</dd></div><div><dt id="advanced-upload-label">자동 업로드</dt><dd id="advanced-upload-state">0회 · 사용 안 함</dd></div></dl>
             <div class="inline-actions"><button class="move-button" id="advanced-google-connect" type="button" disabled>Google로 연결</button><button class="quiet-button" id="advanced-backup-now" type="button" disabled>최신 사본 직접 저장</button><button class="quiet-button" id="advanced-compare-backup" type="button" disabled>보호본 비교</button><button class="move-button" id="advanced-apply-backup" type="button" disabled>비교한 보호본 적용</button><button class="dismiss-button" id="advanced-delete-backup" type="button" disabled>클라우드 사본 삭제</button></div>
             <details><summary id="advanced-backup-preview-title">저장 대상 미리보기</summary><pre id="advanced-backup-preview"></pre></details>
@@ -299,6 +332,10 @@
             <label for="advanced-member-alias"><span id="advanced-member-label">미리보기 구성원 별칭</span><input id="advanced-member-alias" maxlength="30" placeholder="실제 연락처 대신 별칭" /></label>
             <button class="quiet-button" id="advanced-add-member" type="button" disabled>기기 안 미리보기에 초대</button>
             <ul id="advanced-circle-members" class="compact-list" aria-label="미리보기 구성원"></ul>
+            <div class="inline-actions"><button class="quiet-button" id="advanced-quiet-cheer" type="button" disabled>“천천히 해도 돼” 응원</button><label class="stale-control" for="advanced-cheer-notifications"><input id="advanced-cheer-notifications" type="checkbox" /><span>응원 알림 받기</span></label></div>
+            <label for="advanced-challenge-title"><span>가벼운 도전 이름</span><input id="advanced-challenge-title" maxlength="80" placeholder="예: 이번 주 작은 한 걸음" /></label>
+            <label for="advanced-challenge-action"><span>내가 할 행동</span><input id="advanced-challenge-action" maxlength="120" placeholder="서로 다른 행동도 가능" /></label>
+            <button class="quiet-button" id="advanced-create-challenge" type="button" disabled>순위 없는 7일 도전 만들기</button>
             <label for="advanced-share-title"><span id="advanced-share-label">나눌 행동 제목</span><input id="advanced-share-title" maxlength="120" placeholder="직접 고른 제목만 공유" /></label>
             <label class="stale-control" for="advanced-share-encouragement"><input id="advanced-share-encouragement" type="checkbox" /><span id="advanced-share-encouragement-label">응원 요청 포함</span></label>
             <button class="quiet-button" id="advanced-share-circle" type="button" disabled>공유 범위 확인 후 올리기</button>
@@ -492,6 +529,6 @@
     </main>
     <script id="google-gis" src="https://accounts.google.com/gsi/client" defer></script>
     <script src="./provider-config.js"></script>
-    <script type="module" src="./app.mjs?v=19"></script>
+    <script type="module" src="./app.mjs?v=23"></script>
   </body>
 </html>

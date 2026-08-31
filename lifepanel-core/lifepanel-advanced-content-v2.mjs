@@ -1,5 +1,11 @@
 export const ADVANCED_CONTENT_VERSION = "2.0.0";
 
+export const CONTENT_REVIEWED_AT = "2026-08-31";
+export const CONTENT_SOURCE = Object.freeze({
+  ko: "LifePanel 편집 원칙 v5.0 · 일반 자기관리 교육용",
+  en: "LifePanel editorial principles v5.0 · general self-management education",
+});
+
 const minutes = [1, 3, 5, 10, 15, 25];
 
 const domainBlueprints = [
@@ -35,6 +41,10 @@ export const ADVANCED_MOVES = Object.freeze(domainBlueprints.flatMap(([domainId,
     domainId,
     minutes: duration,
     energy: Math.min(5, 1 + Math.floor(duration / 6)),
+    expectedEffect: Object.freeze({ ko: `${domainKo} 영역에서 다음 선택을 더 작고 분명하게 만드는 데 도움을 줄 수 있습니다.`, en: `May help make the next choice in ${domainEn} smaller and clearer.` }),
+    skipWhen: Object.freeze({ ko: "통증·위험·심한 피로가 있거나 전문 도움을 대신하게 될 때", en: "When there is pain, danger, severe fatigue, or this would replace professional help" }),
+    source: CONTENT_SOURCE,
+    reviewedAt: CONTENT_REVIEWED_AT,
     tags: Object.freeze([conceptId, duration <= 5 ? "low-time" : "deep", domainId]),
     locales: Object.freeze({
       ko: Object.freeze({ title: `${duration}분 동안 ${ko}`, reason: `${domainKo} 영역을 ${sizeLabel.ko[variant]} 돌보는 선택입니다. 완료하지 않아도 불이익이 없습니다.`, alternative: `부담되면 1분만 하거나 오늘은 쉬기로 바꾸세요.`, safety: safety.ko }),
@@ -138,5 +148,8 @@ export function validateAdvancedContent() {
   const moveIds = new Set(ADVANCED_MOVES.map((item) => item.id));
   for (const scenario of ADVANCED_SCENARIOS) if (!moveIds.has(scenario.firstActionId)) errors.push(`broken scenario action: ${scenario.id}`);
   for (const experiment of ADVANCED_EXPERIMENTS) for (const id of experiment.actionIds) if (!moveIds.has(id)) errors.push(`broken experiment action: ${experiment.id}`);
+  for (const move of ADVANCED_MOVES) {
+    if (!move.minutes || !move.energy || !move.expectedEffect?.ko || !move.skipWhen?.ko || !move.source?.ko || !move.reviewedAt) errors.push(`missing evidence metadata: ${move.id}`);
+  }
   return Object.freeze({ ok: errors.length === 0, errors: Object.freeze(errors), counts: Object.freeze(Object.fromEntries(expected.map(([name, list]) => [name, list.length]))) });
 }

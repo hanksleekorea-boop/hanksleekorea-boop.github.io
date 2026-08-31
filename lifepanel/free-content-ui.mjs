@@ -44,6 +44,9 @@ export function initFreeContentUI({ onScenarioSelect, onReset } = {}) {
   const recoveryLibrary = query("#recovery-library");
   const errorGuideList = query("#error-guide-list");
   const dataStatus = query("#data-protection-status");
+  const dataLocalState = query("#data-local-state");
+  const dataLastExportState = query("#data-last-export-state");
+  const dataCloudState = query("#data-cloud-state");
   const deleteDialog = query("#delete-life-data-dialog");
   const deleteConfirm = query("#confirm-delete-life-data");
   let selectedScenarioId = readJson(LIFEPANEL_SCENARIO_KEY)?.scenarioId || "start-stuck";
@@ -146,6 +149,9 @@ export function initFreeContentUI({ onScenarioSelect, onReset } = {}) {
     const exportedAt = new Date(lastExport?.exportedAt);
     const ageDays = Number.isNaN(exportedAt.getTime()) ? null : Math.floor((Date.now() - exportedAt.getTime()) / 86400000);
     const protection = ageDays === null ? "위험 · 아직 보호 사본 없음" : ageDays <= 7 ? "안전 · 7일 이내 보호 사본 있음" : `주의 · 마지막 사본 ${ageDays}일 전`;
+    dataLocalState.textContent = `이 브라우저의 LifePanel 전용 저장 영역 · ${keys.length}개 항목`;
+    dataLastExportState.textContent = formatDate(lastExport?.exportedAt);
+    dataCloudState.textContent = "운영 설정과 실계정 검증 전에는 꺼짐 · JSON 사본은 지금 사용 가능";
     dataStatus.textContent = `${message ? `${message} · ` : ""}${protection} · LifePanel 저장 영역 ${keys.length}개 · 마지막 사본 ${formatDate(lastExport?.exportedAt)} · 기존 WeDoIt 원본은 삭제 대상이 아닙니다.`;
   }
 
@@ -194,6 +200,11 @@ export function initFreeContentUI({ onScenarioSelect, onReset } = {}) {
   window.addEventListener("lifepanel:backup-created", () => renderDataStatus("새 사본을 만들었습니다"));
 
   query("#start-now").addEventListener("click", () => query("#scenario-heading").scrollIntoView({ behavior: "smooth", block: "start" }));
+  query("#skip-setup").addEventListener("click", () => {
+    selectScenario("start-stuck");
+    scenarioStatus.textContent = "설정을 건너뛰었습니다. 기본값으로 행동 하나를 바로 고를 수 있으며 나중에 언제든 바꿀 수 있습니다.";
+    query("#move-title").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
   query("#try-example").addEventListener("click", () => selectScenario("low-energy"));
 
   renderScenarios();

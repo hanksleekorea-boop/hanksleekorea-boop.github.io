@@ -1,6 +1,6 @@
 ShoppingScanner GitHub Pages public mirror
 Public URL: https://hanksleekorea-boop.github.io/shoppingscanner/
-Full service URL: https://shoppingscanner-v66-20260819.hanksleedee.chatgpt.site/
-Core browsing, comparison, local saves, PWA assets and policy content are mirrored.
-Account sync and server-side support APIs remain available only on the full service URL.
+Canonical public URL: https://hanksleekorea-boop.github.io/shoppingscanner/
+Core browsing, comparison, local saves, PWA assets, acceptance execution and policy content are published here.
+Legacy server-side account and support APIs are not part of this static public release.
 Advertising remains disabled until operator, consent, payment, tax and Google review evidence is complete.

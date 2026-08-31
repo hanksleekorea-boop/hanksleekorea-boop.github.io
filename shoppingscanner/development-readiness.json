@@ -1,6 +1,6 @@
 {
   "schema": "shopping-scanner-two-stage-development-readiness/v1",
-  "release": "v87-full-two-stage-engineering-r1",
+  "release": "v88-two-stage-acceptance-execution-r1",
   "evaluatedAt": "2026-08-31",
   "scope": "engineering-development-not-external-acceptance",
   "decision": "ENGINEERING_DEVELOPMENT_100_COMPLETE_EXTERNAL_ACCEPTANCE_BLOCKED",

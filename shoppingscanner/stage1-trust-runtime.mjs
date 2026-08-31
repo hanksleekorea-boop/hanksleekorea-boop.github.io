@@ -56,7 +56,7 @@ function render(input) {
       <div class="s1t-item"><b>총비용</b><strong>${cost.calculable ? `₩${currency.format(cost.total)}` : '확정 불가'}</strong><small>배송·설치·세금·쿠폰·반품비 자료가 모두 있어야 합계 제공</small></div>
     </div>
     ${bait.flagged ? `<p class="s1t-warning"><b>유인가 검토 필요:</b> ${bait.reasons.join(' · ')}. 판매처에서 본품·옵션·약정 조건을 확인하세요.</p>` : '<p class="s1t-warning">현재 가격만으로 실제 할인 또는 최저가라고 판정하지 않습니다. 가격 이력과 여러 판매처 총비용이 필요합니다.</p>'}
-    <p class="s1t-evidence"><b>추천 근거 여권:</b> 찬성 ${passport.reasonsFor.length}개 · 반대 ${passport.reasonsAgainst.length}개 · 미확인 ${passport.unknown.length}개 · 제휴/광고 순위 영향 없음. <a href="/quality-status/">전체 데이터 품질 상태</a> · <a href="/innovation-lab/">2단계 혁신 실험실</a></p>`;
+    <p class="s1t-evidence"><b>추천 근거 여권:</b> 찬성 ${passport.reasonsFor.length}개 · 반대 ${passport.reasonsAgainst.length}개 · 미확인 ${passport.unknown.length}개 · 제휴/광고 순위 영향 없음. <a href="/quality-status/">전체 데이터 품질 상태</a> · <a href="/acceptance-center/">실제 수락 실행센터</a> · <a href="/innovation-lab/">2단계 혁신 실험실</a></p>`;
   panel.hidden = false;
 }
 

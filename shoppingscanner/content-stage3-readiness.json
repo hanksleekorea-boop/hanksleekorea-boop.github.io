@@ -1,0 +1,148 @@
+{
+  "schema": "shopping-scanner-content-stage3-readiness/v1",
+  "release": "content-q100-stage3-r1",
+  "evaluatedAt": "2026-09-04T09:11:50.440Z",
+  "contentDigest": "354eea3f3e7a27bbd90bd513f17af97047463344901297f271d96c7587551564",
+  "decision": "CONTENT_STAGE3_WAITING_REAL_EVIDENCE",
+  "stages": {
+    "stage1": 100,
+    "stage2": 100,
+    "stage3": 0
+  },
+  "stage3": {
+    "accepted": 0,
+    "total": 12,
+    "requirements": [
+      {
+        "id": "C3-01",
+        "name": "판매처 3곳의 유효한 자료 이용 권리",
+        "evidenceKey": "merchant_rights",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-02",
+        "name": "300상품·900제안 시범과 3,000상품·9,000제안 확대",
+        "evidenceKey": "merchant_data",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-03",
+        "name": "사람 정답 1,000쌍·정밀도 99.5%·잘못된 자동 병합 0",
+        "evidenceKey": "identity_labels",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-04",
+        "name": "핵심 300개 사람 1차 편집",
+        "evidenceKey": "editorial_first",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-05",
+        "name": "고위험 전수 독립 2차 검수",
+        "evidenceKey": "editorial_risk",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-06",
+        "name": "일반 콘텐츠 지정 무작위 표본 20% 이상 독립 검수",
+        "evidenceKey": "editorial_sample",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-07",
+        "name": "가이드·도움말·용어·정책 공개 문구 전수 검수",
+        "evidenceKey": "documents",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-08",
+        "name": "실제 제안 최신성 p95 6시간·오래됨 오표시 0",
+        "evidenceKey": "freshness",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-09",
+        "name": "실사용자 30명·과업 및 이해도 90% 이상",
+        "evidenceKey": "real_users",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-10",
+        "name": "Android·iPhone·TalkBack·VoiceOver 실제 경로",
+        "evidenceKey": "physical_devices",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-11",
+        "name": "공개판 30일 운영·P0 0·P1 24시간 이내 해결",
+        "evidenceKey": "operations",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      },
+      {
+        "id": "C3-12",
+        "name": "세계 10곳 독립 재평가·종합 92·중대 영역 85",
+        "evidenceKey": "benchmark",
+        "measuredPass": false,
+        "status": "WAITING_EVIDENCE"
+      }
+    ]
+  },
+  "overallContentCompletionPercent": 0,
+  "quantityFloorPercent": 0,
+  "qualityFloorPercent": 0,
+  "completedCheckPercent": 62.5,
+  "legacyReadinessEstimatePercent": 63,
+  "legacyEstimateIsCompletion": false,
+  "metrics": {
+    "authorizedMerchants": 0,
+    "pilotProducts": 0,
+    "pilotOffers": 0,
+    "expandedProducts": 0,
+    "expandedOffers": 0,
+    "humanIdentityPairs": 0,
+    "identityPrecisionPercent": 0,
+    "wrongAutoMerges": 0,
+    "firstReviews": 0,
+    "highRiskReviews": 0,
+    "highRiskRequired": 201,
+    "auditReviews": 0,
+    "auditRequired": 20,
+    "documentReviews": 0,
+    "documentsRequired": 60,
+    "freshnessP95Hours": null,
+    "freshnessCorrect": 0,
+    "realUsers": 0,
+    "taskSuccessPercent": 0,
+    "comprehensionPercent": 0,
+    "deviceFamilies": [],
+    "consecutiveOperationDays": 0,
+    "benchmarkCompetitors": 0,
+    "benchmarkScore": 0,
+    "criticalMinimum": 0,
+    "externalLinksCovered": 0,
+    "externalLinksRequired": 3082
+  },
+  "publication": {
+    "currentContentVerified": false
+  },
+  "evidenceTrust": {
+    "verified": false,
+    "errors": [
+      "NO_REAL_EVIDENCE_SUBMITTED"
+    ],
+    "privateEvidencePublished": false
+  },
+  "truthBoundary": "검증된 실제 증거만 수락한다. AI 초안·합성 페르소나·로컬 검사·양식 생성은 사람 승인·시장 자료·공개 운영을 대신하지 않는다. 전체 완료율은 필수 조건 최솟값이며 과거 63% 추정치와 다르다."
+}

@@ -1,0 +1,100 @@
+{
+  "schema": "shopping-scanner-content-synthetic-personas/v1",
+  "release": "content-q100-stage3-r1",
+  "synthetic": true,
+  "realUsers": 0,
+  "total": 1000,
+  "passed": 1000,
+  "failed": 0,
+  "cohorts": [
+    {
+      "name": "초보 탐색",
+      "count": 50
+    },
+    {
+      "name": "가격 민감",
+      "count": 50
+    },
+    {
+      "name": "품질 우선",
+      "count": 50
+    },
+    {
+      "name": "고령자",
+      "count": 50
+    },
+    {
+      "name": "저시력",
+      "count": 50
+    },
+    {
+      "name": "화면읽기",
+      "count": 50
+    },
+    {
+      "name": "한손 모바일",
+      "count": 50
+    },
+    {
+      "name": "PC 비교",
+      "count": 50
+    },
+    {
+      "name": "저속망",
+      "count": 50
+    },
+    {
+      "name": "오프라인",
+      "count": 50
+    },
+    {
+      "name": "개인정보 민감",
+      "count": 50
+    },
+    {
+      "name": "아이 보호자",
+      "count": 50
+    },
+    {
+      "name": "건강 정보 주의",
+      "count": 50
+    },
+    {
+      "name": "자동차 안전",
+      "count": 50
+    },
+    {
+      "name": "여행 준비",
+      "count": 50
+    },
+    {
+      "name": "해외 구매",
+      "count": 50
+    },
+    {
+      "name": "제한 예산",
+      "count": 50
+    },
+    {
+      "name": "선물 선택",
+      "count": 50
+    },
+    {
+      "name": "반품 우선",
+      "count": 50
+    },
+    {
+      "name": "세부 규격 비교",
+      "count": 50
+    }
+  ],
+  "coverage": {
+    "coreProducts": 300,
+    "checksPerScenario": 8
+  },
+  "limits": [
+    "규칙과 콘텐츠 자료를 검사한 합성 시나리오이며 실제 사람 의견·이해도·과업 성공률이 아님",
+    "저시력·화면읽기·실기기 접근성 통과를 증명하지 않음",
+    "만족도·통계적 신뢰구간·시장 점유율을 추정하지 않음"
+  ]
+}

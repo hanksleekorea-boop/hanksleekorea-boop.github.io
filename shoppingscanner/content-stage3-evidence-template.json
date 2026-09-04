@@ -1,0 +1,29 @@
+{
+  "schema": "shopping-scanner-content-stage3-evidence/v1",
+  "contentDigest": "354eea3f3e7a27bbd90bd513f17af97047463344901297f271d96c7587551564",
+  "collectedAt": null,
+  "realWorld": null,
+  "synthetic": null,
+  "testFixture": false,
+  "data": {
+    "merchants": [],
+    "products": [],
+    "offers": [],
+    "identityPairs": [],
+    "reviews": [],
+    "documentReviews": [],
+    "freshnessChecks": [],
+    "users": [],
+    "devices": [],
+    "operations": [],
+    "incidents": [],
+    "links": [],
+    "benchmark": {
+      "competitors": [],
+      "scores": []
+    },
+    "publication": null
+  },
+  "artifacts": [],
+  "attestations": []
+}

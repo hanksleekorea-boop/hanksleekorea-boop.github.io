@@ -1,0 +1,4 @@
+Contact: https://hanksleekorea-boop.github.io/shoppingscanner/en/contact/
+Expires: 2027-08-31T23:59:59Z
+Preferred-Languages: ko, en
+Canonical: https://hanksleekorea-boop.github.io/shoppingscanner/.well-known/security.txt

@@ -32,7 +32,7 @@
         "categoryKey": "fashion",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "beauty-buying-guide-v1",
@@ -64,7 +64,7 @@
         "categoryKey": "beauty",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "digital-buying-guide-v1",
@@ -96,7 +96,7 @@
         "categoryKey": "digital",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "appliances-buying-guide-v1",
@@ -128,7 +128,7 @@
         "categoryKey": "appliances",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "computer-buying-guide-v1",
@@ -160,7 +160,7 @@
         "categoryKey": "computer",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "food-buying-guide-v1",
@@ -192,7 +192,7 @@
         "categoryKey": "food",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "living-buying-guide-v1",
@@ -224,7 +224,7 @@
         "categoryKey": "living",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "sports-buying-guide-v1",
@@ -256,7 +256,7 @@
         "categoryKey": "sports",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "fashion_goods-buying-guide-v1",
@@ -288,7 +288,7 @@
         "categoryKey": "fashion_goods",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "baby-buying-guide-v1",
@@ -320,7 +320,7 @@
         "categoryKey": "baby",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "auto_tools-buying-guide-v1",
@@ -352,7 +352,7 @@
         "categoryKey": "auto_tools",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "books-buying-guide-v1",
@@ -384,7 +384,7 @@
         "categoryKey": "books",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "pets-buying-guide-v1",
@@ -416,7 +416,7 @@
         "categoryKey": "pets",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "travel-buying-guide-v1",
@@ -448,7 +448,7 @@
         "categoryKey": "travel",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "giftcards-buying-guide-v1",
@@ -480,7 +480,7 @@
         "categoryKey": "giftcards",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     },
     {
       "id": "overseas-buying-guide-v1",
@@ -512,7 +512,7 @@
         "categoryKey": "overseas",
         "limit": 4
       },
-      "informationDate": "2026-08-29"
+      "informationDate": "2026-09-04"
     }
   ],
   "glossary": [

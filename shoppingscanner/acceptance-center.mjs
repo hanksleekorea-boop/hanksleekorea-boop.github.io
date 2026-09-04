@@ -1,8 +1,8 @@
 import { buildAcceptanceQueue, createReceiptTemplate, summarizeAcceptanceExecution, validateAcceptanceReceipt } from './acceptance-execution-core.mjs';
 
 const [stage1, development] = await Promise.all([
-  fetch('/stage1-readiness.json', { cache: 'no-store' }).then(response => response.json()),
-  fetch('/development-readiness.json', { cache: 'no-store' }).then(response => response.json()),
+  fetch('/shoppingscanner/stage1-readiness.json', { cache: 'no-store' }).then(response => response.json()),
+  fetch('/shoppingscanner/development-readiness.json', { cache: 'no-store' }).then(response => response.json()),
 ]);
 const queue = buildAcceptanceQueue(stage1, development);
 const official = { stage1Ready: stage1.counts.actualAcceptanceReady, stage1Total: 27, stage2Ready: 0, stage2Total: 13 };

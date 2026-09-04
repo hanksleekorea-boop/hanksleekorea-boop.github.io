@@ -1,0 +1,1099 @@
+{
+  "schema": "shopping-scanner-content-quality-stage1/v1",
+  "release": "content-q100-stage1-r1",
+  "evaluatedAt": "2026-09-04T08:06:35.167Z",
+  "decision": "CONTENT_STAGE1_FOUNDATION_100_COMPLETE",
+  "stage1": {
+    "completionPercent": 100,
+    "tasksCompleted": 10,
+    "tasksTotal": 10,
+    "tasks": [
+      {
+        "id": "C1-01",
+        "name": "현재 콘텐츠 기준선 고정",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C1-02",
+        "name": "3,000개 콘텐츠 전수 원장",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C1-03",
+        "name": "필수 필드 100% 검사",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C1-04",
+        "name": "16개 상품군 수량 균형 검사",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C1-05",
+        "name": "동일 제목·중복 후보 감사",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C1-06",
+        "name": "최신성 4상태 전수 분류",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C1-07",
+        "name": "핵심 300개 반복 문구 감사",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C1-08",
+        "name": "사람 편집 검수 대기열 생성",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C1-09",
+        "name": "공개 콘텐츠 상태 계약",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C1-10",
+        "name": "자동 검사·실행 가능한 형태로 조립",
+        "status": "VERIFIED"
+      }
+    ]
+  },
+  "legacyReadinessEstimatePercent": 63,
+  "legacyEstimateIsCompletion": false,
+  "counts": {
+    "products": 3000,
+    "categories": 16,
+    "coreProducts": 300,
+    "guides": 16,
+    "helpTopics": 12,
+    "glossary": 20,
+    "sources": 1,
+    "factOnlyApproval": 300,
+    "humanEditorialApproval": 0,
+    "uniqueProductUrls": 3000,
+    "duplicateTitleGroups": 106,
+    "duplicateTitleSurplus": 160
+  },
+  "fieldCoverage": {
+    "id": {
+      "covered": 3000,
+      "total": 3000,
+      "percent": 100
+    },
+    "title": {
+      "covered": 3000,
+      "total": 3000,
+      "percent": 100
+    },
+    "price": {
+      "covered": 3000,
+      "total": 3000,
+      "percent": 100
+    },
+    "imageUrl": {
+      "covered": 3000,
+      "total": 3000,
+      "percent": 100
+    },
+    "productUrl": {
+      "covered": 3000,
+      "total": 3000,
+      "percent": 100
+    },
+    "source": {
+      "covered": 3000,
+      "total": 3000,
+      "percent": 100
+    },
+    "capturedAt": {
+      "covered": 3000,
+      "total": 3000,
+      "percent": 100
+    },
+    "sourceRank": {
+      "covered": 3000,
+      "total": 3000,
+      "percent": 100
+    },
+    "categoryKey": {
+      "covered": 3000,
+      "total": 3000,
+      "percent": 100
+    }
+  },
+  "categories": {
+    "appliances": 188,
+    "auto_tools": 187,
+    "baby": 187,
+    "beauty": 188,
+    "books": 187,
+    "computer": 188,
+    "digital": 188,
+    "fashion": 188,
+    "fashion_goods": 188,
+    "food": 188,
+    "giftcards": 187,
+    "living": 188,
+    "overseas": 187,
+    "pets": 187,
+    "sports": 187,
+    "travel": 187
+  },
+  "freshness": {
+    "fresh": 0,
+    "aging": 3000,
+    "stale": 0,
+    "unknown": 0
+  },
+  "editorialPatternDiversity": {
+    "summary": 300,
+    "bestFor": 300,
+    "notFor": 300,
+    "pros": 300,
+    "considerations": 300,
+    "decisionCriteria": 300,
+    "finalCheck": 300
+  },
+  "quantitativeChecks": {
+    "products": true,
+    "requiredFieldCoverage": true,
+    "categories": true,
+    "coreProducts": true,
+    "guides": true,
+    "helpTopics": true,
+    "glossary": true,
+    "uniqueProductUrls": true,
+    "registryReady": true,
+    "reviewQueueReady": true
+  },
+  "stage2Inputs": {
+    "humanEditorialQueue": 300,
+    "duplicateTitleGroups": 106,
+    "templatedFields": [
+      "bestFor",
+      "notFor",
+      "considerations",
+      "finalCheck"
+    ]
+  },
+  "stage3ExternalInputs": {
+    "authorizedMerchantSourcesRequired": 3,
+    "currentCatalogSources": 1,
+    "currentAuthorizedMerchantSources": 0,
+    "realUsersRequired": 30,
+    "currentRealUsers": 0,
+    "realDeviceFamiliesRequired": [
+      "Android",
+      "iPhone",
+      "TalkBack",
+      "VoiceOver"
+    ]
+  },
+  "truthBoundary": "1단계 100%는 전수 원장·자동 감사·편집 대기열·공개 상태 계약의 완료다. 사람 편집 승인, 새 판매처 자료, 실제 사용자와 실기기 증거를 대신하지 않는다.",
+  "duplicateTitleGroups": [
+    {
+      "normalizedTitle": "k2 베이직 파우치 멀티 포켓 고리 장착가능",
+      "ids": [
+        "9533922539",
+        "9471355120",
+        "9533547872",
+        "9520224528",
+        "9512999240",
+        "9497749289",
+        "9485419984",
+        "9448103718"
+      ],
+      "count": 8
+    },
+    {
+      "normalizedTitle": "[롯데백화점]캉골 루키 포켓 백팩 1499 블랙 ksebbp14990bk",
+      "ids": [
+        "8980545236",
+        "9021153874",
+        "9091959395",
+        "8991707666",
+        "9244738168",
+        "8966383200",
+        "8965644087"
+      ],
+      "count": 7
+    },
+    {
+      "normalizedTitle": "블랙 바퀴달린 캐리어 백팩 여행용 골프캐리어 카트백",
+      "ids": [
+        "9533923327",
+        "9385025515",
+        "9368034556",
+        "9367706519",
+        "9362136342",
+        "9339417043"
+      ],
+      "count": 6
+    },
+    {
+      "normalizedTitle": "삼성전자 ddr5-5600 (16gb)",
+      "ids": [
+        "9498122867",
+        "9418077477",
+        "9417282284",
+        "9382059960",
+        "5478800006",
+        "9262287705"
+      ],
+      "count": 6
+    },
+    {
+      "normalizedTitle": "갤럭시 a17 /a16 / 점프4 / 갤럭시 퀀텀6 / a36 / skt 기기변경 번호이동 휴대폰 핸드폰 학생폰 효도폰",
+      "ids": [
+        "9182546361",
+        "9182531037",
+        "9182518301",
+        "9182456526",
+        "9182400685"
+      ],
+      "count": 5
+    },
+    {
+      "normalizedTitle": "브랜든 여행용 세이프 플러스 월렛백",
+      "ids": [
+        "9542801268",
+        "9540200432",
+        "9540066830",
+        "9539934275",
+        "9536496203"
+      ],
+      "count": 5
+    },
+    {
+      "normalizedTitle": "브랜든 여행용 세이프 플러스 월렛백 (1)",
+      "ids": [
+        "9539978116",
+        "9538486031",
+        "9538485766",
+        "9536468789",
+        "9535138419"
+      ],
+      "count": 5
+    },
+    {
+      "normalizedTitle": "접이식 쇼핑 카트 핸드카트 중형 최신형 업그레이드",
+      "ids": [
+        "9430987247",
+        "9409335521",
+        "9391143496",
+        "9391121121",
+        "9378663366"
+      ],
+      "count": 5
+    },
+    {
+      "normalizedTitle": "[롯데백화점]캉골 아이콘 퀀텀 프로 백팩 1485 블랙 ksebbp14850bk",
+      "ids": [
+        "8891703621",
+        "8891979739",
+        "8888909101",
+        "8891615520"
+      ],
+      "count": 4
+    },
+    {
+      "normalizedTitle": "물놀이 유아 풀장 베란다 미니 에어 튜브 수영장 야외 간이 실내 어린이 아기 대형 특대형 사각 조립식 가정용 볼풀장",
+      "ids": [
+        "2087360303",
+        "8466656189",
+        "8466642683",
+        "8466636790"
+      ],
+      "count": 4
+    },
+    {
+      "normalizedTitle": "브랜든 여행용 세이프 플러스 월렛백 (2)",
+      "ids": [
+        "9540046454",
+        "9540015934",
+        "9536460381",
+        "9536437116"
+      ],
+      "count": 4
+    },
+    {
+      "normalizedTitle": "야마하 yfl-222 학생용 중급 플루트 (국제 버전)",
+      "ids": [
+        "9493270744",
+        "9371940124",
+        "9161279438",
+        "8970198239"
+      ],
+      "count": 4
+    },
+    {
+      "normalizedTitle": "자물쇠(x50) 자커다이얼",
+      "ids": [
+        "9361786857",
+        "9355357508",
+        "9355338361",
+        "9337789805"
+      ],
+      "count": 4
+    },
+    {
+      "normalizedTitle": "헤라 유브이 프로텍터 톤업 50ml (spf50+) (ad)",
+      "ids": [
+        "8298302737",
+        "8309322571",
+        "8261755929",
+        "9055329918"
+      ],
+      "count": 4
+    },
+    {
+      "normalizedTitle": "[롯데백화점]캉골 아이콘 스파크 백팩 1486 블랙 ksebbp14860bk",
+      "ids": [
+        "8891703629",
+        "8891995742",
+        "8889017145"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "[언리미트]wave tee (u22btts01)",
+      "ids": [
+        "9466891888",
+        "8464892486",
+        "8438505763"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "닌텐도 스위치 2 본체 / iuy",
+      "ids": [
+        "9257205389",
+        "9241964747",
+        "9535360102"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "닥터지 그린 마일드 업 선크림 50ml x 2+ 10ml x 3",
+      "ids": [
+        "9534920938",
+        "9448126487",
+        "9466465752"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "더블 서랍이 있는 듀알트 공구 보관 정리함 최대 16 5파운드까지 가능 dwst17804",
+      "ids": [
+        "9453470409",
+        "9444417697",
+        "9444116910"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "매일유업 앱솔루트 명작 2fl 1단계 800g 3개",
+      "ids": [
+        "9178242104",
+        "9165264304",
+        "8833460117"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "브랜든 여행용 세이프 플러스 월렛백 (3)",
+      "ids": [
+        "9542517622",
+        "9537801705",
+        "9536408419"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "산란 닭사료 퍼펙트산란 20kg 산란닭 산란용 닭모이",
+      "ids": [
+        "9106840245",
+        "8947344274",
+        "6888335527"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "스몰펫 앵무새 전용사료 700g x2 영양 모이 펠렛사료",
+      "ids": [
+        "9497232333",
+        "9483644441",
+        "9478914520"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "아이오페 맨 올데이 퍼펙트 올인원 120ml",
+      "ids": [
+        "9303033595",
+        "9527861557",
+        "9525859849"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "앵무새 전용먹이(전연령용) 700g",
+      "ids": [
+        "9537201150",
+        "9541652499",
+        "9523851075"
+      ],
+      "count": 3
+    },
+    {
+      "normalizedTitle": "[닌텐도] 스위치 2 본체 단품 wys",
+      "ids": [
+        "9304029649",
+        "9276151618"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "[라일리] rly 이지쿨 얼굴햇빛가리개 여름 페이스 스포츠 마스크",
+      "ids": [
+        "9477485337",
+        "9484402887"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "[루솔] 루솔 진한 배도라지즙 선물박스(120포) 배즙",
+      "ids": [
+        "9412166644",
+        "9097286292"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "[아디다스]매장정품 트레이닝재킷 스포츠웨어 kd8313 파이어버드 트랙탑 나이트",
+      "ids": [
+        "9540088976",
+        "9380522501"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "[아이나비][64gb 메모리업] 아이나비 vx3000 32gb qhd fhd 2채널 블랙박스 qhd/fhd(gps+출장장착)",
+      "ids": [
+        "9303900731",
+        "9303893734"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "[크록스] 공용 바야밴드 클로그 성인 샌들 플립 슬리퍼 205089-126",
+      "ids": [
+        "6477102596",
+        "6477096601"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "[통기성 메쉬] 시원한 래쉬가드 후드 레쉬가드",
+      "ids": [
+        "9527231256",
+        "9404504831"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "[혜택가 134만] lg uhd tv 86ur642s0nc 217cm(86인치) 울트라hd 스탠드형 비즈니스 tv",
+      "ids": [
+        "3866140708",
+        "7692167203"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "[ak수원점] [키플링] 보스턴백 여행가방 데페아xl kocbr05 bk/n",
+      "ids": [
+        "9498623431",
+        "9292049633"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "[cj제일제당] 함박 스테이크 152g x 10봉",
+      "ids": [
+        "9417455632",
+        "8544942960"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "+k2 세이프티 베이직파우치 iua21907치 보조치 포켓 포켓치 가방치 소품수납치 수납치 메쉬치 정리치",
+      "ids": [
+        "9341821104",
+        "9425833621"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "24k 순금 골드바 3.75g 정품정량보장 1돈부터 판매 [골드바나라]",
+      "ids": [
+        "9236206067",
+        "9236202626"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "26ss 메종마르지엘라 넘버링 로고 실버 공용 반지 sm6uq0059 p6469 951",
+      "ids": [
+        "9542615929",
+        "9542615690"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "3m 슈퍼그립200 코팅장갑l l",
+      "ids": [
+        "9535118589",
+        "9531749432"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "갤럭시 s26 울트라 fe 엣지 s25 s24 fe s23 s22 s21 s20 플러스 5g s10 노트20 노트10 버디4 a17 a16 a36 a35 a34 a33 a32 a31 a23 a24 a25 a56 a55 a54 퀀텀6 퀀텀5 점프4 와이드8 가죽 지갑형 지퍼형 핸드폰케이스",
+      "ids": [
+        "1551930588",
+        "2117285756"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "고품질 4단접이식 이민가방 기내용 소형 중형캐리어 여행가방 중형캐리어 (wc56c0f)",
+      "ids": [
+        "9383786224",
+        "9383726553"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "그린펫 야미야미 닭가슴살 오리지날 22g 100p 1박스 wfl5xgj",
+      "ids": [
+        "8902295233",
+        "8902224323"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "기내반입 보스턴 캐리어 가방 여행용 바퀴달린 트래블 백-wfpso1s",
+      "ids": [
+        "9526241295",
+        "9526084366"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "남여공용 바야밴드 클로그 205089-126 화이트 / 남성 여성 물놀이 아쿠아 샌들",
+      "ids": [
+        "7064101857",
+        "7064101681"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "노스페이스 화이트라벨 보니 팩 m nn2pr61m",
+      "ids": [
+        "9000231729",
+        "8997545667"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "닌텐도 스위치2 단품 블랙 국내공식발매 (y)",
+      "ids": [
+        "9428708405",
+        "9425361420"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "닌텐도 스위치2 본체",
+      "ids": [
+        "9487385030",
+        "9415089642"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "닌텐도 스위치2 본체 단품 bee-001 국내발매 / j",
+      "ids": [
+        "9425266061",
+        "9444898032"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "다양한고양이입맛만족 고양이보충간식 이나바 챠오츄르 wfkseps",
+      "ids": [
+        "8911859137",
+        "8911512406"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "다이얼자물쇠-xd25 자커자물쇠 번호자물쇠",
+      "ids": [
+        "8896389722",
+        "8851175709"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "동서 맥심 슈프림골드 커피믹스 170t (150t+20t)",
+      "ids": [
+        "9441323269",
+        "9413673445"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "디펜드 a플러스 일자형 30매 6p 시니어 속기저귀",
+      "ids": [
+        "9418093107",
+        "9289017982"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "라탄 3단 4단 5단 서랍장 대형 플라스틱서랍장 수납장 아기옷수납장 옷장 정리함 주방 장난감정리",
+      "ids": [
+        "144967228",
+        "144963030"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "마리떼 클래식 로고 호보 백 b1 mfg46cbg106 blk lpd",
+      "ids": [
+        "9383861460",
+        "9381948910"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "매일유업 앱솔루트 명작 2fl 분유 1단계 800g 3개",
+      "ids": [
+        "9228928141",
+        "6189477680"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "매일유업 앱솔루트 명작 분유 1단계 800g 3캔",
+      "ids": [
+        "7813835692",
+        "5696158905"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "맥심 슈프림골드 믹스커피 170t 물티슈증정",
+      "ids": [
+        "9440988222",
+        "9413673482"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "맥심 슈프림골드 커피믹스 13.5gx170t",
+      "ids": [
+        "9441759709",
+        "9414886037"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "맥심 화이트골드 커피믹스 400t",
+      "ids": [
+        "9441212493",
+        "9413508363"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "맥코믹 몬트리얼 스테이크 시즈닝 822g",
+      "ids": [
+        "9523716547",
+        "9522517917"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "모나리자 내추럴 프리미엄 물티슈 캡형 70매x10팩",
+      "ids": [
+        "9509458399",
+        "9436545682"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "바이시클카드 마술 매직용품 도구 포카 게임 이벤트 bee",
+      "ids": [
+        "11644903",
+        "1328085871"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "방그레 라이트 캡형 100매 20팩 물티슈",
+      "ids": [
+        "1558089020",
+        "1568255751"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "베베숲 트러스트 캡형 물티슈 80매x20개입",
+      "ids": [
+        "9448000498",
+        "9434370511"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "브랜든 여행용 세이프 플러스 월렛백 (4)",
+      "ids": [
+        "9540200520",
+        "9536375229"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "브랜든 여행용 세이프 플러스 월렛백 (5)",
+      "ids": [
+        "9538486200",
+        "9536346336"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "브랜든 여행용 세이프 플러스 월렛백 (7)",
+      "ids": [
+        "9542514775",
+        "9537802216"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "브랜든 여행용 플러스 월렛백 (3)",
+      "ids": [
+        "9537802347",
+        "9537780515"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "비욘드 엔젤 키즈 샴푸 700ml 어린이용",
+      "ids": [
+        "3109227345",
+        "3104338676"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "산란용 농협 닭사료 청계 오골계 오리 퍼펙트 산란 20kg 새 모이 알잘낳는 가루 사료",
+      "ids": [
+        "8961959664",
+        "7197614062"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "삼성 990 pro ssd 1tb pcie 4.0 m.2 2280 내장 솔리드 스테이트 하드 드라이브 seq. 하이엔드 컴퓨팅 게임",
+      "ids": [
+        "9292218833",
+        "9298528893"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "삼성 아이스 쿨스카프/국산/고급형/3가지색상",
+      "ids": [
+        "1738859076",
+        "1738856743"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "삼성전자 ddr5-5600 (16gb) pc5-44800",
+      "ids": [
+        "8142910392",
+        "9299760802"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "삼성전자 ddr5-5600 중고 (16gb)",
+      "ids": [
+        "9373968433",
+        "9417281804"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "서울우유 전지 분유 1kg",
+      "ids": [
+        "9541475173",
+        "9501923687"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "솔리티 웰콤 무타공도어록 wts700 카드키4개+번호키 0초바로잠금 현관문 디지털도어락 생활방수 전기충격무력화 스마트라이팅 허수기능 강력한 내구성 주키형",
+      "ids": [
+        "3483063218",
+        "3482951190"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "스피드캣 og - 블랙 398846-01",
+      "ids": [
+        "9533539313",
+        "9479875128"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "시스맥스 올리오 책꽂이 3단 wh",
+      "ids": [
+        "9522174407",
+        "9518431953"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "아메리칸투어리스터 락케이션 플러스 여행가방 9종 세트",
+      "ids": [
+        "9456330272",
+        "7977452140"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "아토팜 매터니티 케어 스트레치 마크 크림 150ml",
+      "ids": [
+        "9517986029",
+        "9512515062"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "앱솔루트 명작 2fl 분유 1단계 800g 3캔",
+      "ids": [
+        "9170928336",
+        "9081350261"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "앱솔루트 명작 분유 1단계 800g, 3개",
+      "ids": [
+        "7064584464",
+        "9182300507"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "앱솔루트 명작 분유 1단계, 800g, 3개 ,당일발",
+      "ids": [
+        "8990608950",
+        "8988472167"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "앵무새밥 조류 앵무새 전용먹이 사료 700g",
+      "ids": [
+        "9536468869",
+        "9492687929"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "에콕스 [리오셀 + 인견 시원한 팬츠] 26ss 남성 인견팬츠 3종",
+      "ids": [
+        "9478047998",
+        "9478030372"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "예감 오리온 치즈그라탕맛 x 64g 10개",
+      "ids": [
+        "9376851387",
+        "9393083952"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "오즈웨이브 샌들 js4582",
+      "ids": [
+        "9434742770",
+        "9501521888"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "주왕산 털보네 맛있는 꿀부사",
+      "ids": [
+        "1418504992",
+        "1566538564"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "중고 닌텐도 ds / dsi 판매(6개월무상as )",
+      "ids": [
+        "1826900266",
+        "1406361861"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "쥬미에르 실버바 1kg 순은 999.9 투자용 은바 1000g",
+      "ids": [
+        "9478546803",
+        "9455712218"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "천사점토 800g 도너랜드",
+      "ids": [
+        "9539182797",
+        "9539014789"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "캐리어 백팩",
+      "ids": [
+        "9497673727",
+        "9484970460"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "캐츠랑 고양이사료 비타플러스 점보 20kg",
+      "ids": [
+        "6752176067",
+        "7152272279"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "코멕스 네오박스 600 60l 수납정리함",
+      "ids": [
+        "9456178708",
+        "9446082725"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "타이틀리스트 코어 에센셜 보스턴 백",
+      "ids": [
+        "8978892133",
+        "8963834353"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "타이틀리스트 코어 에센셜 보스턴백 ta22cebbk",
+      "ids": [
+        "9322866090",
+        "8035312136"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "파괴 함마 해머 홈파기 드릴 곡괭이 전기 핸디형 hm0810ta",
+      "ids": [
+        "9408499938",
+        "9404053941"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "한국금거래소 골드바 1.875g",
+      "ids": [
+        "8741969176",
+        "8716789326"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "한국금거래소 골드바 3.75g",
+      "ids": [
+        "8741962840",
+        "8716789184"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "함마드릴 뿌레카 해머 해머드릴 단일 상품 쁘레카 함마",
+      "ids": [
+        "9351206043",
+        "9351205727"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "협신 울트라 수중 모터 up-500 50w",
+      "ids": [
+        "9527802615",
+        "9479841973"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "후라이프 기내용 초경량 저소음 캐리어 20인치",
+      "ids": [
+        "9309410905",
+        "9303738103"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "amd 라이젠7-6세대 9800x3d (그래니트 릿지) (멀티팩(정품))",
+      "ids": [
+        "8655666677",
+        "8330536714"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "bnr17 다이어트 유산균 비에날씬 12주분",
+      "ids": [
+        "9533471361",
+        "9533424478"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "puma 스피드캣 og - 블랙 / 398846-01",
+      "ids": [
+        "9523076230",
+        "9450017885"
+      ],
+      "count": 2
+    },
+    {
+      "normalizedTitle": "yfl-222 학생용 중급 플루트 (국제 버전)",
+      "ids": [
+        "8943540160",
+        "8898707779"
+      ],
+      "count": 2
+    }
+  ]
+}

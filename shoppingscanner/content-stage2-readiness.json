@@ -1,0 +1,124 @@
+{
+  "schema": "shopping-scanner-content-quality-stage2/v1",
+  "release": "content-q100-stage2-r1",
+  "evaluatedAt": "2026-09-04T08:06:35.167Z",
+  "decision": "CONTENT_STAGE2_AI_QUALITY_100_COMPLETE",
+  "stage2": {
+    "completionPercent": 100,
+    "tasksCompleted": 10,
+    "tasksTotal": 10,
+    "tasks": [
+      {
+        "id": "C2-01",
+        "name": "핵심 300개 상품명 포함 개별 요약",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C2-02",
+        "name": "상품별 추천 대상 개별화",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C2-03",
+        "name": "상품별 비추천 대상 개별화",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C2-04",
+        "name": "상품별 주의점 개별화",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C2-05",
+        "name": "상품군별 5개 선택 기준 연결",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C2-06",
+        "name": "대안 2개에 실제 상품명 연결",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C2-07",
+        "name": "근거 URL·관측시각 전수 연결",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C2-08",
+        "name": "16개 구매 가이드 구조·길이 검사",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C2-09",
+        "name": "20개 용어·12개 도움말 보존",
+        "status": "VERIFIED"
+      },
+      {
+        "id": "C2-10",
+        "name": "AI 초안과 사람 승인 상태 분리",
+        "status": "VERIFIED"
+      }
+    ]
+  },
+  "productChecks": {
+    "passed": 300,
+    "total": 300,
+    "failed": 0
+  },
+  "guideChecks": {
+    "passed": 16,
+    "total": 16
+  },
+  "glossaryChecks": {
+    "passed": 20,
+    "total": 20
+  },
+  "patternDiversity": {
+    "summary": {
+      "unique": 300,
+      "total": 300
+    },
+    "bestFor": {
+      "unique": 300,
+      "total": 300
+    },
+    "notFor": {
+      "unique": 300,
+      "total": 300
+    },
+    "pros": {
+      "unique": 300,
+      "total": 300
+    },
+    "considerations": {
+      "unique": 300,
+      "total": 300
+    },
+    "decisionCriteria": {
+      "unique": 300,
+      "total": 300
+    },
+    "finalCheck": {
+      "unique": 300,
+      "total": 300
+    }
+  },
+  "semanticScope": {
+    "passed": 300,
+    "total": 300,
+    "method": "TITLE_CUE_QUESTIONS_ONLY",
+    "humanVerified": false
+  },
+  "factOnlyApproval": 300,
+  "aiEditorialDraftApproval": 300,
+  "humanEditorialApproval": 0,
+  "unsupportedHumanApprovalClaims": 0,
+  "stage3RequiredProof": [
+    "핵심 300개 실제 편집자 2단계 승인",
+    "새 판매처 3곳 이상과 실제 최신 오퍼",
+    "실제 사용자 30명 이상 과업·이해도 검사",
+    "Android·iPhone·TalkBack·VoiceOver 실증",
+    "30일 공개 운영 중 치명 콘텐츠 결함 0건"
+  ],
+  "truthBoundary": "2단계 100%는 현재 근거 안에서 AI가 수행할 수 있는 상품별 개별화·구조·근거·가이드 자동 품질의 완료다. 실제 사람의 편집 승인이나 시장 사실을 뜻하지 않는다."
+}

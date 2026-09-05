@@ -1,0 +1,11 @@
+{
+  "name": "바둑의 신 통합 학습 포털",
+  "short_name": "바둑의 신",
+  "start_url": "/baduk-god/",
+  "scope": "/baduk-god/",
+  "display": "standalone",
+  "background_color": "#102a26",
+  "theme_color": "#102a26",
+  "lang": "ko-KR",
+  "icons": [{ "src": "/baduk-god/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }]
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title desc">
+  <title id="title">바둑의 신</title>
+  <desc id="desc">짙은 녹색 바탕에 흑돌과 백돌</desc>
+  <rect width="64" height="64" rx="16" fill="#102a26"/>
+  <circle cx="24" cy="30" r="14" fill="#111b1a"/>
+  <circle cx="40" cy="38" r="14" fill="#f3ead7" stroke="#c7bda9" stroke-width="2"/>
+  <path d="M17 14h30M14 22h36M14 30h36M14 38h36M17 46h30M22 11v42M32 11v42M42 11v42" stroke="#b38b54" stroke-width="1.2" opacity=".55"/>
+</svg>

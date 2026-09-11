@@ -1,3 +1,0 @@
-LINKMAX_SITE_CONTROL_V2
-challenge=linkless_8479569ab6e846bda053d18a26b3bb5a
-proof=3-yICr6G5THphCw1YTHf7SBhSSrrgbLKKWLoKxhGAZk
